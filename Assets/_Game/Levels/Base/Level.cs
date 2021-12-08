@@ -1,17 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Dreamteck.Splines;
 using UnityEngine;
 using Vanta.Levels;
 
 public class Level : BaseLevel
 {
-    
-    // Override player property of Base Level to return Player instead of Base Character.
+    public SplineComputer spline;
     public Player player => _player as Player;
-    
-    
-    
-#region Life Cycle
+
+    #region Life Cycle
 
     protected override void Start()
     {
@@ -22,6 +20,8 @@ public class Level : BaseLevel
         _state = State.Loaded;
         listener.Level_DidLoad(this);
         Debug.Log("Loaded");
+        _state = State.Started;
+        listener.Level_DidStart(this);
     }
 
 #endregion

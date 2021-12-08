@@ -33,7 +33,7 @@ namespace Vanta.Characters
 
         protected virtual void Awake()
         {
-
+            ApplyType();
         }
 
         protected virtual void Start()
