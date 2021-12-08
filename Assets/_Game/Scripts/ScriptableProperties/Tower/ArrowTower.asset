@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71a3982fe3ac5541b2a99c4d87b59d4, type: 3}
   m_Name: ArrowTower
   m_EditorClassIdentifier: 
+  towerType: 0
   projectile: {fileID: 1094347573218151881, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
   bulletSpeed: 10
   damage: 10

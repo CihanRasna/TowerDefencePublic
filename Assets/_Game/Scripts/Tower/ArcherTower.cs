@@ -19,8 +19,8 @@ public class ArcherTower : BaseTower
     {
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
         {
-            var go = Instantiate(projectile, transform.position, Quaternion.identity);
-            go.InitializeBullet(damage,bulletSpeed,enemy.transform);
+            var go = Instantiate(projectile, shootingPoint.transform.position, Quaternion.identity);
+            go.InitializeBullet(this,damage,bulletSpeed,enemy.transform);
         }
     }
 }

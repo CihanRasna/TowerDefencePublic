@@ -17,11 +17,11 @@ public abstract class BaseTower : MonoBehaviour
         Teleport
     }
 
-    public Type towerType;
+    [HideInInspector]public Type towerType;
     
     [SerializeField] private TowerProperties towerProperties;
-    [SerializeField] private Transform shootingPoint;
-    [SerializeField] private SphereCollider collider;
+    [SerializeField] protected Transform shootingPoint;
+    [SerializeField] protected SphereCollider collider;
     
     protected float damage;
     protected float bulletSpeed;
@@ -45,6 +45,7 @@ public abstract class BaseTower : MonoBehaviour
 
     private void InitializeTowerProperties()
     {
+        towerType = towerProperties.towerType;
         damage = towerProperties.damage;
         bulletSpeed = towerProperties.bulletSpeed;
         collider.radius = towerProperties.shootingRange;

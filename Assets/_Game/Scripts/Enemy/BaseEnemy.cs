@@ -10,8 +10,10 @@ public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private EnemyProperties enemyProperties;
 
-    [SerializeField] protected SplineFollower splineFollower;
+    [field: SerializeField] public SplineFollower splineFollower { private set; get; }
+    // [SerializeField] protected SplineFollower splineFollower;
     [SerializeField] protected float health;
+    private IEnumerator _currentDebuff = null;
 
     protected virtual void Awake()
     {
@@ -34,7 +36,51 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        Debug.Log("asd");
         if(health > 0) health -= dmg;
     }
+
+    #region GetStatusEffects
+
+    public void GetStatusEffect(BaseTower.Type towerType)
+    {
+        StopAllCoroutines();
+
+        _currentDebuff = towerType switch
+        {
+            BaseTower.Type.Ice => GetFreezeEffect(),
+            BaseTower.Type.Fire => GetFireEffect(),
+            BaseTower.Type.Magic => GetMagicEffect(),
+            BaseTower.Type.Teleport => GetTeleportEffect(),
+            _ => null
+        };
+
+        StartCoroutine(_currentDebuff);
+    }
+
+    #endregion
+
+    #region StatusEffects
+
+    private IEnumerator GetFreezeEffect()
+    {
+        yield return null;
+    }
+
+    private IEnumerator GetFireEffect()
+    {
+        yield return null;
+    }
+
+    private IEnumerator GetMagicEffect()
+    {
+        yield return null;
+    }
+
+    private IEnumerator GetTeleportEffect()
+    {
+        yield return null;
+    }
+
+    #endregion
+   
 }
