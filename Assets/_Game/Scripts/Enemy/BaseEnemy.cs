@@ -5,12 +5,13 @@ using Dreamteck.Splines;
 using UnityEngine;
 using Vanta.Levels;
 
+
 public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private EnemyProperties enemyProperties;
 
     [SerializeField] protected SplineFollower splineFollower;
-    protected float health;
+    [SerializeField] protected float health;
 
     protected virtual void Awake()
     {
@@ -29,5 +30,11 @@ public abstract class BaseEnemy : MonoBehaviour
         splineFollower.spline = currentSpline;
         splineFollower.followSpeed = enemyProperties.speed;
         health = enemyProperties.health;
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        Debug.Log("asd");
+        if(health > 0) health -= dmg;
     }
 }
