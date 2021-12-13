@@ -42,6 +42,15 @@ public abstract class BaseTower : MonoBehaviour
     {
         
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<BaseEnemy>(out var enemy))
+        {
+            var go = Instantiate(projectile, shootingPoint.transform.position, Quaternion.identity);
+            go.InitializeBullet(this,damage,bulletSpeed,enemy.transform);
+        }
+    }
 
     private void InitializeTowerProperties()
     {
