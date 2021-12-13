@@ -54,6 +54,7 @@ public abstract class BaseEnemy : MonoBehaviour
             _ => null
         };
 
+        if (_currentDebuff == null) return;
         StartCoroutine(_currentDebuff);
     }
 

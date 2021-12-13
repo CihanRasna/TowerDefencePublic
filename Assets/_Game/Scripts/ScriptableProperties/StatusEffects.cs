@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StatusEffects", menuName = "ScriptableObjects/StatusEffectScriptableObject", order = 3)]
+[CreateAssetMenu(fileName = "StatusEffects", menuName = "ScriptableObjects/StatusEffectScriptableObject", order = 3), InlineEditor]
 public class StatusEffects : ScriptableObject
 {
     [TitleGroup("Ice Tower", alignment: TitleAlignments.Centered)]
