@@ -14,7 +14,6 @@ public class TowerProperties : ScriptableObject
     [Title("Projectile",titleAlignment:TitleAlignments.Centered)]
     [HideLabel,PreviewField(100, ObjectFieldAlignment.Center)]
     public Projectile projectile;
-    public float bulletSpeed;
     public float damage;
     public float fireRate;
     public float shootingRange;

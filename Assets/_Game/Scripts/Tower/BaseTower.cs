@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using Dreamteck.Splines;
 using UnityEngine;
-using Vanta.Levels;
 
+[SelectionBase]
 public abstract class BaseTower : MonoBehaviour
 {
     public enum Type
@@ -18,13 +15,13 @@ public abstract class BaseTower : MonoBehaviour
     }
 
     [HideInInspector]public Type towerType;
+    [SerializeField] protected BaseEnemy currentEnemy;
     
     [SerializeField] private TowerProperties towerProperties;
     [SerializeField] protected Transform shootingPoint;
-    [SerializeField] protected SphereCollider collider;
+    [SerializeField] protected new SphereCollider collider;
     
     protected float damage;
-    protected float bulletSpeed;
     protected float fireRate;
     protected Projectile projectile;
 
@@ -35,31 +32,49 @@ public abstract class BaseTower : MonoBehaviour
 
     protected virtual void Awake()
     {
-        InitializeTowerProperties();
+        towerProperties = Instantiate(towerProperties);
     }
 
     protected virtual void Start()
     {
-        
+        InitializeTowerProperties();
     }
     
     private void OnTriggerEnter(Collider other)
     {
+        if (currentEnemy) return;
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
         {
-            var go = Instantiate(projectile, shootingPoint.transform.position, Quaternion.identity);
-            go.InitializeBullet(this,damage,bulletSpeed,enemy.transform);
+            currentEnemy = enemy;
+            var go = Instantiate(projectile, shootingPoint.transform.position, shootingPoint.transform.rotation);
+            go.InitializeBullet(this,damage,currentEnemy.transform);
+            TowerHasTarget();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.TryGetComponent<BaseEnemy>(out var enemy)) return;
+        currentEnemy = null;
     }
 
     private void InitializeTowerProperties()
     {
         towerType = towerProperties.towerType;
         damage = towerProperties.damage;
-        bulletSpeed = towerProperties.bulletSpeed;
         collider.radius = towerProperties.shootingRange;
         fireRate = towerProperties.fireRate;
         projectile = towerProperties.projectile;
+    }
+
+    internal void RepeatFire()
+    {
+        var go = Instantiate(projectile, shootingPoint.transform.position, Quaternion.identity);
+        go.InitializeBullet(this,damage,currentEnemy.transform);
+    }
+
+    protected virtual void TowerHasTarget()
+    {
     }
 
     private void OnDrawGizmos()

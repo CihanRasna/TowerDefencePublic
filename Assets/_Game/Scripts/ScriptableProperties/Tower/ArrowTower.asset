@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: ArrowTower
   m_EditorClassIdentifier: 
   towerType: 0
-  projectile: {fileID: 1094347573218151881, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
-  bulletSpeed: 10
+  projectile: {fileID: 6591105759050601487, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
   damage: 10
   fireRate: 2
   shootingRange: 15

@@ -9,6 +9,9 @@ public class Level : BaseLevel
     public SplineComputer spline;
     public Player player => _player as Player;
 
+    [SerializeField] private BaseEnemy enemy;
+    
+
     #region Life Cycle
 
     protected override void Start()
