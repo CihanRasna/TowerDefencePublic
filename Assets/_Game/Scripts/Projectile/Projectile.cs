@@ -21,6 +21,7 @@ public abstract class Projectile : MonoBehaviour
     {
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
         {
+            GetComponent<Collider>().enabled = false;
             _tweener.Kill();
             transform.parent = enemy.transform;
             enemy.TakeDamage(damage);
