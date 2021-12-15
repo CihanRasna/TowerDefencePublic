@@ -16,7 +16,7 @@ public abstract class Projectile : MonoBehaviour
     {
         
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
@@ -34,6 +34,6 @@ public abstract class Projectile : MonoBehaviour
         bulletType = myTower.towerType;
         damage = myDamage;
         target = myTarget;
-        _tweener = transform.DOMove(target.transform.position, .2f);
+        _tweener = transform.DOMove(target.position, .2f).OnUpdate(()=> _tweener.ChangeEndValue(target.position,true));
     }
 }
