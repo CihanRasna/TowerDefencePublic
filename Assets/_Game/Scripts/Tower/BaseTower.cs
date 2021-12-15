@@ -22,9 +22,10 @@ public abstract class BaseTower : MonoBehaviour
     [SerializeField] protected new SphereCollider collider;
     
     protected float damage;
-    protected float fireRate;
+    protected float firePerSecond;
     protected Projectile projectile;
 
+    private Coroutine _fireRoutine;
     private void OnEnable()
     {
         collider.radius = towerProperties.shootingRange;
@@ -43,11 +44,11 @@ public abstract class BaseTower : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (currentEnemy) return;
+
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
         {
             currentEnemy = enemy;
-            var go = Instantiate(projectile, shootingPoint.transform.position, shootingPoint.transform.rotation);
-            go.InitializeBullet(this,damage,currentEnemy.transform);
+            _fireRoutine = StartCoroutine(RepeatFire());
             TowerHasTarget();
         }
     }
@@ -56,6 +57,7 @@ public abstract class BaseTower : MonoBehaviour
     {
         if (!other.TryGetComponent<BaseEnemy>(out var enemy)) return;
         currentEnemy = null;
+        StopCoroutine(_fireRoutine);
     }
 
     private void InitializeTowerProperties()
@@ -63,14 +65,18 @@ public abstract class BaseTower : MonoBehaviour
         towerType = towerProperties.towerType;
         damage = towerProperties.damage;
         collider.radius = towerProperties.shootingRange;
-        fireRate = towerProperties.fireRate;
+        firePerSecond = towerProperties.fireRate;
         projectile = towerProperties.projectile;
     }
 
-    internal void RepeatFire()
+    private IEnumerator RepeatFire()
     {
-        var go = Instantiate(projectile, shootingPoint.transform.position, Quaternion.identity);
+        if (!currentEnemy) yield break;
+        var transform1 = shootingPoint.transform;
+        var go = Instantiate(projectile, transform1.position,  transform1.rotation);
         go.InitializeBullet(this,damage,currentEnemy.transform);
+        yield return new WaitForSeconds(1 / firePerSecond);
+        StartCoroutine(RepeatFire());
     }
 
     protected virtual void TowerHasTarget()
