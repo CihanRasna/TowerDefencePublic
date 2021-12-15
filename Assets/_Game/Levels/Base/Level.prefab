@@ -4295,10 +4295,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5343100669236906322, guid: 791e4bc19330a574d9cb220f9b8acc46, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 16.17
-      objectReference: {fileID: 0}
     - target: {fileID: 5818831119532498391, guid: 791e4bc19330a574d9cb220f9b8acc46, type: 3}
       propertyPath: m_Name
       value: CM-CameraGroup
