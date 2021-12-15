@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Dreamteck.Splines;
+using EPOOutline;
 using UnityEngine;
 using Vanta.Levels;
 
@@ -11,7 +12,8 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] private EnemyProperties enemyProperties;
 
     [field: SerializeField] public SplineFollower splineFollower { private set; get; }
-    // [SerializeField] protected SplineFollower splineFollower;
+    [SerializeField] private Outlinable myOutline;
+    
     [SerializeField] protected float health;
     private IEnumerator _currentDebuff = null;
 
@@ -25,6 +27,22 @@ public abstract class BaseEnemy : MonoBehaviour
         InitializeEnemyLogic();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<BaseTower>(out var tower))
+        {
+            myOutline.enabled = true;
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<BaseTower>(out var tower))
+        {
+            myOutline.enabled = false;
+        }
+    }
+
     protected void InitializeEnemyLogic()
     {
         var level = LevelManager.Instance.currentLevel as Level;
@@ -36,7 +54,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        if(health > 0) health -= dmg;
+        health -= dmg;
+        health = Mathf.Clamp(health, 0,enemyProperties.health);
+        if (health == 0) Destroy(gameObject);
     }
 
     #region GetStatusEffects
