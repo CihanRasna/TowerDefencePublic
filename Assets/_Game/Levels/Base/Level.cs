@@ -35,7 +35,8 @@ public class Level : BaseLevel
     [Button]
     private void SpawnEnemy()
     {
-        Instantiate(enemy);
+        var e = Instantiate(enemy);
+        e.transform.parent = transform;
     }
 
 #endregion
