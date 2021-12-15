@@ -74,7 +74,7 @@ public abstract class BaseTower : MonoBehaviour
         if (!currentEnemy) yield break;
         var transform1 = shootingPoint.transform;
         var go = Instantiate(projectile, transform1.position,  transform1.rotation);
-        go.InitializeBullet(this,damage,currentEnemy.transform);
+        go.InitializeBullet(this,damage,currentEnemy.transform,towerProperties.hitParticle);
         yield return new WaitForSeconds(1 / firePerSecond);
         StartCoroutine(RepeatFire());
     }

@@ -3,23 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Dreamteck.Splines;
 using EPOOutline;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Vanta.Levels;
 
-
+[SelectionBase]
 public abstract class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] private EnemyProperties enemyProperties;
+    [SerializeField, HideInInspector] private EnemyProperties enemyProperties;
+    private StatusEffects statusEffects;
 
     [field: SerializeField] public SplineFollower splineFollower { private set; get; }
     [SerializeField] private Outlinable myOutline;
-    
+
     [SerializeField] protected float health;
     private IEnumerator _currentDebuff = null;
 
     protected virtual void Awake()
     {
-        
     }
 
     protected virtual void Start()
@@ -34,7 +35,7 @@ public abstract class BaseEnemy : MonoBehaviour
             myOutline.enabled = true;
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<BaseTower>(out var tower))
@@ -43,19 +44,20 @@ public abstract class BaseEnemy : MonoBehaviour
         }
     }
 
-    protected void InitializeEnemyLogic()
+    private void InitializeEnemyLogic()
     {
         var level = LevelManager.Instance.currentLevel as Level;
         var currentSpline = level.spline;
         splineFollower.spline = currentSpline;
         splineFollower.followSpeed = enemyProperties.speed;
         health = enemyProperties.health;
+        statusEffects = enemyProperties.statusEffects;
     }
 
     public void TakeDamage(float dmg)
     {
         health -= dmg;
-        health = Mathf.Clamp(health, 0,enemyProperties.health);
+        health = Mathf.Clamp(health, 0, enemyProperties.health);
         if (health == 0) Destroy(gameObject);
     }
 
@@ -64,6 +66,7 @@ public abstract class BaseEnemy : MonoBehaviour
     public void GetStatusEffect(BaseTower.Type towerType)
     {
         StopAllCoroutines();
+        _currentDebuff = null;
 
         _currentDebuff = towerType switch
         {
@@ -84,7 +87,12 @@ public abstract class BaseEnemy : MonoBehaviour
 
     private IEnumerator GetFreezeEffect()
     {
-        yield return null;
+        var normalSpeed = enemyProperties.speed;
+        var ratio = statusEffects.freezeRatio / 100f;
+        var newSpeed = normalSpeed * ratio;
+        splineFollower.followSpeed = newSpeed;
+        yield return new WaitForSeconds(statusEffects.freezeTime);
+        splineFollower.followSpeed = normalSpeed;
     }
 
     private IEnumerator GetFireEffect()
@@ -103,5 +111,4 @@ public abstract class BaseEnemy : MonoBehaviour
     }
 
     #endregion
-   
 }

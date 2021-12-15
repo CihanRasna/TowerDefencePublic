@@ -7,8 +7,10 @@ using UnityEngine;
 [SelectionBase]
 public abstract class Projectile : MonoBehaviour
 {
-    [SerializeField] protected float damage;
-    [SerializeField] protected Transform target;
+    [SerializeField,HideInInspector] protected float damage;
+    [SerializeField,HideInInspector] protected Transform target;
+    [SerializeField,HideInInspector] protected GameObject hitParticle;
+    
     [HideInInspector] public BaseTower.Type bulletType;
     private Tweener _tweener = null;
 
@@ -22,18 +24,21 @@ public abstract class Projectile : MonoBehaviour
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
         {
             GetComponent<Collider>().enabled = false;
+            DoYourOwnShit(enemy);
             _tweener.Kill();
-            transform.parent = enemy.transform;
             enemy.TakeDamage(damage);
             enemy.GetStatusEffect(bulletType);
         }
     }
 
-    public void InitializeBullet(BaseTower myTower,float myDamage,Transform myTarget)
+    protected abstract void DoYourOwnShit(BaseEnemy baseEnemy);
+
+    public void InitializeBullet(BaseTower myTower,float myDamage,Transform myTarget, GameObject myParticle)
     {
         bulletType = myTower.towerType;
         damage = myDamage;
         target = myTarget;
-        _tweener = transform.DOMove(target.position, .2f).OnUpdate(()=> _tweener.ChangeEndValue(target.position,true));
+        hitParticle = myParticle;
+        _tweener = transform.DOMove(target.position, .2f).OnUpdate(()=> _tweener.ChangeEndValue(target.position + Vector3.up,true));
     }
 }
