@@ -17,6 +17,7 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] private Outlinable myOutline;
 
     [SerializeField] protected float health;
+    protected int goldPrize;
     private IEnumerator _currentDebuff = null;
 
     protected virtual void Awake()
@@ -51,6 +52,7 @@ public abstract class BaseEnemy : MonoBehaviour
         splineFollower.spline = currentSpline;
         splineFollower.followSpeed = enemyProperties.speed;
         health = enemyProperties.health;
+        goldPrize = enemyProperties.goldPrize;
         statusEffects = enemyProperties.statusEffects;
     }
 

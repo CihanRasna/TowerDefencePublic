@@ -9,4 +9,5 @@ public class EnemyProperties : ScriptableObject
     public StatusEffects statusEffects;
     public float health;
     public float speed;
+    public int goldPrize;
 }

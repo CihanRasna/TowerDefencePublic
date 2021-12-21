@@ -41,7 +41,12 @@ public abstract class BaseTower : MonoBehaviour
     {
         InitializeTowerProperties();
     }
-    
+
+    private void OnMouseUpAsButton()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (currentEnemy) return;
