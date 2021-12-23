@@ -26,9 +26,9 @@ public abstract class BaseTower : MonoBehaviour
     protected float firePerSecond;
     protected Projectile projectile;
 
-    [HideInInspector]public int damageCurrentLevel;
-    [HideInInspector]public int fireRateCurrentLevel;
-    [HideInInspector]public int radiusCurrentLevel;
+    [HideInInspector] public int damageCurrentLevel = 1;
+    [HideInInspector]public int fireRateCurrentLevel = 1;
+    [HideInInspector]public int radiusCurrentLevel = 1;
 
     private Coroutine _fireRoutine;
     private void OnEnable()
@@ -67,6 +67,9 @@ public abstract class BaseTower : MonoBehaviour
 
     private void InitializeTowerProperties()
     {
+        damageCurrentLevel = 1;
+        fireRateCurrentLevel = 1;
+        radiusCurrentLevel = 1;
         towerType = towerProperties.towerType;
         damage = towerProperties.damage;
         collider.radius = towerProperties.shootingRange;
@@ -88,10 +91,15 @@ public abstract class BaseTower : MonoBehaviour
     protected virtual void TowerHasTarget()
     {
     }
+    
+    protected virtual void DamageUpgraded()
+    {
+    }
 
     public void UpgradeDamage(float value)
     { 
         damage = towerProperties.damage += value;
+        DamageUpgraded();
     }
     
     public void UpgradeFireRate(float value)

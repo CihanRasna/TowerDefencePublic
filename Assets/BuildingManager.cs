@@ -41,9 +41,10 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     public void UpgradeSelectedTowerDamage()
     {
         var selectedProperties = selectedTower.towerProperties;
-        selectedTower.damageCurrentLevel += 1;
-        if (selectedTower.damageCurrentLevel <= selectedProperties.damageMaxUpgrade)
+        if (selectedTower.damageCurrentLevel < selectedProperties.damageMaxUpgradeLevel)
         {
+            Debug.Log("A");
+            selectedTower.damageCurrentLevel += 1;
             selectedTower.UpgradeDamage(selectedProperties.damageForUpdate);
             damageLevel.text = selectedTower.damageCurrentLevel.ToString();
         }
@@ -52,9 +53,9 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     public void UpgradeSelectedTowerFireRate()
     {
         var selectedProperties = selectedTower.towerProperties;
-        selectedTower.fireRateCurrentLevel += 1;
-        if (selectedTower.fireRateCurrentLevel <= selectedProperties.fireRateMaxUpgrade)
+        if (selectedTower.fireRateCurrentLevel < selectedProperties.fireRateMaxUpgradeLevel)
         {
+            selectedTower.fireRateCurrentLevel += 1;
             selectedTower.UpgradeFireRate(selectedProperties.fireRatePerUpdate);
             fireRateLevel.text = selectedTower.fireRateCurrentLevel.ToString();
         }
@@ -63,9 +64,9 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     public void UpgradeSelectedTowerRadius()
     {
         var selectedProperties = selectedTower.towerProperties;
-        selectedTower.radiusCurrentLevel += 1;
-        if (selectedTower.radiusCurrentLevel <= selectedProperties.radiusMaxUpgrade)
+        if (selectedTower.radiusCurrentLevel < selectedProperties.radiusMaxUpgradeLevel)
         {
+            selectedTower.radiusCurrentLevel += 1;
             selectedTower.UpgradeRadius(selectedProperties.radiusPerUpdate);
             radiusLevel.text = selectedTower.radiusCurrentLevel.ToString();
         }

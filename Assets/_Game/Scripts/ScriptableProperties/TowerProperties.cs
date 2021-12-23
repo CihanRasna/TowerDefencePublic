@@ -32,11 +32,11 @@ public class TowerProperties : ScriptableObject
     [VerticalGroup("Settings")] 
     [BoxGroup("Settings/Damage")] public float damage;
     [BoxGroup("Settings/Damage")] public float damageForUpdate;
-    [BoxGroup("Settings/Damage")] public int damageMaxUpgrade;
+    [BoxGroup("Settings/Damage")] public int damageMaxUpgradeLevel;
     [BoxGroup("Settings/FireRate")] public float fireRate;
     [BoxGroup("Settings/FireRate")]public float fireRatePerUpdate;
-    [BoxGroup("Settings/FireRate")]public int fireRateMaxUpgrade;
+    [BoxGroup("Settings/FireRate")]public int fireRateMaxUpgradeLevel;
     [BoxGroup("Settings/Range")] public float shootingRange;
     [BoxGroup("Settings/Range")]public float radiusPerUpdate;
-    [BoxGroup("Settings/Range")]public int radiusMaxUpgrade;
+    [BoxGroup("Settings/Range")]public int radiusMaxUpgradeLevel;
 }
