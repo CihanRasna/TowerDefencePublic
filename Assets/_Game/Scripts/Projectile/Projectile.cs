@@ -19,6 +19,14 @@ public abstract class Projectile : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if (!target)
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<BaseEnemy>(out var enemy))

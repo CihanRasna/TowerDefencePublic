@@ -18,18 +18,25 @@ public class TowerProperties : ScriptableObject
     // [Title("HitParticle", titleAlignment: TitleAlignments.Right)]
     // [HideLabel, PreviewField(100, ObjectFieldAlignment.Right)]
     // public GameObject hitParticle;
-    
+
     [TitleGroup("Projectile Properties", alignment: TitleAlignments.Centered)]
     [HorizontalGroup("Projectile Properties/Split")]
     [VerticalGroup("Projectile Properties/Split/Left")]
-    [BoxGroup("Projectile Properties/Split/Left/Projectile"),HideLabel,PreviewField(ObjectFieldAlignment.Center)]
+    [BoxGroup("Projectile Properties/Split/Left/Projectile"), HideLabel, PreviewField(ObjectFieldAlignment.Center)]
     public Projectile projectile;
-    
-    [VerticalGroup("Projectile Properties/Split/Right")] 
-    [BoxGroup("Projectile Properties/Split/Right/Hit Particle"),HideLabel,PreviewField(ObjectFieldAlignment.Center)]
+
+    [VerticalGroup("Projectile Properties/Split/Right")]
+    [BoxGroup("Projectile Properties/Split/Right/Hit Particle"), HideLabel, PreviewField(ObjectFieldAlignment.Center)]
     public GameObject hitParticle;
 
-    public float damage;
-    public float fireRate;
-    public float shootingRange; 
+    [VerticalGroup("Settings")] 
+    [BoxGroup("Settings/Damage")] public float damage;
+    [BoxGroup("Settings/Damage")] public float damageForUpdate;
+    [BoxGroup("Settings/Damage")] public int damageMaxUpgrade;
+    [BoxGroup("Settings/FireRate")] public float fireRate;
+    [BoxGroup("Settings/FireRate")]public float fireRatePerUpdate;
+    [BoxGroup("Settings/FireRate")]public int fireRateMaxUpgrade;
+    [BoxGroup("Settings/Range")] public float shootingRange;
+    [BoxGroup("Settings/Range")]public float radiusPerUpdate;
+    [BoxGroup("Settings/Range")]public int radiusMaxUpgrade;
 }

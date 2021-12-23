@@ -15,16 +15,20 @@ public abstract class BaseTower : MonoBehaviour
         Teleport
     }
 
-    [HideInInspector]public Type towerType;
+    [HideInInspector] public Type towerType;
     [SerializeField] protected BaseEnemy currentEnemy;
     
-    [SerializeField] private TowerProperties towerProperties;
+    [SerializeField] public TowerProperties towerProperties;
     [SerializeField] protected Transform shootingPoint;
     [SerializeField] protected new SphereCollider collider;
     
     protected float damage;
     protected float firePerSecond;
     protected Projectile projectile;
+
+    [HideInInspector]public int damageCurrentLevel;
+    [HideInInspector]public int fireRateCurrentLevel;
+    [HideInInspector]public int radiusCurrentLevel;
 
     private Coroutine _fireRoutine;
     private void OnEnable()
@@ -40,11 +44,6 @@ public abstract class BaseTower : MonoBehaviour
     protected virtual void Start()
     {
         InitializeTowerProperties();
-    }
-
-    private void OnMouseUpAsButton()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -88,6 +87,21 @@ public abstract class BaseTower : MonoBehaviour
 
     protected virtual void TowerHasTarget()
     {
+    }
+
+    public void UpgradeDamage(float value)
+    { 
+        damage = towerProperties.damage += value;
+    }
+    
+    public void UpgradeFireRate(float value)
+    {
+        firePerSecond = towerProperties.fireRate += value;
+    }
+    
+    public void UpgradeRadius(float value)
+    {
+        collider.radius = towerProperties.shootingRange += value;
     }
 
     private void OnDrawGizmos()

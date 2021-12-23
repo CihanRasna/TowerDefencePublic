@@ -1,4 +1,5 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using Vanta.Core;
 using Vanta.Levels;
 
@@ -11,7 +12,7 @@ namespace Vanta.Input
 
         private bool isPointerDown = false;
 
-        public delegate void InputEvent(PointerEventData evetData);
+        public delegate void InputEvent(PointerEventData eventData);
 
         public event InputEvent pointerDidDown;
         public event InputEvent pointerDidMove;
@@ -26,12 +27,7 @@ namespace Vanta.Input
             LevelManager.Instance.levelDidLoad += LevelDidLoad;
             LevelManager.Instance.levelWillUnload += LevelWillUnload;
             
-            /*
-             * Assign InputManager as DataSource of available recognizers here.
-             * 
-             * Example:
-             * _panRecognizer.dataSource = this;
-             */
+             _panRecognizer.dataSource = this;
         }
 
     #endregion
@@ -42,22 +38,13 @@ namespace Vanta.Input
 
         private void LevelDidLoad(BaseLevel baseLevel)
         {
-            /*
-             * Assign components as Delegate of available recognizers here.
-             *
-             * Example:
-             * _panRecognizer.listener = level.player;
-             */
+            var buildManager = BuildingManager.Instance;
+            _panRecognizer.listener = buildManager;
         }
 
         private void LevelWillUnload(BaseLevel baseLevel)
         {
-            /*
-             * We must set listers of available recognizers to null before level will destroy.
-             * 
-             * Example:
-             * _panRecognizer.listener = null;
-             */
+            _panRecognizer.listener = null;
         }
 
     #endregion
