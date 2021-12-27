@@ -19,14 +19,6 @@ public abstract class Projectile : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (!target)
-        {
-            DestroyImmediate(gameObject);
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
@@ -47,6 +39,14 @@ public abstract class Projectile : MonoBehaviour
         damage = myDamage;
         target = myTarget;
         hitParticle = myParticle;
-        _tweener = transform.DOMove(target.position, .2f).OnUpdate(()=> _tweener.ChangeEndValue(target.position + Vector3.up,true));
+        _tweener = transform.DOMove(target.position, .2f).OnUpdate(()=>
+        {
+            if (target) _tweener.ChangeEndValue(target.position + Vector3.up, true);
+            else
+            {
+                _tweener.Kill();
+                DestroyImmediate(gameObject);
+            }
+        });
     }
 }

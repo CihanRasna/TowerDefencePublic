@@ -17,10 +17,10 @@ MonoBehaviour:
   hitParticle: {fileID: 2430420777528987695, guid: 03cf93d906331f941961d3dd4e6b7190, type: 3}
   damage: 5
   damageForUpdate: 1
-  damageMaxUpgrade: 3
+  damageMaxUpgradeLevel: 3
   fireRate: 1
   fireRatePerUpdate: 0.25
-  fireRateMaxUpgrade: 3
+  fireRateMaxUpgradeLevel: 3
   shootingRange: 15
   radiusPerUpdate: 3
-  radiusMaxUpgrade: 3
+  radiusMaxUpgradeLevel: 3

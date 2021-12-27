@@ -39,6 +39,23 @@ public class Level : BaseLevel
         e.transform.parent = transform;
     }
 
+    [Button]
+
+    private void Aaa()
+    {
+        StartCoroutine(SpawnFive());
+    }
+    private IEnumerator SpawnFive()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            var e = Instantiate(enemy);
+            e.transform.parent = transform;
+            yield return new WaitForSeconds(.5f);
+        }
+        
+    }
+
 #endregion
     
 }
