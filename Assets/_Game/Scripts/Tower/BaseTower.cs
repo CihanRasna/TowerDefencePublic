@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Vanta.Levels;
 
@@ -15,6 +17,7 @@ public abstract class BaseTower : MonoBehaviour
         Teleport
     }
 
+    [ShowInInspector] private Queue<BaseEnemy> _potentialNextEnemies = new Queue<BaseEnemy>();
     [HideInInspector] public Type towerType;
     [SerializeField] protected BaseEnemy currentEnemy;
     
@@ -46,21 +49,52 @@ public abstract class BaseTower : MonoBehaviour
         InitializeTowerProperties();
     }
 
+    private void Update()
+    {
+        if (!currentEnemy && _potentialNextEnemies.Count > 0)
+        {
+            if (_potentialNextEnemies.Peek() == null)
+            {
+                _potentialNextEnemies.Dequeue();
+            }
+            else
+            {
+                
+                currentEnemy = _potentialNextEnemies.Peek();
+                if (_fireRoutine != null)
+                {
+                    Debug.Log("FOUND NEW ONE");
+                    StopCoroutine(_fireRoutine);
+                    _fireRoutine = null;
+                    _fireRoutine = StartCoroutine(RepeatFire());
+                }
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (currentEnemy) return;
-
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
         {
-            currentEnemy = enemy;
-            _fireRoutine = StartCoroutine(RepeatFire());
-            TowerHasTarget();
+            if(!_potentialNextEnemies.Contains(enemy))
+            {
+                _potentialNextEnemies.Enqueue(enemy);
+            }
+            if (!currentEnemy)
+            {
+                currentEnemy = enemy;
+                _fireRoutine = StartCoroutine(RepeatFire());
+                TowerHasTarget();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.TryGetComponent<BaseEnemy>(out var enemy)) return;
+        
+        Debug.Log("ZA");
+        _potentialNextEnemies.Dequeue();
         currentEnemy = null;
         StopCoroutine(_fireRoutine);
     }
@@ -87,11 +121,11 @@ public abstract class BaseTower : MonoBehaviour
         yield return new WaitForSeconds(1 / firePerSecond);
         StartCoroutine(RepeatFire());
     }
-
+    
     protected virtual void TowerHasTarget()
     {
+        
     }
-    
     protected virtual void DamageUpgraded()
     {
     }
