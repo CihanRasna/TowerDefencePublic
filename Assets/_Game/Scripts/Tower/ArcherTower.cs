@@ -8,16 +8,6 @@ public class ArcherTower : BaseTower
 {
     [SerializeField] private AxisConstraint axisConstraint;
     [SerializeField] private Transform myArcher;
-    
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-    }
 
     private void Update()
     {

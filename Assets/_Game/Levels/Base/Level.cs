@@ -12,6 +12,8 @@ public class Level : BaseLevel
     public Player player => _player as Player;
 
     [SerializeField] private BaseEnemy enemy;
+    [SerializeField] private int spawnCount;
+    
 
     #region Life Cycle
 
@@ -43,11 +45,11 @@ public class Level : BaseLevel
 
     private void Aaa()
     {
-        StartCoroutine(SpawnFive());
+        StartCoroutine(SpawnMany());
     }
-    private IEnumerator SpawnFive()
+    private IEnumerator SpawnMany()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
             var e = Instantiate(enemy);
             e.transform.parent = transform;

@@ -33,7 +33,7 @@ public abstract class BaseTower : MonoBehaviour
     [HideInInspector]public int fireRateCurrentLevel = 1;
     [HideInInspector]public int radiusCurrentLevel = 1;
 
-    private Coroutine _fireRoutine;
+    public float repeatTime;
     private void OnEnable()
     {
         collider.radius = towerProperties.shootingRange;
@@ -53,21 +53,14 @@ public abstract class BaseTower : MonoBehaviour
     {
         if (!currentEnemy && _potentialNextEnemies.Count > 0)
         {
-            if (_potentialNextEnemies.Peek() == null)
+            if (_potentialNextEnemies.Peek() != null)
             {
-                _potentialNextEnemies.Dequeue();
+                currentEnemy = _potentialNextEnemies.Peek();
+                Debug.Log("FOUND NEW ONE");
             }
             else
             {
-                
-                currentEnemy = _potentialNextEnemies.Peek();
-                if (_fireRoutine != null)
-                {
-                    Debug.Log("FOUND NEW ONE");
-                    StopCoroutine(_fireRoutine);
-                    _fireRoutine = null;
-                    _fireRoutine = StartCoroutine(RepeatFire());
-                }
+                _potentialNextEnemies.Dequeue();
             }
         }
     }
@@ -83,7 +76,6 @@ public abstract class BaseTower : MonoBehaviour
             if (!currentEnemy)
             {
                 currentEnemy = enemy;
-                _fireRoutine = StartCoroutine(RepeatFire());
                 TowerHasTarget();
             }
         }
@@ -96,7 +88,6 @@ public abstract class BaseTower : MonoBehaviour
         Debug.Log("ZA");
         _potentialNextEnemies.Dequeue();
         currentEnemy = null;
-        StopCoroutine(_fireRoutine);
     }
 
     private void InitializeTowerProperties()
@@ -113,12 +104,14 @@ public abstract class BaseTower : MonoBehaviour
 
     private IEnumerator RepeatFire()
     {
+        repeatTime = Time.time;
         if (!currentEnemy) yield break;
         var level = LevelManager.Instance.currentLevel as Level;
         var transform1 = shootingPoint.transform;
         var go = Instantiate(projectile, transform1.position,  transform1.rotation,level.transform);
         go.InitializeBullet(this,damage,currentEnemy.transform,towerProperties.hitParticle);
         yield return new WaitForSeconds(1 / firePerSecond);
+        Debug.Log(Time.time - repeatTime);
         StartCoroutine(RepeatFire());
     }
     

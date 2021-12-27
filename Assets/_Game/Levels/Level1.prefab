@@ -764,6 +764,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceTower
       objectReference: {fileID: 0}
+    - target: {fileID: 2732780546888167645, guid: 3c9916b0de55dad468bf3e05c1ebf440, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7495980749895785887, guid: 3c9916b0de55dad468bf3e05c1ebf440, type: 3}
       propertyPath: collider
       value: 
