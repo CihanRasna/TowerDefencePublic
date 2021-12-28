@@ -43,7 +43,6 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         var selectedProperties = selectedTower.towerProperties;
         if (selectedTower.damageCurrentLevel < selectedProperties.damageMaxUpgradeLevel)
         {
-            Debug.Log("A");
             selectedTower.damageCurrentLevel += 1;
             selectedTower.UpgradeDamage(selectedProperties.damageForUpdate);
             damageLevel.text = selectedTower.damageCurrentLevel.ToString();

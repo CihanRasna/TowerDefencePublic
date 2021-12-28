@@ -9,8 +9,9 @@ public class ArcherTower : BaseTower
     [SerializeField] private AxisConstraint axisConstraint;
     [SerializeField] private Transform myArcher;
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (currentEnemy != null)
         {
             SoldierLookAt(currentEnemy.transform);

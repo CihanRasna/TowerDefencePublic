@@ -10,7 +10,7 @@ using Vanta.Levels;
 [SelectionBase]
 public abstract class BaseEnemy : MonoBehaviour
 {
-    [SerializeField, HideInInspector] private EnemyProperties enemyProperties;
+    [SerializeField] private EnemyProperties enemyProperties;
     private StatusEffects statusEffects;
 
     [field: SerializeField] public SplineFollower splineFollower { private set; get; }

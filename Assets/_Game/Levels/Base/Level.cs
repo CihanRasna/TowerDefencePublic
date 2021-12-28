@@ -33,6 +33,7 @@ public class Level : BaseLevel
         Debug.Log("Loaded");
         _state = State.Started;
         listener.Level_DidStart(this);
+        Aaa();
     }
     [Button]
     private void SpawnEnemy()

@@ -20,20 +20,21 @@ public abstract class BaseTower : MonoBehaviour
     [ShowInInspector] private Queue<BaseEnemy> _potentialNextEnemies = new Queue<BaseEnemy>();
     [HideInInspector] public Type towerType;
     [SerializeField] protected BaseEnemy currentEnemy;
-    
+
     [SerializeField] public TowerProperties towerProperties;
     [SerializeField] protected Transform shootingPoint;
     [SerializeField] protected new SphereCollider collider;
-    
+
     protected float damage;
     protected float firePerSecond;
     protected Projectile projectile;
 
     [HideInInspector] public int damageCurrentLevel = 1;
-    [HideInInspector]public int fireRateCurrentLevel = 1;
-    [HideInInspector]public int radiusCurrentLevel = 1;
+    [HideInInspector] public int fireRateCurrentLevel = 1;
+    [HideInInspector] public int radiusCurrentLevel = 1;
 
-    public float repeatTime;
+    private IEnumerator _fireRoutine;
+
     private void OnEnable()
     {
         collider.radius = towerProperties.shootingRange;
@@ -47,16 +48,23 @@ public abstract class BaseTower : MonoBehaviour
     protected virtual void Start()
     {
         InitializeTowerProperties();
+        _fireRoutine = RepeatFire();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!currentEnemy && _potentialNextEnemies.Count > 0)
         {
+            if (_fireRoutine != null)
+            {
+                StopCoroutine(_fireRoutine);
+                _fireRoutine = null;
+            }
+
             if (_potentialNextEnemies.Peek() != null)
             {
                 currentEnemy = _potentialNextEnemies.Peek();
-                Debug.Log("FOUND NEW ONE");
+                StartCoroutine(_fireRoutine = RepeatFire());
             }
             else
             {
@@ -69,25 +77,27 @@ public abstract class BaseTower : MonoBehaviour
     {
         if (other.TryGetComponent<BaseEnemy>(out var enemy))
         {
-            if(!_potentialNextEnemies.Contains(enemy))
+            if (!_potentialNextEnemies.Contains(enemy))
             {
                 _potentialNextEnemies.Enqueue(enemy);
             }
-            if (!currentEnemy)
-            {
-                currentEnemy = enemy;
-                TowerHasTarget();
-            }
+            // if (!currentEnemy)
+            // {
+            //     currentEnemy = enemy;
+            //     _fireRoutine = null;
+            //     StartCoroutine(_fireRoutine = RepeatFire());
+            //     TowerHasTarget();
+            // }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.TryGetComponent<BaseEnemy>(out var enemy)) return;
-        
-        Debug.Log("ZA");
+
         _potentialNextEnemies.Dequeue();
-        currentEnemy = null;
+        // _fireRoutine = null;
+        // currentEnemy = null;
     }
 
     private void InitializeTowerProperties()
@@ -104,36 +114,34 @@ public abstract class BaseTower : MonoBehaviour
 
     private IEnumerator RepeatFire()
     {
-        repeatTime = Time.time;
         if (!currentEnemy) yield break;
         var level = LevelManager.Instance.currentLevel as Level;
         var transform1 = shootingPoint.transform;
-        var go = Instantiate(projectile, transform1.position,  transform1.rotation,level.transform);
-        go.InitializeBullet(this,damage,currentEnemy.transform,towerProperties.hitParticle);
+        var go = Instantiate(projectile, transform1.position, transform1.rotation, level.transform);
+        go.InitializeBullet(this, damage, currentEnemy.transform, towerProperties.hitParticle);
         yield return new WaitForSeconds(1 / firePerSecond);
-        Debug.Log(Time.time - repeatTime);
-        StartCoroutine(RepeatFire());
+        StartCoroutine(_fireRoutine = RepeatFire());
     }
-    
+
     protected virtual void TowerHasTarget()
     {
-        
     }
+
     protected virtual void DamageUpgraded()
     {
     }
 
     public void UpgradeDamage(float value)
-    { 
+    {
         damage = towerProperties.damage += value;
         DamageUpgraded();
     }
-    
+
     public void UpgradeFireRate(float value)
     {
         firePerSecond = towerProperties.fireRate += value;
     }
-    
+
     public void UpgradeRadius(float value)
     {
         collider.radius = towerProperties.shootingRange += value;
@@ -142,6 +150,6 @@ public abstract class BaseTower : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,towerProperties.shootingRange);
+        Gizmos.DrawWireSphere(transform.position, towerProperties.shootingRange);
     }
 }
