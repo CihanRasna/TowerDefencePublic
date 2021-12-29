@@ -55,14 +55,13 @@ public abstract class BaseTower : MonoBehaviour
     {
         if (!currentEnemy && _potentialNextEnemies.Count > 0)
         {
-            if (_fireRoutine != null)
-            {
-                StopCoroutine(_fireRoutine);
-                _fireRoutine = null;
-            }
-
             if (_potentialNextEnemies.Peek() != null)
             {
+                if (_fireRoutine != null)
+                {
+                    StopCoroutine(_fireRoutine);
+                    _fireRoutine = null;
+                }
                 currentEnemy = _potentialNextEnemies.Peek();
                 StartCoroutine(_fireRoutine = RepeatFire());
             }
@@ -96,8 +95,12 @@ public abstract class BaseTower : MonoBehaviour
         if (!other.TryGetComponent<BaseEnemy>(out var enemy)) return;
 
         _potentialNextEnemies.Dequeue();
-        // _fireRoutine = null;
-        // currentEnemy = null;
+        if (_fireRoutine != null)
+        {
+            StopCoroutine(_fireRoutine);
+            _fireRoutine = null;
+        }
+        currentEnemy = null;
     }
 
     private void InitializeTowerProperties()
@@ -114,12 +117,14 @@ public abstract class BaseTower : MonoBehaviour
 
     private IEnumerator RepeatFire()
     {
+        var e = currentEnemy;
         if (!currentEnemy) yield break;
         var level = LevelManager.Instance.currentLevel as Level;
         var transform1 = shootingPoint.transform;
         var go = Instantiate(projectile, transform1.position, transform1.rotation, level.transform);
         go.InitializeBullet(this, damage, currentEnemy.transform, towerProperties.hitParticle);
         yield return new WaitForSeconds(1 / firePerSecond);
+        yield return null;
         StartCoroutine(_fireRoutine = RepeatFire());
     }
 

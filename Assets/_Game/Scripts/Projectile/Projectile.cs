@@ -16,7 +16,6 @@ public abstract class Projectile : MonoBehaviour
 
     protected virtual void Start()
     {
-        Debug.Log("projectile");
     }
 
     private void OnTriggerEnter(Collider other)
