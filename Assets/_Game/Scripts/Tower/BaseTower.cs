@@ -35,6 +35,7 @@ public abstract class BaseTower : MonoBehaviour
     [HideInInspector] public int radiusCurrentLevel = 1;
 
     private IEnumerator _fireRoutine;
+    private float _lastFireTime;
 
     private void OnEnable()
     {
@@ -54,6 +55,7 @@ public abstract class BaseTower : MonoBehaviour
 
     protected virtual void Update()
     {
+        _lastFireTime += Time.deltaTime;
         if (!currentEnemy && _potentialNextEnemies.Count > 0)
         {
             if (_potentialNextEnemies.Peek() != null)
@@ -125,13 +127,17 @@ public abstract class BaseTower : MonoBehaviour
 
     private IEnumerator RepeatFire()
     {
+        yield return new WaitUntil(() => _lastFireTime > 1 / firePerSecond);
+        Debug.Log(Time.time - _lastFireTime);
+        _lastFireTime = 0f;
         var e = currentEnemy;
         if (!currentEnemy) yield break;
         var level = LevelManager.Instance.currentLevel as Level;
         var transform1 = shootingPoint.transform;
         var go = Instantiate(projectile, transform1.position, transform1.rotation, level.transform);
         go.InitializeBullet(this, damage, projectileEffectZone, currentEnemy.transform, towerProperties.hitParticle);
-        yield return new WaitForSeconds(1 / firePerSecond);
+        // yield return new WaitForSeconds(1 / firePerSecond);
+        // Debug.Log("A");
         yield return null;
         StartCoroutine(_fireRoutine = RepeatFire());
     }
