@@ -27,7 +27,9 @@ public abstract class Projectile : MonoBehaviour
             DoYourOwnShit(enemy);
             _tweener.Kill();
             enemy.TakeDamage(damage);
-            enemy.GetStatusEffect(bulletType);
+            EffectEnemiesInRadius();
+            // enemy.TakeDamage(damage);
+            // enemy.GetStatusEffect(bulletType);
         }
     }
 
@@ -36,14 +38,11 @@ public abstract class Projectile : MonoBehaviour
         var colliders = Physics.OverlapSphere(transform.position, effectZone);
         foreach (var e in colliders)
         {
-            Debug.Log(colliders.Length);
             e.TryGetComponent<BaseEnemy>(out var enemy);
             if (enemy == null)
             {
                 continue;
             }
-
-            enemy.TakeDamage(damage);
             enemy.GetStatusEffect(bulletType);
         }
     }

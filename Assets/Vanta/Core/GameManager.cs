@@ -17,7 +17,7 @@ namespace Vanta
 
         private void Start()
         {
-            Application.targetFrameRate = 60;
+            // Application.targetFrameRate = 60;
             defaultTimeScale = Time.timeScale;
         }
 

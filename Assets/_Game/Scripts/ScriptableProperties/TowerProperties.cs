@@ -10,6 +10,9 @@ public class TowerProperties : ScriptableObject
     [Title("Tower Type", titleAlignment: TitleAlignments.Centered), EnumToggleButtons, HideLabel]
     public BaseTower.Type towerType;
 
+    [Title("Tower Shooting Type", titleAlignment: TitleAlignments.Centered), EnumToggleButtons, HideLabel]
+    public BaseTower.ShootingType shootingType;
+
     // [Space(20)]
     // [Title("Projectile", titleAlignment: TitleAlignments.Left)]
     // [HideLabel, PreviewField(100, ObjectFieldAlignment.Left)]

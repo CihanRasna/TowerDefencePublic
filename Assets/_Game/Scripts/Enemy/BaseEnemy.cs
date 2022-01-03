@@ -29,19 +29,6 @@ public abstract class BaseEnemy : MonoBehaviour
         InitializeEnemyLogic();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<BaseTower>(out var tower))
-        {
-            myOutline.enabled = true;
-        }
-
-        if (other.TryGetComponent<Projectile>(out var p))
-        {
-            Debug.Log(_currentDebuff);
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<BaseTower>(out var tower))
@@ -63,6 +50,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        myOutline.enabled = true;
         health -= dmg;
         health = Mathf.Clamp(health, 0, enemyProperties.health);
         if (health == 0) Destroy(gameObject);
