@@ -8,6 +8,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
 {
     [SerializeField] private float panelScaleRatio = 1200f;
     [SerializeField] private BaseTower selectedTower;
+    // private BaseTower _oldSelectedTower;
 
     private Camera _camera;
 
@@ -23,12 +24,11 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
 
     private void GetTopOnSelectedTower(BaseTower currentTower)
     {
+        HidePanel();
         selectedTower = currentTower;
+        selectedTower.myOutline.OutlineParameters.Color = Color.green;
         var towerPos = _camera.WorldToScreenPoint(currentTower.transform.position);
         transform.position = towerPos;
-
-        var distance = Vector3.Distance(transform.position, _camera.transform.position);
-        transform.localScale = Vector3.one * distance / panelScaleRatio;
     }
 
     private void SetSelectedTowerPropertiesToButtons()
@@ -73,8 +73,12 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
 
     private void HidePanel()
     {
-        selectedTower = null;
-        transform.position = new Vector3(1235, 1234, 4563);
+        if (selectedTower)
+        {
+            selectedTower.myOutline.OutlineParameters.Color = Color.white;
+            selectedTower = null;
+            transform.position = new Vector3(1235, 1234, 4563);
+        }
     }
 
     public bool PanRecognizerShouldStartListening(PanRecognizer recognizer)
