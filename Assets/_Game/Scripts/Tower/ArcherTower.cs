@@ -11,7 +11,6 @@ public class ArcherTower : BaseTower
 
     protected override void DamageUpgraded()
     {
-        
     }
 
     protected override void Update()
@@ -22,6 +21,7 @@ public class ArcherTower : BaseTower
             SoldierLookAt(currentEnemy.transform);
         }
     }
+
     private void SoldierLookAt(Component target)
     {
         myArcher.DOLookAt(target.transform.position, Time.deltaTime, axisConstraint);

@@ -43,6 +43,7 @@ public abstract class Projectile : MonoBehaviour
             {
                 continue;
             }
+
             e.GetStatusEffect(bulletType);
         }
     }

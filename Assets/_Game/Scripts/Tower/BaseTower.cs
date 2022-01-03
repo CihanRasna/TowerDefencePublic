@@ -45,10 +45,10 @@ public abstract class BaseTower : MonoBehaviour
     [HideInInspector] public int damageCurrentLevel = 1;
     [HideInInspector] public int fireRateCurrentLevel = 1;
     [HideInInspector] public int radiusCurrentLevel = 1;
-    
+
     public Outlinable myOutline;
 
-    
+
     private float _lastFireTime;
 
     private void OnEnable()
@@ -69,7 +69,7 @@ public abstract class BaseTower : MonoBehaviour
     protected virtual void Update()
     {
         _lastFireTime += Time.deltaTime;
-        
+
         if (_lastFireTime > 1 / firePerSecond && _potentialNextEnemies.Count > 0)
         {
             if (currentEnemy)
@@ -83,7 +83,7 @@ public abstract class BaseTower : MonoBehaviour
                 ShootingBehaviour();
             }
         }
-        
+
         // if (_potentialNextEnemies.Count > 0 && !_potentialNextEnemies[0])
         // {
         //     _potentialNextEnemies.Remove(currentEnemy);
@@ -116,6 +116,7 @@ public abstract class BaseTower : MonoBehaviour
         {
             _potentialNextEnemies.Remove(enemy);
         }
+
         currentEnemy = null;
     }
 
@@ -175,7 +176,7 @@ public abstract class BaseTower : MonoBehaviour
             {
                 ShootingType.First => ShootFirstOne(),
                 ShootingType.Random => ShootRandom(),
-                ShootingType.Last =>ShootLastOne(),
+                ShootingType.Last => ShootLastOne(),
                 _ => null
             };
             RepeatFire();
@@ -200,7 +201,7 @@ public abstract class BaseTower : MonoBehaviour
 
     private BaseEnemy ShootRandom()
     {
-        return _potentialNextEnemies.ToList()[Random.Range(0,_potentialNextEnemies.Count-1)];
+        return _potentialNextEnemies.ToList()[Random.Range(0, _potentialNextEnemies.Count - 1)];
     }
 
     private void OnDrawGizmos()

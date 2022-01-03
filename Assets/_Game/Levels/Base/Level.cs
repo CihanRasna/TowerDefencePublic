@@ -13,19 +13,18 @@ public class Level : BaseLevel
 
     [SerializeField] private BaseEnemy enemy;
     [SerializeField] private int spawnCount;
-    
+
 
     #region Life Cycle
 
     private void OnValidate()
     {
-        
     }
 
     protected override void Start()
     {
         base.Start();
-        
+
         // TODO: Initialize level
 
         _state = State.Loaded;
@@ -35,6 +34,7 @@ public class Level : BaseLevel
         listener.Level_DidStart(this);
         Aaa();
     }
+
     [Button]
     private void SpawnEnemy()
     {
@@ -43,11 +43,11 @@ public class Level : BaseLevel
     }
 
     [Button]
-
     private void Aaa()
     {
         StartCoroutine(SpawnMany());
     }
+
     private IEnumerator SpawnMany()
     {
         for (int i = 0; i < spawnCount; i++)
@@ -56,9 +56,7 @@ public class Level : BaseLevel
             e.transform.parent = transform;
             yield return new WaitForSeconds(.5f);
         }
-        
     }
 
-#endregion
-    
+    #endregion
 }

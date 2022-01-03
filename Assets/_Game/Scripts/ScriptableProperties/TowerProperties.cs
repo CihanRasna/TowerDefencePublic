@@ -32,15 +32,16 @@ public class TowerProperties : ScriptableObject
     [BoxGroup("Projectile Properties/Split/Right/Hit Particle"), HideLabel, PreviewField(ObjectFieldAlignment.Center)]
     public GameObject hitParticle;
 
-    [VerticalGroup("Settings")] 
-    [BoxGroup("Settings/ProjectileRadius")] public float projectileEffectZone;
+    [VerticalGroup("Settings")] [BoxGroup("Settings/ProjectileRadius")]
+    public float projectileEffectZone;
+
     [BoxGroup("Settings/Damage")] public float damage;
     [BoxGroup("Settings/Damage")] public float damageForUpdate;
     [BoxGroup("Settings/Damage")] public int damageMaxUpgradeLevel;
     [BoxGroup("Settings/FireRate")] public float fireRate;
-    [BoxGroup("Settings/FireRate")]public float fireRatePerUpdate;
-    [BoxGroup("Settings/FireRate")]public int fireRateMaxUpgradeLevel;
+    [BoxGroup("Settings/FireRate")] public float fireRatePerUpdate;
+    [BoxGroup("Settings/FireRate")] public int fireRateMaxUpgradeLevel;
     [BoxGroup("Settings/Range")] public float shootingRange;
-    [BoxGroup("Settings/Range")]public float radiusPerUpdate;
-    [BoxGroup("Settings/Range")]public int radiusMaxUpgradeLevel;
+    [BoxGroup("Settings/Range")] public float radiusPerUpdate;
+    [BoxGroup("Settings/Range")] public int radiusMaxUpgradeLevel;
 }

@@ -7,6 +7,7 @@ using Vanta.Input;
 public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRecognizerDelegate
 {
     [SerializeField] private float panelScaleRatio = 1200f;
+
     [SerializeField] private BaseTower selectedTower;
     // private BaseTower _oldSelectedTower;
 
