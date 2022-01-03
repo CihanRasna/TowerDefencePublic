@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c05eea79753b647b13bc4d4a90ad6d, type: 3}
   m_Name: StatusEffects
   m_EditorClassIdentifier: 
-  freezeTime: 0
-  freezeRatio: 0
+  freezeTime: 2
+  freezeRatio: 30
   burnTime: 0
   burnRatio: 0
   poisonTime: 0
