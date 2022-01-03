@@ -15,8 +15,8 @@ MonoBehaviour:
   towerType: 0
   projectile: {fileID: 6591105759050601487, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
   hitParticle: {fileID: 0}
-  damage: 30
-  damageForUpdate: 5
+  damage: 5
+  damageForUpdate: 2
   damageMaxUpgradeLevel: 3
   fireRate: 2
   fireRatePerUpdate: 1

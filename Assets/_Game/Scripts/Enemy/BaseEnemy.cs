@@ -35,6 +35,11 @@ public abstract class BaseEnemy : MonoBehaviour
         {
             myOutline.enabled = true;
         }
+
+        if (other.TryGetComponent<Projectile>(out var p))
+        {
+            Debug.Log(_currentDebuff);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -90,7 +95,7 @@ public abstract class BaseEnemy : MonoBehaviour
     private IEnumerator GetFreezeEffect()
     {
         var normalSpeed = enemyProperties.speed;
-        var ratio = statusEffects.freezeRatio / 100f;
+        var ratio = (100 - statusEffects.freezeRatio) / 100f;
         var newSpeed = normalSpeed * ratio;
         splineFollower.followSpeed = newSpeed;
         yield return new WaitForSeconds(statusEffects.freezeTime);

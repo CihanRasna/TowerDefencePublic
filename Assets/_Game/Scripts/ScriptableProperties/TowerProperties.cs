@@ -30,6 +30,7 @@ public class TowerProperties : ScriptableObject
     public GameObject hitParticle;
 
     [VerticalGroup("Settings")] 
+    [BoxGroup("Settings/ProjectileRadius")] public float projectileEffectZone;
     [BoxGroup("Settings/Damage")] public float damage;
     [BoxGroup("Settings/Damage")] public float damageForUpdate;
     [BoxGroup("Settings/Damage")] public int damageMaxUpgradeLevel;

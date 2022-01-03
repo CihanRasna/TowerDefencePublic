@@ -9,6 +9,11 @@ public class ArcherTower : BaseTower
     [SerializeField] private AxisConstraint axisConstraint;
     [SerializeField] private Transform myArcher;
 
+    protected override void DamageUpgraded()
+    {
+        
+    }
+
     protected override void Update()
     {
         base.Update();
