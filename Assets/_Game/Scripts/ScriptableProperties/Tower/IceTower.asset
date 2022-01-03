@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: IceTower
   m_EditorClassIdentifier: 
   towerType: 1
-  shootingType: 2
+  shootingType: 0
   projectile: {fileID: 2867617899509161163, guid: a5b17e84173c87a438abc821e5cd0506, type: 3}
   hitParticle: {fileID: 2430420777528987695, guid: 03cf93d906331f941961d3dd4e6b7190, type: 3}
   projectileEffectZone: 10
-  damage: 15
+  damage: 0.1
   damageForUpdate: 1
   damageMaxUpgradeLevel: 3
-  fireRate: 1
+  fireRate: 250
   fireRatePerUpdate: 0.25
   fireRateMaxUpgradeLevel: 3
   shootingRange: 15

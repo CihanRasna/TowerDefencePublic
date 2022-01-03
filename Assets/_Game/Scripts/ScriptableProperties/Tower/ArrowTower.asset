@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: ArrowTower
   m_EditorClassIdentifier: 
   towerType: 0
-  shootingType: 1
+  shootingType: 0
   projectile: {fileID: 6591105759050601487, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
   hitParticle: {fileID: 0}
   projectileEffectZone: 1
-  damage: 5
+  damage: 0.1
   damageForUpdate: 2
   damageMaxUpgradeLevel: 3
-  fireRate: 2
+  fireRate: 250
   fireRatePerUpdate: 1
   fireRateMaxUpgradeLevel: 3
   shootingRange: 15

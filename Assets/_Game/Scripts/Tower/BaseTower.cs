@@ -81,7 +81,6 @@ public abstract class BaseTower : MonoBehaviour
             {
                 _lastFireTime = 0f;
                 ShootingBehaviour();
-                RepeatFire();
             }
         }
         
@@ -170,13 +169,17 @@ public abstract class BaseTower : MonoBehaviour
     private void ShootingBehaviour()
     {
         _potentialNextEnemies.RemoveAll(e => e == null);
-        currentEnemy = shootingType switch
+        if (_potentialNextEnemies.Count > 0)
         {
-            ShootingType.First => ShootFirstOne(),
-            ShootingType.Random => ShootRandom(),
-            ShootingType.Last =>ShootLastOne(),
-            _ => null
-        };
+            currentEnemy = shootingType switch
+            {
+                ShootingType.First => ShootFirstOne(),
+                ShootingType.Random => ShootRandom(),
+                ShootingType.Last =>ShootLastOne(),
+                _ => null
+            };
+            RepeatFire();
+        }
     }
 
     private BaseEnemy ShootFirstOne()

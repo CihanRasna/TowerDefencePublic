@@ -36,14 +36,14 @@ public abstract class Projectile : MonoBehaviour
     private void EffectEnemiesInRadius()
     {
         var colliders = Physics.OverlapSphere(transform.position, effectZone);
-        foreach (var e in colliders)
+        foreach (var col in colliders)
         {
-            e.TryGetComponent<BaseEnemy>(out var enemy);
-            if (enemy == null)
+            col.TryGetComponent<BaseEnemy>(out var e);
+            if (e == null)
             {
                 continue;
             }
-            enemy.GetStatusEffect(bulletType);
+            e.GetStatusEffect(bulletType);
         }
     }
 
