@@ -19,7 +19,7 @@ public abstract class BaseTower : MonoBehaviour
         Arrow,
         Ice,
         Fire,
-        Magic,
+        Poison,
         Teleport
     }
 

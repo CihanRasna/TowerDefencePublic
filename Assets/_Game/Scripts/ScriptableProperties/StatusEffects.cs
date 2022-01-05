@@ -26,14 +26,14 @@ public class StatusEffects : ScriptableObject
     [BoxGroup("Fire Tower/Split/Right/Burn Ratio"),HideLabel]
     public float burnRatio;
     
-    [TitleGroup("Magic Tower", alignment: TitleAlignments.Centered)]
-    [HorizontalGroup("Magic Tower/Split")]
-    [VerticalGroup("Magic Tower/Split/Left")]
-    [BoxGroup("Magic Tower/Split/Left/Poison Time"),HideLabel]
+    [TitleGroup("Poison Tower", alignment: TitleAlignments.Centered)]
+    [HorizontalGroup("Poison Tower/Split")]
+    [VerticalGroup("Poison Tower/Split/Left")]
+    [BoxGroup("Poison Tower/Split/Left/Poison Time"),HideLabel]
     public int poisonTime;
     
-    [VerticalGroup("Magic Tower/Split/Right")] 
-    [BoxGroup("Magic Tower/Split/Right/Poison Ratio"),HideLabel]
+    [VerticalGroup("Poison Tower/Split/Right")] 
+    [BoxGroup("Poison Tower/Split/Right/Poison Ratio"),HideLabel]
     public float poisonRatio;
     
     [TitleGroup("Teleport Tower", alignment: TitleAlignments.Centered)]

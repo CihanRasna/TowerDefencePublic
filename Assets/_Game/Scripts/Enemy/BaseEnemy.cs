@@ -67,7 +67,7 @@ public abstract class BaseEnemy : MonoBehaviour
         {
             BaseTower.Type.Ice => GetFreezeEffect(),
             BaseTower.Type.Fire => GetFireEffect(),
-            BaseTower.Type.Magic => GetMagicEffect(),
+            BaseTower.Type.Poison => GetPoisonEffect(),
             BaseTower.Type.Teleport => GetTeleportEffect(),
             _ => null
         };
@@ -112,7 +112,7 @@ public abstract class BaseEnemy : MonoBehaviour
         }
     }
 
-    private IEnumerator GetMagicEffect()
+    private IEnumerator GetPoisonEffect()
     {
         yield return null;
     }
