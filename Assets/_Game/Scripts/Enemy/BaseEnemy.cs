@@ -19,6 +19,7 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] protected float health;
     protected int goldPrize;
     private IEnumerator _currentStatusEffect = null;
+    private float _multiplier = 1f;
 
     protected virtual void Awake()
     {
@@ -60,6 +61,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void GetStatusEffect(BaseTower.Type towerType)
     {
+        var lastEffect = _currentStatusEffect;
         StopAllCoroutines();
         _currentStatusEffect = null;
 
@@ -71,6 +73,14 @@ public abstract class BaseEnemy : MonoBehaviour
             BaseTower.Type.Teleport => GetTeleportEffect(),
             _ => null
         };
+        // if (lastEffect != null && _currentStatusEffect != null && ReferenceEquals(lastEffect.Current, _currentStatusEffect.Current))
+        // {
+        //     _multiplier += 0.25f;
+        // }
+        // else // GOOD PRACTICE BUT FIRE TOWER BECAMES GOD AQ
+        // {
+        //     _multiplier = 1;
+        // }
 
         if (_currentStatusEffect == null) return;
         StartCoroutine(_currentStatusEffect);
@@ -101,7 +111,7 @@ public abstract class BaseEnemy : MonoBehaviour
         while (true)
         {
             var progress = Mathf.Clamp01(elapsedTime / duration);
-            health = initialHealth - (burnRatio * progress) * healthRatio;
+            health = initialHealth - (burnRatio * progress) * healthRatio * _multiplier;
             if (progress >= 1)
             {
                 break;

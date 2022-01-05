@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeTime: 2
   freezeRatio: 30
-  burnTime: 0
-  burnRatio: 0
+  burnTime: 3
+  burnRatio: 10
   poisonTime: 0
   poisonRatio: 0
   teleportPlace: 0
