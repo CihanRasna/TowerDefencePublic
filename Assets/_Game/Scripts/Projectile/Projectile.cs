@@ -58,6 +58,11 @@ public abstract class Projectile : MonoBehaviour
         damage = myDamage;
         target = myTarget;
         hitParticle = myParticle;
+        ProjectileMovementOverrider();
+    }
+
+    protected virtual void ProjectileMovementOverrider()
+    {
         _tweener = transform.DOMove(target.position, .2f).OnUpdate(() =>
         {
             if (target) _tweener.ChangeEndValue(target.position + Vector3.up, true);
