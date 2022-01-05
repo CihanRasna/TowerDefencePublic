@@ -17,12 +17,12 @@ MonoBehaviour:
   projectile: {fileID: 6591105759050601487, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
   hitParticle: {fileID: 0}
   projectileEffectZone: 1
-  damage: 0.1
-  damageForUpdate: 2
+  damage: 25
+  damageForUpdate: 12.5
   damageMaxUpgradeLevel: 3
-  fireRate: 250
-  fireRatePerUpdate: 1
+  fireRate: 1
+  fireRatePerUpdate: 0.5
   fireRateMaxUpgradeLevel: 3
   shootingRange: 15
-  radiusPerUpdate: 1
+  radiusPerUpdate: 2.5
   radiusMaxUpgradeLevel: 3

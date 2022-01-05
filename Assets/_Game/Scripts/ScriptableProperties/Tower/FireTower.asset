@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: FireTower
   m_EditorClassIdentifier: 
   towerType: 2
-  projectile: {fileID: 1094347573218151881, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
-  bulletSpeed: 5
+  shootingType: 0
+  projectile: {fileID: 0}
+  hitParticle: {fileID: 0}
+  projectileEffectZone: 0
   damage: 25
+  damageForUpdate: 0
+  damageMaxUpgradeLevel: 0
   fireRate: 1
+  fireRatePerUpdate: 0
+  fireRateMaxUpgradeLevel: 0
   shootingRange: 15
+  radiusPerUpdate: 0
+  radiusMaxUpgradeLevel: 0

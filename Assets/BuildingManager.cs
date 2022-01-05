@@ -26,6 +26,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     private void GetTopOnSelectedTower(BaseTower currentTower)
     {
         HidePanel();
+        currentTower.TowerHasSelected(true);
         selectedTower = currentTower;
         selectedTower.myOutline.OutlineParameters.Color = Color.green;
         var towerPos = _camera.WorldToScreenPoint(currentTower.transform.position);
@@ -68,6 +69,8 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         {
             selectedTower.radiusCurrentLevel += 1;
             selectedTower.UpgradeRadius(selectedProperties.radiusPerUpdate);
+            selectedTower.TowerHasSelected(false);
+            selectedTower.TowerHasSelected(true);
             radiusLevel.text = selectedTower.radiusCurrentLevel.ToString();
         }
     }
@@ -76,6 +79,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     {
         if (selectedTower)
         {
+            selectedTower.TowerHasSelected(false);
             selectedTower.myOutline.OutlineParameters.Color = Color.white;
             selectedTower = null;
             transform.position = new Vector3(1235, 1234, 4563);

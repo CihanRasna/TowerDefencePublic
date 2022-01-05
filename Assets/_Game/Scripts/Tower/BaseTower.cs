@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using EPOOutline;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
+using UnityEngine.UI;
 using Vanta.Levels;
 using Random = UnityEngine.Random;
 
@@ -36,6 +38,11 @@ public abstract class BaseTower : MonoBehaviour
     [SerializeField] public TowerProperties towerProperties;
     [SerializeField] protected Transform shootingPoint;
     [SerializeField] protected new SphereCollider collider;
+    [SerializeField] private Canvas myCanvas;
+    [SerializeField] private Image radiusIndicatorImage;
+    private Tweener imageTweener;
+    
+    
 
     protected float damage;
     protected float firePerSecond;
@@ -144,6 +151,25 @@ public abstract class BaseTower : MonoBehaviour
 
     protected virtual void TowerHasTarget()
     {
+    }
+
+    public void TowerHasSelected(bool currentSelected)
+    {
+        if (currentSelected)
+        {
+            myCanvas.gameObject.SetActive(true);
+            radiusIndicatorImage.fillAmount = 0f;
+            imageTweener = radiusIndicatorImage.DOFillAmount(1, .5f).SetEase(Ease.InOutCirc);
+        }
+        else
+        {
+            myCanvas.gameObject.SetActive(false);
+            imageTweener.Kill();
+            imageTweener = null;
+        }
+        var setNewScale = Vector3.one * collider.radius / 5f;
+        myCanvas.transform.localScale = setNewScale;
+        
     }
 
     protected virtual void DamageUpgraded()
