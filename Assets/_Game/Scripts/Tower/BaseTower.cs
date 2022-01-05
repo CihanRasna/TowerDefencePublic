@@ -56,7 +56,7 @@ public abstract class BaseTower : MonoBehaviour
     public Outlinable myOutline;
 
 
-    private float _lastFireTime;
+    private float _lastFireTime = 99999f;
 
     private void OnEnable()
     {

@@ -881,7 +881,7 @@ MonoBehaviour:
   enemyProperties: {fileID: 11400000, guid: 663a44d00b8847242b19611259335273, type: 2}
   <splineFollower>k__BackingField: {fileID: 7163700077707888931}
   myOutline: {fileID: 3621860304490302484}
-  health: 0
+  health: 100
 --- !u!136 &364050546321743879
 CapsuleCollider:
   m_ObjectHideFlags: 0

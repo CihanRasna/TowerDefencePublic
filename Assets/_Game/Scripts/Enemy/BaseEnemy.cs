@@ -18,7 +18,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     [SerializeField] protected float health;
     protected int goldPrize;
-    private IEnumerator _currentDebuff = null;
+    private IEnumerator _currentStatusEffect = null;
 
     protected virtual void Awake()
     {
@@ -61,9 +61,9 @@ public abstract class BaseEnemy : MonoBehaviour
     public void GetStatusEffect(BaseTower.Type towerType)
     {
         StopAllCoroutines();
-        _currentDebuff = null;
+        _currentStatusEffect = null;
 
-        _currentDebuff = towerType switch
+        _currentStatusEffect = towerType switch
         {
             BaseTower.Type.Ice => GetFreezeEffect(),
             BaseTower.Type.Fire => GetFireEffect(),
@@ -72,8 +72,8 @@ public abstract class BaseEnemy : MonoBehaviour
             _ => null
         };
 
-        if (_currentDebuff == null) return;
-        StartCoroutine(_currentDebuff);
+        if (_currentStatusEffect == null) return;
+        StartCoroutine(_currentStatusEffect);
     }
 
     #endregion
@@ -92,7 +92,24 @@ public abstract class BaseEnemy : MonoBehaviour
 
     private IEnumerator GetFireEffect()
     {
-        yield return null;
+        var elapsedTime = 0.0f;
+        var duration = statusEffects.burnTime;
+        var burnRatio = statusEffects.burnRatio;
+        var initialHealth = health;
+        var healthRatio = initialHealth * 0.01f;
+        
+        while (true)
+        {
+            var progress = Mathf.Clamp01(elapsedTime / duration);
+            health = initialHealth - (burnRatio * progress) * healthRatio;
+            if (progress >= 1)
+            {
+                break;
+            }
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
     }
 
     private IEnumerator GetMagicEffect()

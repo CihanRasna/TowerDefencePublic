@@ -33,7 +33,7 @@ public class TowerProperties : ScriptableObject
     public GameObject hitParticle;
 
     [VerticalGroup("Settings")] [BoxGroup("Settings/ProjectileRadius")]
-    public float projectileEffectZone;
+    public float projectileEffectZone = 1f;
 
     [BoxGroup("Settings/Damage")] public float damage;
     [BoxGroup("Settings/Damage")] public float damageForUpdate;
