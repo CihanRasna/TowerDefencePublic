@@ -173,7 +173,27 @@ public abstract class BaseEnemy : MonoBehaviour
     private IEnumerator GetTeleportEffect()
     {
         currentStatus = CurrentStatus.Teleported;
-        yield return null;
+        var initialSpeed = splineFollower.followSpeed;
+        var currentPercent = (float)splineFollower.GetPercent();
+        var targetPercent = currentPercent * (100 - statusEffects.teleportRatio) / 100f;
+        var elapsedTime = 0.0f;
+        var duration = statusEffects.teleportTime;
+        splineFollower.followSpeed = 0f;
+
+        while (true)
+        {
+            var progress = Mathf.Clamp01(elapsedTime / duration);
+            var lerpAmount = Mathf.Lerp(currentPercent, targetPercent,progress);
+            splineFollower.SetPercent(lerpAmount);
+            if (progress >= 1)
+            {
+                splineFollower.followSpeed = initialSpeed;
+                break;
+            }
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
     }
 
     #endregion

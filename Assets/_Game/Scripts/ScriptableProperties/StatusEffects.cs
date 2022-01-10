@@ -10,7 +10,7 @@ public class StatusEffects : ScriptableObject
     [HorizontalGroup("Ice Tower/Split")]
     [VerticalGroup("Ice Tower/Split/Left")]
     [BoxGroup("Ice Tower/Split/Left/Freeze Time"),HideLabel]
-    public int freezeTime;
+    public float freezeTime;
     
     [VerticalGroup("Ice Tower/Split/Right")] 
     [BoxGroup("Ice Tower/Split/Right/Freeze Ratio"),HideLabel]
@@ -20,7 +20,7 @@ public class StatusEffects : ScriptableObject
     [HorizontalGroup("Fire Tower/Split")]
     [VerticalGroup("Fire Tower/Split/Left")]
     [BoxGroup("Fire Tower/Split/Left/Burn Time"),HideLabel]
-    public int burnTime;
+    public float burnTime;
     
     [VerticalGroup("Fire Tower/Split/Right")] 
     [BoxGroup("Fire Tower/Split/Right/Burn Ratio"),HideLabel]
@@ -30,7 +30,7 @@ public class StatusEffects : ScriptableObject
     [HorizontalGroup("Poison Tower/Split")]
     [VerticalGroup("Poison Tower/Split/Left")]
     [BoxGroup("Poison Tower/Split/Left/Poison Time"),HideLabel]
-    public int poisonTime;
+    public float poisonTime;
     
     [VerticalGroup("Poison Tower/Split/Center")] 
     [BoxGroup("Poison Tower/Split/Center/Poison SlowRatio"),HideLabel]
@@ -41,6 +41,12 @@ public class StatusEffects : ScriptableObject
     public float poisonRatio;
     
     [TitleGroup("Teleport Tower", alignment: TitleAlignments.Centered)]
-    [BoxGroup("Teleport Tower/Teleport Place", true,true),HideLabel]
-    public int teleportPlace;
+    [HorizontalGroup("Teleport Tower/Split")]
+    [VerticalGroup("Teleport Tower/Split/Left")]
+    [BoxGroup("Teleport Tower/Split/Left/Telepor Time"),HideLabel]
+    public float teleportTime;
+    
+    [VerticalGroup("Teleport Tower/Split/Right")] 
+    [BoxGroup("Teleport Tower/Split/Right/Teleport Ratio"),HideLabel]
+    public float teleportRatio;
 }
