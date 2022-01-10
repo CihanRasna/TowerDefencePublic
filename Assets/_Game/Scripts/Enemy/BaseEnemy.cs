@@ -13,6 +13,17 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] private EnemyProperties enemyProperties;
     private StatusEffects statusEffects;
 
+    private enum CurrentStatus
+    {
+        NotEffected,
+        OnFire,
+        Freezing,
+        Poisoning,
+        Teleported
+    }
+
+    [SerializeField] private CurrentStatus currentStatus;
+
     [field: SerializeField] public SplineFollower splineFollower { private set; get; }
     [SerializeField] private Outlinable myOutline;
 
@@ -73,6 +84,10 @@ public abstract class BaseEnemy : MonoBehaviour
             BaseTower.Type.Teleport => GetTeleportEffect(),
             _ => null
         };
+        if (_currentStatusEffect == null)
+        {
+            currentStatus = CurrentStatus.NotEffected;
+        }
         // if (lastEffect != null && _currentStatusEffect != null && ReferenceEquals(lastEffect.Current, _currentStatusEffect.Current))
         // {
         //     _multiplier += 0.25f;
@@ -92,6 +107,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     private IEnumerator GetFreezeEffect()
     {
+        currentStatus = CurrentStatus.Freezing;
         var normalSpeed = enemyProperties.speed;
         var ratio = (100 - statusEffects.freezeRatio) / 100f;
         var newSpeed = normalSpeed * ratio;
@@ -102,12 +118,13 @@ public abstract class BaseEnemy : MonoBehaviour
 
     private IEnumerator GetFireEffect()
     {
+        currentStatus = CurrentStatus.OnFire;
         var elapsedTime = 0.0f;
         var duration = statusEffects.burnTime;
         var burnRatio = statusEffects.burnRatio;
         var initialHealth = health;
         var healthRatio = initialHealth * 0.01f;
-        
+
         while (true)
         {
             var progress = Mathf.Clamp01(elapsedTime / duration);
@@ -124,11 +141,38 @@ public abstract class BaseEnemy : MonoBehaviour
 
     private IEnumerator GetPoisonEffect()
     {
-        yield return null;
+        currentStatus = CurrentStatus.Poisoning;
+        
+        var normalSpeed = enemyProperties.speed;
+        var poisonSlowRatio = (100 - statusEffects.poisonSlowRatio) / 100f;
+        var newSpeed = normalSpeed * poisonSlowRatio;
+        splineFollower.followSpeed = newSpeed;
+
+        var poisoningRatio = statusEffects.poisonRatio;
+        var initialHealth = health;
+        var healthRatio = initialHealth * 0.01f;
+        
+        var elapsedTime = 0.0f;
+        var duration = statusEffects.poisonTime;
+
+        while (true)
+        {
+            var progress = Mathf.Clamp01(elapsedTime / duration);
+            health = initialHealth - (poisoningRatio * progress) * healthRatio * _multiplier;
+            if (progress >= 1)
+            {
+                splineFollower.followSpeed = normalSpeed;
+                break;
+            }
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
     }
 
     private IEnumerator GetTeleportEffect()
     {
+        currentStatus = CurrentStatus.Teleported;
         yield return null;
     }
 

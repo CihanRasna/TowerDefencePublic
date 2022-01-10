@@ -32,6 +32,10 @@ public class StatusEffects : ScriptableObject
     [BoxGroup("Poison Tower/Split/Left/Poison Time"),HideLabel]
     public int poisonTime;
     
+    [VerticalGroup("Poison Tower/Split/Center")] 
+    [BoxGroup("Poison Tower/Split/Center/Poison SlowRatio"),HideLabel]
+    public float poisonSlowRatio;
+    
     [VerticalGroup("Poison Tower/Split/Right")] 
     [BoxGroup("Poison Tower/Split/Right/Poison Ratio"),HideLabel]
     public float poisonRatio;
