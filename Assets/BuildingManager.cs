@@ -46,7 +46,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         if (selectedTower.damageCurrentLevel < selectedProperties.damageMaxUpgradeLevel)
         {
             selectedTower.damageCurrentLevel += 1;
-            selectedTower.UpgradeDamage(selectedProperties.damageForUpdate);
+            selectedTower.UpgradeDamage(selectedProperties.damageForUpgrade);
             damageLevel.text = selectedTower.damageCurrentLevel.ToString();
         }
     }
@@ -57,7 +57,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         if (selectedTower.fireRateCurrentLevel < selectedProperties.fireRateMaxUpgradeLevel)
         {
             selectedTower.fireRateCurrentLevel += 1;
-            selectedTower.UpgradeFireRate(selectedProperties.fireRatePerUpdate);
+            selectedTower.UpgradeFireRate(selectedProperties.fireRatePerUpgrade);
             fireRateLevel.text = selectedTower.fireRateCurrentLevel.ToString();
         }
     }
@@ -68,7 +68,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         if (selectedTower.radiusCurrentLevel < selectedProperties.radiusMaxUpgradeLevel)
         {
             selectedTower.radiusCurrentLevel += 1;
-            selectedTower.UpgradeRadius(selectedProperties.radiusPerUpdate);
+            selectedTower.UpgradeRadius(selectedProperties.radiusPerUpgrade);
             selectedTower.TowerHasSelected(false);
             selectedTower.TowerHasSelected(true);
             radiusLevel.text = selectedTower.radiusCurrentLevel.ToString();

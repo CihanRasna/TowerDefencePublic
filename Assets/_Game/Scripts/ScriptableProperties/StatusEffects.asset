@@ -15,7 +15,7 @@ MonoBehaviour:
   freezeTime: 3
   freezeRatio: 30
   burnTime: 3
-  burnRatio: 10
+  burnRatio: 30
   poisonTime: 3
   poisonSlowRatio: 15
   poisonRatio: 5
