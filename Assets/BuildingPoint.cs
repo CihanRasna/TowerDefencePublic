@@ -28,25 +28,30 @@ public class BuildingPoint : MonoBehaviour
     }
 
 
-    public void TowerBuildingSequence(BaseTower towerToBuild)
+    public void TowerBuildingSequence(BaseTower tower)
     {
-        Instantiate(towerToBuild, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        StartCoroutine(BuildNewTower(towerToBuild: tower));
     }
     
-    private IEnumerator BuildNewTower()
+    private IEnumerator BuildNewTower(BaseTower  towerToBuild)
     {
         var elapsedTime = 0.0f;
         var duration = 1f;
-
+        
+        yield return null; // HidePanel issue
+        radiusIndicatorImage.fillAmount = 0f;
+        myCanvas.gameObject.SetActive(true);
+        
         while (true)
         {
             var progress = Mathf.Clamp01(elapsedTime / duration);
+            radiusIndicatorImage.fillAmount = progress;
             if (progress >= 1)
             {
+                Instantiate(towerToBuild, transform.position, Quaternion.identity);
+                Destroy(gameObject);
                 break;
             }
-
             yield return null;
             elapsedTime += Time.deltaTime;
         }

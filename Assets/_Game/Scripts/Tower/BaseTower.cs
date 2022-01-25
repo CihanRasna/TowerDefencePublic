@@ -66,6 +66,7 @@ public abstract class BaseTower : MonoBehaviour
     protected virtual void Awake()
     {
         towerProperties = Instantiate(towerProperties);
+        transform.DOPunchScale(Vector3.up, 0.5f,3,1);
     }
 
     protected virtual void Start()

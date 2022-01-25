@@ -105,7 +105,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
 
     public void BuildNewTower(int idx)
     {
-        var towerToBuild = towerPrefabs[idx]; 
+        var towerToBuild = towerPrefabs[idx];
         selectedPoint.TowerBuildingSequence(towerToBuild);
         HidePanel();
     }
