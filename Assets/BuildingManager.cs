@@ -32,6 +32,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         selectedTower.myOutline.OutlineParameters.Color = Color.green;
         var towerPos = _camera.WorldToScreenPoint(currentTower.transform.position);
         transform.position = towerPos;
+        SetSelectedTowerPropertiesToButtons();
     }
 
     private void SetSelectedTowerPropertiesToButtons()
@@ -99,13 +100,23 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         {
             if (hit.collider.TryGetComponent(out SelectionReturner returner))
             {
-                GetTopOnSelectedTower((BaseTower)returner.ReturnSelectedParent());
-                SetSelectedTowerPropertiesToButtons();
+                var handledType = returner.ReturnSelectedParent();
+                var selectedType = handledType.GetType().BaseType;
+                if (selectedType == typeof(BaseTower))
+                {
+                    GetTopOnSelectedTower(handledType as BaseTower);
+                }
+                else if (selectedType == typeof(BuildingPoint))
+                {
+                    
+                }
+                
+                //SetSelectedTowerPropertiesToButtons();
             }
-            else
-            {
-                HidePanel();
-            }
+        }
+        else
+        {
+            HidePanel();
         }
     }
 
