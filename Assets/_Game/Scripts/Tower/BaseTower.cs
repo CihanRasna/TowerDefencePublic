@@ -72,7 +72,6 @@ public abstract class BaseTower : MonoBehaviour
     {
         InitializeTowerProperties();
     }
-
     protected virtual void Update()
     {
         _lastFireTime += Time.deltaTime;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Vanta.Core;
 using Vanta.Input;
@@ -12,19 +13,14 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     [SerializeField] private float panelScaleRatio = 1200f;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject purchasePanel;
-
     [SerializeField] private BaseTower selectedTower;
     [SerializeField] private BuildingPoint selectedPoint;
-
-    // private BaseTower _oldSelectedTower;
-
-    private Camera _camera;
-
     [SerializeField] private Text damageLevel;
     [SerializeField] private Text radiusLevel;
     [SerializeField] private Text fireRateLevel;
 
     private int selectionLayer;
+    private Camera _camera;
 
     void Start()
     {
@@ -60,6 +56,8 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         {
             selectedTower.damageCurrentLevel += 1;
             selectedTower.UpgradeDamage(selectedProperties.damageForUpgrade);
+            selectedTower.TowerHasSelected(false);
+            selectedTower.TowerHasSelected(true);
             damageLevel.text = selectedTower.damageCurrentLevel.ToString();
         }
     }
@@ -71,6 +69,8 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         {
             selectedTower.fireRateCurrentLevel += 1;
             selectedTower.UpgradeFireRate(selectedProperties.fireRatePerUpgrade);
+            selectedTower.TowerHasSelected(false);
+            selectedTower.TowerHasSelected(true);
             fireRateLevel.text = selectedTower.fireRateCurrentLevel.ToString();
         }
     }
@@ -101,6 +101,13 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         selectedPoint.myOutline.OutlineParameters.Color = Color.green;
         var towerPos = _camera.WorldToScreenPoint(buildingPoint.transform.position);
         transform.position = towerPos;
+    }
+
+    public void BuildNewTower(int idx)
+    {
+        var towerToBuild = towerPrefabs[idx]; 
+        selectedPoint.TowerBuildingSequence(towerToBuild);
+        HidePanel();
     }
 
     #endregion

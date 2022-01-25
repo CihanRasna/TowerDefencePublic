@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using EPOOutline;
 using UnityEngine;
@@ -23,6 +24,31 @@ public class BuildingPoint : MonoBehaviour
             myCanvas.gameObject.SetActive(false);
             imageTweener.Kill();
             imageTweener = null;
+        }
+    }
+
+
+    public void TowerBuildingSequence(BaseTower towerToBuild)
+    {
+        Instantiate(towerToBuild, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+    
+    private IEnumerator BuildNewTower()
+    {
+        var elapsedTime = 0.0f;
+        var duration = 1f;
+
+        while (true)
+        {
+            var progress = Mathf.Clamp01(elapsedTime / duration);
+            if (progress >= 1)
+            {
+                break;
+            }
+
+            yield return null;
+            elapsedTime += Time.deltaTime;
         }
     }
 }
