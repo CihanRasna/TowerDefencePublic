@@ -17,9 +17,10 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     [SerializeField] private Text radiusLevel;
     [SerializeField] private Text fireRateLevel;
 
-
+    private int selectionLayer;
     void Start()
     {
+        selectionLayer = 1 << LayerMask.NameToLayer("SelectionLayer");
         _camera = Camera.main;
     }
 
@@ -94,11 +95,11 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     public void PanRecognizerDidStartListening(PanRecognizer recognizer)
     {
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out var hit))
+        if (Physics.Raycast(ray, out var hit,1000,selectionLayer))
         {
-            if (hit.collider.TryGetComponent(out BaseTower baseTower))
+            if (hit.collider.TryGetComponent(out SelectionReturner returner))
             {
-                GetTopOnSelectedTower(baseTower);
+                GetTopOnSelectedTower((BaseTower)returner.ReturnSelectedParent());
                 SetSelectedTowerPropertiesToButtons();
             }
             else
