@@ -1,20 +1,16 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class SelectionReturner : MonoBehaviour
 {
     [SerializeField] private Component selectableParent;
-    
-    //public object myParent;
 
-    public Component ReturnSelectedParent()
+    public Tuple<Component, Type> ReturnSelectedFields()
     {
-        return selectableParent;
+        return selectableParent.GetType().BaseType == typeof(BaseTower)
+            ? new Tuple<Component, Type>(selectableParent, selectableParent.GetType().BaseType)
+            : new Tuple<Component, Type>(selectableParent, selectableParent.GetType());
     }
-
-    // public T ReturnParent<T>()
-    // {
-    //     return (T) myParent;
-    // }
 }

@@ -167,9 +167,9 @@ public abstract class BaseTower : MonoBehaviour
             imageTweener.Kill();
             imageTweener = null;
         }
+
         var setNewScale = Vector3.one * collider.radius / 5f;
         myCanvas.transform.localScale = setNewScale;
-        
     }
 
     protected virtual void DamageUpgraded()

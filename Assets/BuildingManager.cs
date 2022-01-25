@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +8,14 @@ using Vanta.Input;
 
 public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRecognizerDelegate
 {
+    [SerializeField] private List<BaseTower> towerPrefabs;
     [SerializeField] private float panelScaleRatio = 1200f;
+    [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private GameObject purchasePanel;
 
     [SerializeField] private BaseTower selectedTower;
+    [SerializeField] private BuildingPoint selectedPoint;
+
     // private BaseTower _oldSelectedTower;
 
     private Camera _camera;
@@ -18,15 +25,19 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     [SerializeField] private Text fireRateLevel;
 
     private int selectionLayer;
+
     void Start()
     {
         selectionLayer = 1 << LayerMask.NameToLayer("SelectionLayer");
         _camera = Camera.main;
     }
 
+    #region TowerSelection
+
     private void GetTopOnSelectedTower(BaseTower currentTower)
     {
         HidePanel();
+        upgradePanel.SetActive(true);
         currentTower.TowerHasSelected(true);
         selectedTower = currentTower;
         selectedTower.myOutline.OutlineParameters.Color = Color.green;
@@ -77,8 +88,27 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         }
     }
 
+    #endregion
+
+    #region SlotSelection
+
+    private void GetTopOnSelectedSlot(BuildingPoint buildingPoint)
+    {
+        HidePanel();
+        purchasePanel.SetActive(true);
+        buildingPoint.SlotHasSelected(true);
+        selectedPoint = buildingPoint;
+        selectedPoint.myOutline.OutlineParameters.Color = Color.green;
+        var towerPos = _camera.WorldToScreenPoint(buildingPoint.transform.position);
+        transform.position = towerPos;
+    }
+
+    #endregion
+
     private void HidePanel()
     {
+        purchasePanel.SetActive(false);
+        upgradePanel.SetActive(false);
         if (selectedTower)
         {
             selectedTower.TowerHasSelected(false);
@@ -86,7 +116,17 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
             selectedTower = null;
             transform.position = new Vector3(1235, 1234, 4563);
         }
+
+        if (selectedPoint)
+        {
+            selectedPoint.SlotHasSelected(false);
+            selectedPoint.myOutline.OutlineParameters.Color = Color.white;
+            selectedPoint = null;
+            transform.position = new Vector3(1235, 1234, 4563);
+        }
     }
+
+    #region PanRecognizer
 
     public bool PanRecognizerShouldStartListening(PanRecognizer recognizer)
     {
@@ -96,22 +136,17 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     public void PanRecognizerDidStartListening(PanRecognizer recognizer)
     {
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out var hit,1000,selectionLayer))
+        if (Physics.Raycast(ray, out var hit, 1000, selectionLayer))
         {
             if (hit.collider.TryGetComponent(out SelectionReturner returner))
             {
-                var handledType = returner.ReturnSelectedParent();
-                var selectedType = handledType.GetType().BaseType;
-                if (selectedType == typeof(BaseTower))
-                {
-                    GetTopOnSelectedTower(handledType as BaseTower);
-                }
-                else if (selectedType == typeof(BuildingPoint))
-                {
-                    
-                }
-                
-                //SetSelectedTowerPropertiesToButtons();
+                var (handledComponent, handledType) = returner.ReturnSelectedFields();
+
+                if (handledType == typeof(BaseTower))
+                    GetTopOnSelectedTower(handledComponent as BaseTower);
+
+                if (handledType == typeof(BuildingPoint))
+                    GetTopOnSelectedSlot(handledComponent as BuildingPoint);
             }
         }
         else
@@ -127,4 +162,6 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     public void PanRecognizerDidEndListening(PanRecognizer recognizer, bool forced)
     {
     }
+
+    #endregion
 }
