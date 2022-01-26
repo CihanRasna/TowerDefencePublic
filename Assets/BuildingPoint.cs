@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class BuildingPoint : MonoBehaviour
 {
+    [SerializeField] private MeshRenderer myRenderer;
+    [SerializeField] private GameObject buildingVFX;
     [SerializeField] private Canvas myCanvas;
     [SerializeField] internal Outlinable myOutline;
     [SerializeField] private Image radiusIndicatorImage;
@@ -35,8 +37,10 @@ public class BuildingPoint : MonoBehaviour
     
     private IEnumerator BuildNewTower(BaseTower  towerToBuild)
     {
+        myRenderer.enabled = false;
+        buildingVFX.SetActive(true);
         var elapsedTime = 0.0f;
-        var duration = 1f;
+        var duration = 2f;
         
         yield return null; // HidePanel issue
         radiusIndicatorImage.fillAmount = 0f;
