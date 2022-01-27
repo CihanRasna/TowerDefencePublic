@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Game.Levels.Base;
 using _Game.Scripts.Tower;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using Vanta.Core;
 using Vanta.Input;
+using Vanta.Levels;
 
 public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRecognizerDelegate
 {
@@ -138,7 +140,12 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
 
     public bool PanRecognizerShouldStartListening(PanRecognizer recognizer)
     {
-        return true;
+        var level = LevelManager.Instance.currentLevel as Level;
+        if (level.state == BaseLevel.State.Loaded)
+        {
+            level.StartLevel();
+        }
+        return level.state == BaseLevel.State.Started;
     }
 
     public void PanRecognizerDidStartListening(PanRecognizer recognizer)

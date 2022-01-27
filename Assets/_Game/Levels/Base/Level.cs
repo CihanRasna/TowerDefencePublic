@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using _Game.Characters;
 using _Game.Scripts.Enemy;
 using Dreamteck.Splines;
@@ -13,9 +14,8 @@ namespace _Game.Levels.Base
         public SplineComputer spline;
         public Player player => _player as Player;
 
-        [SerializeField] private BaseEnemy enemy;
-        [SerializeField] private int spawnCount;
-
+        [SerializeField] private List<BaseEnemy> enemies;
+        private float _nextSpawnTime = 0f;
 
         #region Life Cycle
 
@@ -32,32 +32,22 @@ namespace _Game.Levels.Base
             _state = State.Loaded;
             listener.Level_DidLoad(this);
             Debug.Log("Loaded");
+            
+        }
+
+        public void StartLevel()
+        {
             _state = State.Started;
             listener.Level_DidStart(this);
-            Aaa();
         }
 
-        [Button]
-        private void SpawnEnemy()
+        public void InvokeEnemy()
         {
-            var e = Instantiate(enemy);
-            e.transform.parent = transform;
-        }
-
-        [Button]
-        private void Aaa()
-        {
-            StartCoroutine(SpawnMany());
-        }
-
-        private IEnumerator SpawnMany()
-        {
-            for (int i = 0; i < spawnCount; i++)
-            {
-                var e = Instantiate(enemy);
-                e.transform.parent = transform;
-                yield return new WaitForSeconds(.5f);
-            }
+            var rnd = Random.Range(0, enemies.Count);
+            _nextSpawnTime = rnd == 0 ? 3f : 7f;
+            var spawnedEnemy = enemies[rnd];
+            Instantiate(spawnedEnemy, transform);
+            Invoke(nameof(InvokeEnemy), _nextSpawnTime);
         }
 
         #endregion

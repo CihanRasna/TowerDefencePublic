@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _Game.Levels.Base;
 using UnityEngine;
 using Vanta.Core;
 using Vanta.Persist;
@@ -133,7 +134,13 @@ namespace Vanta.Levels
     #region Level Delegate
 
         public void Level_DidLoad(BaseLevel baseLevel) => levelDidLoad?.Invoke(_currentLevel);
-        public void Level_DidStart(BaseLevel baseLevel) => levelDidStart?.Invoke(_currentLevel);
+        public void Level_DidStart(BaseLevel baseLevel)
+        {
+            var level = baseLevel as Level;
+            level.InvokeEnemy();
+            levelDidStart?.Invoke(_currentLevel);
+        }
+
         public void Level_DidSuccess(BaseLevel baseLevel, float score) => levelDidSuccees.Invoke(_currentLevel);
         public void Level_DidFail(BaseLevel baseLevel) => levelDidFail?.Invoke(_currentLevel);
 
