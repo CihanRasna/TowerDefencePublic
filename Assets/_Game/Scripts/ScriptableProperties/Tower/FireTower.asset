@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerType: 2
   shootingType: 0
-  projectile: {fileID: 1044716268183661491, guid: 1b3c977aa0054a84fa8beb88a2cee7d3, type: 3}
+  baseProjectile: {fileID: 1044716268183661491, guid: 1b3c977aa0054a84fa8beb88a2cee7d3, type: 3}
   hitParticle: {fileID: 2430420777528987695, guid: 03cf93d906331f941961d3dd4e6b7190, type: 3}
-  projectileEffectZone: 1
-  damage: 0
-  damageForUpgrade: 0
+  projectileEffectZone: 15
+  damage: 20
+  damageForUpgrade: 5
   damageMaxUpgradeLevel: 3
-  fireRate: 1
-  fireRatePerUpgrade: 0
+  fireRate: 0.5
+  fireRatePerUpgrade: 0.125
   fireRateMaxUpgradeLevel: 3
   shootingRange: 15
-  radiusPerUpgrade: 0
+  radiusPerUpgrade: 2.5
   radiusMaxUpgradeLevel: 3

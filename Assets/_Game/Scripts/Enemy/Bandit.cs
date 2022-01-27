@@ -1,6 +1,6 @@
 namespace _Game.Scripts.Enemy
 {
-    public class Orc : BaseEnemy
+    public class Bandit : BaseEnemy
     {
         
     }
