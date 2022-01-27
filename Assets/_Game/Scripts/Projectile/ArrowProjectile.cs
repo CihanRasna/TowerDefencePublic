@@ -1,3 +1,4 @@
+using _Game.Scripts.Enemy;
 using UnityEngine;
 
 public class ArrowProjectile : Projectile

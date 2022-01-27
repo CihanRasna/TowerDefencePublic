@@ -1,6 +1,7 @@
 namespace _Game.Scripts.Enemy
 {
-    public class Goblin : BaseEnemy
+    public class Orc : BaseEnemy
     {
+   
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Enemy;
 using Dreamteck.Splines;
 using Sirenix.OdinInspector;
 using UnityEngine;

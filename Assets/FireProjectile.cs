@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using _Game.Scripts.Enemy;
 using Vanta.Levels;
 
 public class FireProjectile : Projectile
