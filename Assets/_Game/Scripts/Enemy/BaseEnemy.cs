@@ -1,4 +1,6 @@
 using System.Collections;
+using _Game.Levels.Base;
+using _Game.Scripts.ScriptableProperties;
 using _Game.Scripts.Tower;
 using Dreamteck.Splines;
 using EPOOutline;

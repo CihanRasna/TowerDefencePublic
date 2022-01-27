@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using _Game.Scripts.Tower;
-using UnityEngine;
-
-public class FireTower : BaseTower
+namespace _Game.Scripts.Tower
 {
-    protected override void Awake()
+    public class FireTower : BaseTower
     {
-        base.Awake();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
-    protected override void Start()
-    {
-        base.Start();
+        protected override void Start()
+        {
+            base.Start();
+        }
     }
 }

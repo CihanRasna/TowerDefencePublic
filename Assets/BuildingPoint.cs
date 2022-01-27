@@ -1,9 +1,11 @@
 using System.Collections;
+using _Game.Levels.Base;
 using _Game.Scripts.Tower;
 using DG.Tweening;
 using EPOOutline;
 using UnityEngine;
 using UnityEngine.UI;
+using Vanta.Levels;
 
 public class BuildingPoint : MonoBehaviour
 {
@@ -53,7 +55,7 @@ public class BuildingPoint : MonoBehaviour
             radiusIndicatorImage.fillAmount = progress;
             if (progress >= 1)
             {
-                Instantiate(towerToBuild, transform.position, Quaternion.identity);
+                Instantiate(towerToBuild, transform.position, Quaternion.identity,LevelManager.Instance.currentLevel.transform);
                 Destroy(gameObject);
                 break;
             }

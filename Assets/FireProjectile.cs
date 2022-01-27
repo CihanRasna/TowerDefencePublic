@@ -1,10 +1,9 @@
-using UnityEngine;
-using UnityEngine.Events;
-using System.Collections.Generic;
+using _Game.Levels.Base;
 using _Game.Scripts.Enemy;
+using _Game.Scripts.Projectiles;
 using Vanta.Levels;
 
-public class FireProjectile : Projectile
+public class FireProjectile : BaseProjectile
 {
     protected override void DoYourOwnShit(BaseEnemy baseEnemy)
     {

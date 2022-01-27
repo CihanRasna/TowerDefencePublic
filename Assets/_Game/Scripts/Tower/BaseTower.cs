@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using _Game.Levels.Base;
 using _Game.Scripts.Enemy;
+using _Game.Scripts.ScriptableProperties;
+using _Game.Scripts.Projectiles;
 using DG.Tweening;
 using EPOOutline;
 using Sirenix.OdinInspector;
@@ -46,7 +49,7 @@ namespace _Game.Scripts.Tower
 
         protected float damage;
         protected float firePerSecond;
-        protected Projectile projectile;
+        protected BaseProjectile baseProjectile;
         protected float projectileEffectZone;
 
         [HideInInspector] public int damageCurrentLevel = 1;
@@ -137,7 +140,7 @@ namespace _Game.Scripts.Tower
             damage = towerProperties.damage;
             collider.radius = towerProperties.shootingRange;
             firePerSecond = towerProperties.fireRate;
-            projectile = towerProperties.projectile;
+            baseProjectile = towerProperties.baseProjectile;
             projectileEffectZone = towerProperties.projectileEffectZone;
         }
 
@@ -145,7 +148,7 @@ namespace _Game.Scripts.Tower
         {
             var level = LevelManager.Instance.currentLevel as Level;
             var transform1 = shootingPoint.transform;
-            var go = Instantiate(projectile, transform1.position, transform1.rotation, level.transform);
+            var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, level.transform);
             go.InitializeBullet(this, damage, projectileEffectZone, currentEnemy.transform, towerProperties.hitParticle);
         }
 

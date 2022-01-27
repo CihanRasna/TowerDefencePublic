@@ -1,63 +1,65 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using _Game.Characters;
 using _Game.Scripts.Enemy;
 using Dreamteck.Splines;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Vanta.Levels;
 
-public class Level : BaseLevel
+namespace _Game.Levels.Base
 {
-    public SplineComputer spline;
-    public Player player => _player as Player;
-
-    [SerializeField] private BaseEnemy enemy;
-    [SerializeField] private int spawnCount;
-
-
-    #region Life Cycle
-
-    private void OnValidate()
+    public class Level : BaseLevel
     {
-    }
+        public SplineComputer spline;
+        public Player player => _player as Player;
 
-    protected override void Start()
-    {
-        base.Start();
+        [SerializeField] private BaseEnemy enemy;
+        [SerializeField] private int spawnCount;
 
-        // TODO: Initialize level
 
-        _state = State.Loaded;
-        listener.Level_DidLoad(this);
-        Debug.Log("Loaded");
-        _state = State.Started;
-        listener.Level_DidStart(this);
-        Aaa();
-    }
+        #region Life Cycle
 
-    [Button]
-    private void SpawnEnemy()
-    {
-        var e = Instantiate(enemy);
-        e.transform.parent = transform;
-    }
+        private void OnValidate()
+        {
+        }
 
-    [Button]
-    private void Aaa()
-    {
-        StartCoroutine(SpawnMany());
-    }
+        protected override void Start()
+        {
+            base.Start();
 
-    private IEnumerator SpawnMany()
-    {
-        for (int i = 0; i < spawnCount; i++)
+            // TODO: Initialize level
+
+            _state = State.Loaded;
+            listener.Level_DidLoad(this);
+            Debug.Log("Loaded");
+            _state = State.Started;
+            listener.Level_DidStart(this);
+            Aaa();
+        }
+
+        [Button]
+        private void SpawnEnemy()
         {
             var e = Instantiate(enemy);
             e.transform.parent = transform;
-            yield return new WaitForSeconds(.5f);
         }
-    }
 
-    #endregion
+        [Button]
+        private void Aaa()
+        {
+            StartCoroutine(SpawnMany());
+        }
+
+        private IEnumerator SpawnMany()
+        {
+            for (int i = 0; i < spawnCount; i++)
+            {
+                var e = Instantiate(enemy);
+                e.transform.parent = transform;
+                yield return new WaitForSeconds(.5f);
+            }
+        }
+
+        #endregion
+    }
 }

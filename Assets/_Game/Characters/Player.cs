@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Vanta.Characters;
+﻿using Vanta.Characters;
 
-public class Player : BaseCharacter
+namespace _Game.Characters
 {
+    public class Player : BaseCharacter
+    {
     
+    }
 }
