@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrefabs:
-  - {fileID: 3881654822024537687, guid: 4a127a5289cb6c743bc43aeec50281a0, type: 3}
+  - {fileID: 7318404980020950601, guid: ce5cbb0c296acb240a778f9b120c298d, type: 3}
   - {fileID: 7495980749895785887, guid: 3c9916b0de55dad468bf3e05c1ebf440, type: 3}
   - {fileID: 3967566644689937517, guid: 836a8a4eb616ae64ea470ad56f9bb48e, type: 3}
   panelScaleRatio: 1200

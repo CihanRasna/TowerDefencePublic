@@ -14,6 +14,8 @@ public class BuildingPoint : MonoBehaviour
     [SerializeField] private Canvas myCanvas;
     [SerializeField] internal Outlinable myOutline;
     [SerializeField] private Image radiusIndicatorImage;
+    [SerializeField] private SelectionReturner myReturner;
+    
     private Tweener imageTweener;
     
     public void SlotHasSelected(bool currentSelected)
@@ -40,6 +42,7 @@ public class BuildingPoint : MonoBehaviour
     
     private IEnumerator BuildNewTower(BaseTower  towerToBuild)
     {
+        Destroy(myReturner.gameObject);
         myRenderer.enabled = false;
         buildingVFX.SetActive(true);
         var elapsedTime = 0.0f;

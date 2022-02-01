@@ -179,18 +179,14 @@ namespace _Game.Scripts.Tower
 
         protected virtual void TowerUpgraded()
         {
-            var totalUpgradeCount = (damageCurrentLevel + radiusCurrentLevel + fireRateCurrentLevel) - 3;
-            var lastMeshIndex = (totalUpgradeCount) / 3 - 1;
-            var desiredMesh = Mathf.Max(0, (totalUpgradeCount / 2) - 1);
-            Debug.Log($"LastMesh Index { lastMeshIndex}" + $"DesiredMesh {desiredMesh}");
+            var maxMeshCount = towerUpgradedMeshes.Count;
+            var totalUpgradeCount = (damageCurrentLevel + radiusCurrentLevel + fireRateCurrentLevel) - maxMeshCount;
+            var lastMeshIndex = totalUpgradeCount / 2;
+            var desiredMeshIndex = Mathf.Min(maxMeshCount - 1, Mathf.Max(0, (totalUpgradeCount / 2)));
 
-            if (desiredMesh != lastMeshIndex)
-            {
-                for (var i = 0; i < towerUpgradedMeshes.Count; i++)
-                {
-                    towerUpgradedMeshes[i].SetActive(i == desiredMesh);
-                }
-            }
+            if (desiredMeshIndex == lastMeshIndex)
+                for (var i = 0; i < maxMeshCount; i++)
+                    towerUpgradedMeshes[i].SetActive(i == desiredMeshIndex);
         }
 
         public void UpgradeDamage(float value)
