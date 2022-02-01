@@ -149,7 +149,7 @@ namespace _Game.Scripts.Tower
             var level = LevelManager.Instance.currentLevel as Level;
             var transform1 = shootingPoint.transform;
             var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, level.transform);
-            go.InitializeBullet(this, damage, projectileEffectZone, currentEnemy.transform, towerProperties.hitParticle);
+            go.InitializeBullet(this, damage, projectileEffectZone, currentEnemy, towerProperties.hitParticle);
         }
 
         protected virtual void TowerHasTarget()

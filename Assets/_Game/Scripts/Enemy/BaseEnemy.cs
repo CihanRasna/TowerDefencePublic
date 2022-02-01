@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _Game.Levels.Base;
 using _Game.Scripts.ScriptableProperties;
@@ -34,13 +35,17 @@ namespace _Game.Scripts.Enemy
         private IEnumerator _currentStatusEffect = null;
         private float _multiplier = 1f;
 
-        protected virtual void Awake()
-        {
-        }
+        public Vector3 SplinePercentPosition { get; private set; }
 
         protected virtual void Start()
         {
             InitializeEnemyLogic();
+        }
+
+        private void Update()
+        {
+            var percent = splineFollower.GetPercent();
+            SplinePercentPosition = splineFollower.EvaluatePosition(percent);
         }
 
         private void OnTriggerExit(Collider other)
@@ -144,7 +149,7 @@ namespace _Game.Scripts.Enemy
         private IEnumerator GetPoisonEffect()
         {
             currentStatus = CurrentStatus.Poisoning;
-        
+
             var normalSpeed = enemyProperties.speed;
             var poisonSlowRatio = (100 - statusEffects.poisonSlowRatio) / 100f;
             var newSpeed = normalSpeed * poisonSlowRatio;
@@ -153,7 +158,7 @@ namespace _Game.Scripts.Enemy
             var poisoningRatio = statusEffects.poisonRatio;
             var initialHealth = health;
             var healthRatio = initialHealth * 0.01f;
-        
+
             var elapsedTime = 0.0f;
             var duration = statusEffects.poisonTime;
 
@@ -176,7 +181,7 @@ namespace _Game.Scripts.Enemy
         {
             currentStatus = CurrentStatus.Teleported;
             var initialSpeed = splineFollower.followSpeed;
-            var currentPercent = (float)splineFollower.GetPercent();
+            var currentPercent = (float) splineFollower.GetPercent();
             var targetPercent = currentPercent * (100 - statusEffects.teleportRatio) / 100f;
             var elapsedTime = 0.0f;
             var duration = statusEffects.teleportTime;
@@ -185,7 +190,7 @@ namespace _Game.Scripts.Enemy
             while (true)
             {
                 var progress = Mathf.Clamp01(elapsedTime / duration);
-                var lerpAmount = Mathf.Lerp(currentPercent, targetPercent,progress);
+                var lerpAmount = Mathf.Lerp(currentPercent, targetPercent, progress);
                 splineFollower.SetPercent(lerpAmount);
                 if (progress >= 1)
                 {

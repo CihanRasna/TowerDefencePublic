@@ -45,7 +45,7 @@ namespace _Game.Levels.Base
         {
             var rnd = Random.Range(0, enemies.Count);
             _nextSpawnTime = rnd == 0 ? 3f : 7f;
-            var spawnedEnemy = enemies[rnd];
+            var spawnedEnemy = enemies[0];
             Instantiate(spawnedEnemy, transform);
             Invoke(nameof(InvokeEnemy), _nextSpawnTime);
         }

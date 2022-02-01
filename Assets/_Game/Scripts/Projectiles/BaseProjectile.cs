@@ -9,7 +9,7 @@ namespace _Game.Scripts.Projectiles
     public abstract class BaseProjectile : MonoBehaviour
     {
         [SerializeField, HideInInspector] protected float damage;
-        [SerializeField, HideInInspector] protected Transform target;
+        [SerializeField, HideInInspector] protected BaseEnemy target;
         [SerializeField, HideInInspector] protected GameObject hitParticle;
         [SerializeField, HideInInspector] protected float effectZone;
 
@@ -51,7 +51,7 @@ namespace _Game.Scripts.Projectiles
 
         protected abstract void DoYourOwnShit(BaseEnemy baseEnemy);
 
-        public void InitializeBullet(BaseTower myTower, float myDamage, float myEffectZone, Transform myTarget,
+        public void InitializeBullet(BaseTower myTower, float myDamage, float myEffectZone, BaseEnemy myTarget,
             GameObject myParticle)
         {
             bulletType = myTower.towerType;
@@ -64,9 +64,9 @@ namespace _Game.Scripts.Projectiles
 
         protected virtual void ProjectileMovementOverrider()
         {
-            _tweener = transform.DOMove(target.position, .2f).OnUpdate(() =>
+            _tweener = transform.DOMove(target.transform.position, .2f).OnUpdate(() =>
             {
-                if (target) _tweener.ChangeEndValue(target.position + Vector3.up, true);
+                if (target) _tweener.ChangeEndValue(target.transform.position + Vector3.up, true);
                 else
                 {
                     _tweener.Kill();
