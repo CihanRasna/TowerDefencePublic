@@ -33,6 +33,8 @@ namespace _Game.Scripts.Tower
             Last
         }
 
+        [SerializeField] protected List<GameObject> towerUpgradedMeshes;
+
         [ShowInInspector] protected List<BaseEnemy> _potentialNextEnemies = new List<BaseEnemy>();
         [HideInInspector] public Type towerType;
         [HideInInspector] public ShootingType shootingType;
@@ -44,8 +46,7 @@ namespace _Game.Scripts.Tower
         [SerializeField] private Canvas myCanvas;
         [SerializeField] private Image radiusIndicatorImage;
         private Tweener imageTweener;
-    
-    
+
 
         protected float damage;
         protected float firePerSecond;
@@ -69,13 +70,14 @@ namespace _Game.Scripts.Tower
         protected virtual void Awake()
         {
             towerProperties = Instantiate(towerProperties);
-            transform.DOPunchScale(Vector3.up, 0.5f,3,1);
+            transform.DOPunchScale(Vector3.up, 0.5f, 3, 1);
         }
 
         protected virtual void Start()
         {
             InitializeTowerProperties();
         }
+
         protected virtual void Update()
         {
             _lastFireTime += Time.deltaTime;
@@ -175,23 +177,37 @@ namespace _Game.Scripts.Tower
             myCanvas.transform.localScale = setNewScale;
         }
 
-        protected virtual void DamageUpgraded()
+        protected virtual void TowerUpgraded()
         {
+            var totalUpgradeCount = (damageCurrentLevel + radiusCurrentLevel + fireRateCurrentLevel) - 3;
+            var lastMeshIndex = (totalUpgradeCount) / 3 - 1;
+            var desiredMesh = Mathf.Max(0, (totalUpgradeCount / 2) - 1);
+            Debug.Log($"LastMesh Index { lastMeshIndex}" + $"DesiredMesh {desiredMesh}");
+
+            if (desiredMesh != lastMeshIndex)
+            {
+                for (var i = 0; i < towerUpgradedMeshes.Count; i++)
+                {
+                    towerUpgradedMeshes[i].SetActive(i == desiredMesh);
+                }
+            }
         }
 
         public void UpgradeDamage(float value)
         {
+            TowerUpgraded();
             damage = towerProperties.damage += value;
-            DamageUpgraded();
         }
 
         public void UpgradeFireRate(float value)
         {
+            TowerUpgraded();
             firePerSecond = towerProperties.fireRate += value;
         }
 
         public void UpgradeRadius(float value)
         {
+            TowerUpgraded();
             collider.radius = towerProperties.shootingRange += value;
         }
 
