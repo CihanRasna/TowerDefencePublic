@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 4738527786090058712}
   - component: {fileID: 9044017834300847217}
   m_Layer: 0
-  m_Name: ArcherTower
+  m_Name: ArcherTowerOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -8,8 +9,9 @@ namespace _Game.Scripts.Tower
         [SerializeField] private AxisConstraint axisConstraint;
         [SerializeField] private Transform myArcher;
 
-        protected override void DamageUpgraded()
+        protected override void TowerUpgraded()
         {
+            base.TowerUpgraded();
         }
 
         protected override void Update()
