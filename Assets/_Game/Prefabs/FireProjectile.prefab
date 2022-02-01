@@ -4771,7 +4771,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 761fcaf3853386b4c80234bc48bdd122, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4826,7 +4825,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4843140717647814}
-  - component: {fileID: 114904652796203596}
   - component: {fileID: 54721670241261948}
   - component: {fileID: 135895969610542442}
   - component: {fileID: 1044716268183661491}
@@ -4845,37 +4843,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031169369869700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4367827441591310}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114904652796203596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031169369869700}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ba759cd568c0e47a7018ab70867a0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 35
-  accuracy: 95
-  fireRate: 1
-  muzzlePrefab: {fileID: 1056950820860086, guid: c61da8d35531b744b828adf5468397e6, type: 3}
-  hitPrefab: {fileID: 1284181884384144, guid: fe7c23778cfca0b4b8fe58b2ec78843b, type: 3}
-  shotSFX: {fileID: 0}
-  hitSFX: {fileID: 0}
-  trails:
-  - {fileID: 1683606525194040}
-  - {fileID: 1389156201887894}
-  - {fileID: 1010225535109940}
-  - {fileID: 1637721467292070}
 --- !u!54 &54721670241261948
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4917,6 +4891,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea778bbd375cb64b92b3e5db5637c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  target: {fileID: 0}
+  hitParticle: {fileID: 0}
+  effectZone: 0
+  bulletType: 0
 --- !u!1 &1122375808417882
 GameObject:
   m_ObjectHideFlags: 0
@@ -9710,7 +9689,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 692dfdefcd910164cbc23e29df21b0ef, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14527,7 +14505,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 692dfdefcd910164cbc23e29df21b0ef, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14633,7 +14610,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1e4f3ea533e552d479e6f126125fadf0, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24280,7 +24256,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5f62f65b9d82c334289714a0afdf2d4f, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29097,7 +29072,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 692dfdefcd910164cbc23e29df21b0ef, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34052,7 +34026,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 692dfdefcd910164cbc23e29df21b0ef, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
