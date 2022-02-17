@@ -19,7 +19,7 @@ namespace _Game.Scripts.Tower
     {
         public enum Type
         {
-            Arrow,
+            Archer,
             Ice,
             Fire,
             Poison,
@@ -46,7 +46,6 @@ namespace _Game.Scripts.Tower
         [SerializeField] private Canvas myCanvas;
         [SerializeField] private Image radiusIndicatorImage;
         private Tweener imageTweener;
-
 
         protected float damage;
         protected float firePerSecond;

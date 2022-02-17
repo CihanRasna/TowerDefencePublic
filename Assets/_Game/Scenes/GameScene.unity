@@ -206,8 +206,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706183082}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
+      - m_Target: {fileID: 362293749}
+        m_TargetAssemblyTypeName: TowerBuildingPanel, Assembly-CSharp
         m_MethodName: BuildNewTower
         m_Mode: 3
         m_Arguments:
@@ -288,12 +288,12 @@ RectTransform:
   m_Children:
   - {fileID: 1321289031}
   m_Father: {fileID: 1296016044}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 0, y: -240}
+  m_SizeDelta: {x: -40, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &110315520
 MonoBehaviour:
@@ -409,12 +409,12 @@ RectTransform:
   m_Children:
   - {fileID: 2008105351}
   m_Father: {fileID: 1296016044}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -75, y: 25}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -130.20001}
+  m_SizeDelta: {x: -40, y: 80.400024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236274201
 MonoBehaviour:
@@ -520,8 +520,9 @@ GameObject:
   m_Component:
   - component: {fileID: 362293747}
   - component: {fileID: 362293748}
+  - component: {fileID: 362293749}
   m_Layer: 5
-  m_Name: PurchasePanel
+  m_Name: BuildingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,6 +560,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362293746}
   m_CullTransparentMesh: 1
+--- !u!114 &362293749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362293746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240b2952c93a2a1499c98991d3102891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedPoint: {fileID: 0}
 --- !u!1 &483318995
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,8 +656,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706183082}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
+      - m_Target: {fileID: 362293749}
+        m_TargetAssemblyTypeName: TowerBuildingPanel, Assembly-CSharp
         m_MethodName: BuildNewTower
         m_Mode: 3
         m_Arguments:
@@ -775,8 +789,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706183082}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
+      - m_Target: {fileID: 362293749}
+        m_TargetAssemblyTypeName: TowerBuildingPanel, Assembly-CSharp
         m_MethodName: BuildNewTower
         m_Mode: 3
         m_Arguments:
@@ -930,7 +944,7 @@ GameObject:
   - component: {fileID: 706183084}
   - component: {fileID: 706183082}
   m_Layer: 5
-  m_Name: BuildingPanel
+  m_Name: BuildingSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -952,10 +966,10 @@ RectTransform:
   m_Father: {fileID: 6844802338784974580}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1234, y: 0}
-  m_SizeDelta: {x: 200, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &706183082
 MonoBehaviour:
@@ -969,18 +983,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edce80fb26cbd140ae6c1c3e42208d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefabs:
+  TowerPrefabs:
   - {fileID: 7318404980020950601, guid: ce5cbb0c296acb240a778f9b120c298d, type: 3}
-  - {fileID: 7495980749895785887, guid: 3c9916b0de55dad468bf3e05c1ebf440, type: 3}
   - {fileID: 3967566644689937517, guid: 836a8a4eb616ae64ea470ad56f9bb48e, type: 3}
-  panelScaleRatio: 1200
+  - {fileID: 7495980749895785887, guid: 3c9916b0de55dad468bf3e05c1ebf440, type: 3}
   upgradePanel: {fileID: 1296016043}
   purchasePanel: {fileID: 362293746}
-  selectedTower: {fileID: 0}
-  selectedPoint: {fileID: 0}
-  damageLevel: {fileID: 1362344434}
-  radiusLevel: {fileID: 2008105352}
-  fireRateLevel: {fileID: 910176127}
 --- !u!222 &706183084
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1021,12 +1029,12 @@ RectTransform:
   m_Children:
   - {fileID: 910176126}
   m_Father: {fileID: 1296016044}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 75, y: 25}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: -40, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707010827
 MonoBehaviour:
@@ -1746,8 +1754,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706183082}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
+      - m_Target: {fileID: 362293749}
+        m_TargetAssemblyTypeName: TowerBuildingPanel, Assembly-CSharp
         m_MethodName: BuildNewTower
         m_Mode: 3
         m_Arguments:
@@ -1806,13 +1814,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1296016044}
   - component: {fileID: 1296016045}
+  - component: {fileID: 1296016047}
+  - component: {fileID: 1296016046}
+  - component: {fileID: 1296016048}
   m_Layer: 5
   m_Name: UpgradePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1296016044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1824,6 +1835,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1499294858}
   - {fileID: 2059992017}
   - {fileID: 707010826}
   - {fileID: 236274200}
@@ -1831,10 +1843,10 @@ RectTransform:
   m_Father: {fileID: 706183081}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -300, y: 0}
+  m_SizeDelta: {x: 400, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1296016045
 CanvasRenderer:
@@ -1844,6 +1856,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296016043}
   m_CullTransparentMesh: 1
+--- !u!114 &1296016046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296016043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8714c362c0c8a6449a9559a31cdab9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 100
+--- !u!114 &1296016047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296016043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f1c5417c9d7ab4b84e531f83f60a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.41960785}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3f91331724a9da84197e9b6d94f0483c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+  borderWidth: 0
+  falloffDistance: 1
+--- !u!114 &1296016048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296016043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc3b8c41858b774dbd7f846947a284b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedTower: {fileID: 0}
+  towerName: {fileID: 0}
+  damageLevel: {fileID: 0}
+  radiusLevel: {fileID: 0}
+  fireRateLevel: {fileID: 0}
 --- !u!1 &1321289030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,6 +2151,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484613897}
   m_CullTransparentMesh: 0
+--- !u!1 &1499294857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1499294858}
+  - component: {fileID: 1499294860}
+  - component: {fileID: 1499294859}
+  m_Layer: 5
+  m_Name: TowerName
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1499294858
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499294857}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1296016044}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -60}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1499294859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499294857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: ArcherTower
+--- !u!222 &1499294860
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499294857}
+  m_CullTransparentMesh: 1
 --- !u!1 &1521732552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,8 +2397,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706183082}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
+      - m_Target: {fileID: 362293749}
+        m_TargetAssemblyTypeName: TowerBuildingPanel, Assembly-CSharp
         m_MethodName: BuildNewTower
         m_Mode: 3
         m_Arguments:
@@ -2559,12 +2712,12 @@ RectTransform:
   m_Children:
   - {fileID: 1362344433}
   m_Father: {fileID: 1296016044}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 80}
+  m_SizeDelta: {x: -40, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2059992018
 MonoBehaviour:

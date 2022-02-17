@@ -40,7 +40,7 @@ public class BuildingPoint : MonoBehaviour
         StartCoroutine(BuildNewTower(towerToBuild: tower));
     }
     
-    private IEnumerator BuildNewTower(BaseTower  towerToBuild)
+    private IEnumerator BuildNewTower(BaseTower towerToBuild)
     {
         Destroy(myReturner.gameObject);
         myRenderer.enabled = false;
