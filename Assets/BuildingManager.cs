@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using _Game.Levels.Base;
 using _Game.Scripts.Tower;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 using Vanta.Core;
 using Vanta.Input;
 using Vanta.Levels;
@@ -23,10 +21,12 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     [SerializeField] internal UnityEvent<BuildingPoint> towerBuildingPanel = new UnityEvent<BuildingPoint>();
     [SerializeField] internal UnityEvent deleselectPanels = new UnityEvent();
 
-    void Start()
+   private void Start()
     {
         _selectionLayer = 1 << LayerMask.NameToLayer("SelectionLayer");
         _camera = Camera.main;
+        upgradePanel.SetActive(false);
+        purchasePanel.SetActive(false);
     }
 
     private void HidePanel()
