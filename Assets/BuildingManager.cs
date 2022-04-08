@@ -18,17 +18,17 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
 
     private int _selectionLayer;
     private Camera _camera;
-    
-    //Made Internal for Editor shitting
-    internal UnityEvent<BaseTower> towerUpgradePanel = new UnityEvent<BaseTower>();
-    internal UnityEvent<BuildingPoint> towerBuildingPanel = new UnityEvent<BuildingPoint>();
-    internal UnityEvent deleselectPanels = new UnityEvent();
+
+    [SerializeField] internal UnityEvent<BaseTower> towerUpgradePanel = new UnityEvent<BaseTower>();
+    [SerializeField] internal UnityEvent<BuildingPoint> towerBuildingPanel = new UnityEvent<BuildingPoint>();
+    [SerializeField] internal UnityEvent deleselectPanels = new UnityEvent();
 
     void Start()
     {
         _selectionLayer = 1 << LayerMask.NameToLayer("SelectionLayer");
         _camera = Camera.main;
     }
+
     private void HidePanel()
     {
         deleselectPanels.Invoke();
@@ -43,6 +43,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         {
             level.StartLevel();
         }
+
         return level.state == BaseLevel.State.Started;
     }
 
@@ -63,7 +64,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
             }
         }
         else
-        { 
+        {
             HidePanel();
         }
     }
