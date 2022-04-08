@@ -17,7 +17,7 @@ public class TowerBuildingPanel : MonoBehaviour
 
     private void GetSelectedSlot(BuildingPoint buildingPoint)
     {
-        Deselect();
+        //Deselect();
         buildingPoint.SlotHasSelected(true);
         selectedPoint = buildingPoint;
         selectedPoint.myOutline.OutlineParameters.Color = Color.green;
@@ -31,11 +31,13 @@ public class TowerBuildingPanel : MonoBehaviour
             selectedPoint.myOutline.OutlineParameters.Color = Color.white;
             selectedPoint = null;
         }
+        gameObject.SetActive(false);
     }
 
     public void BuildNewTower(int idx)
     {
         var towerToBuild = _buildingManager.TowerPrefabs[idx];
         selectedPoint.TowerBuildingSequence(towerToBuild);
+        Deselect();
     }
 }

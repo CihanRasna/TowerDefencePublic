@@ -32,7 +32,7 @@ public class TowerUpgradePanel : MonoBehaviour
 
     private void GetSelectedTower(BaseTower currentTower)
     {
-        Deselect();
+        //Deselect();
         currentTower.TowerHasSelected(true);
         selectedTower = currentTower;
         selectedTower.myOutline.OutlineParameters.Color = Color.green;
@@ -47,6 +47,7 @@ public class TowerUpgradePanel : MonoBehaviour
             selectedTower.myOutline.OutlineParameters.Color = Color.white;
             selectedTower = null;
         }
+        gameObject.SetActive(false);
     }
 
     private void SetSelectedTowerPropertiesToButtons()
