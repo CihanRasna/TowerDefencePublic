@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Game.Levels.Base;
@@ -56,6 +55,10 @@ namespace _Game.Scripts.Tower
         [HideInInspector] public int damageCurrentLevel = 1;
         [HideInInspector] public int fireRateCurrentLevel = 1;
         [HideInInspector] public int radiusCurrentLevel = 1;
+        
+        [HideInInspector] public int damageUpgradePrice;
+        [HideInInspector] public int fireRateUpgradePrice;
+        [HideInInspector] public int radiusUpgradePrice;
 
         public Outlinable myOutline;
 
@@ -144,6 +147,9 @@ namespace _Game.Scripts.Tower
             firePerSecond = towerProperties.fireRate;
             baseProjectile = towerProperties.baseProjectile;
             projectileEffectZone = towerProperties.projectileEffectZone;
+            damageUpgradePrice = towerProperties.baseDamagePrice;
+            fireRateUpgradePrice = towerProperties.baseFireRatePrice;
+            radiusUpgradePrice = towerProperties.baseRadiusPrice;
         }
 
         public (float damage, float firePerSecond, float radius) RefValuesForUI()
@@ -198,6 +204,8 @@ namespace _Game.Scripts.Tower
         {
             TowerUpgraded();
             damage = towerProperties.damage += value;
+            var newPrice = towerProperties.baseDamagePrice * towerProperties.damageUpgradeMultiplier * damageCurrentLevel;
+            damageUpgradePrice = (int)newPrice;
         }
 
         public void UpgradeFireRate(float value)

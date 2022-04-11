@@ -17,28 +17,38 @@ namespace _Game.Levels.Base
         [SerializeField] private List<BaseEnemy> enemies;
         private float _nextSpawnTime = 0f;
 
-        #region Life Cycle
+        [SerializeField] private int _currency = 100;
+        public int currency => _currency;
 
-        private void OnValidate()
-        {
-        }
+        #region Life Cycle
 
         protected override void Start()
         {
             base.Start();
 
-            // TODO: Initialize level
-
             _state = State.Loaded;
             listener.Level_DidLoad(this);
             Debug.Log("Loaded");
-            
+            _currency = 100;
         }
 
         public void StartLevel()
         {
             _state = State.Started;
             listener.Level_DidStart(this);
+        }
+
+        public void IncomeCurrency(int prize)
+        {
+            _currency += prize;
+        }
+
+        public bool SpendCurrency(int price)
+        {
+            if (_currency < price) return false;
+            _currency -= price;
+            return true;
+
         }
 
         public void InvokeEnemy()

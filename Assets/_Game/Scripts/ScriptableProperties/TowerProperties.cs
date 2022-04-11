@@ -15,14 +15,15 @@ namespace _Game.Scripts.ScriptableProperties
         [Title("Tower Shooting Type", titleAlignment: TitleAlignments.Centered), EnumToggleButtons, HideLabel]
         public BaseTower.ShootingType shootingType;
 
-        // [Space(20)]
-        // [Title("Projectile", titleAlignment: TitleAlignments.Left)]
-        // [HideLabel, PreviewField(100, ObjectFieldAlignment.Left)]
-        // public Projectile projectile;
-        //
-        // [Title("HitParticle", titleAlignment: TitleAlignments.Right)]
-        // [HideLabel, PreviewField(100, ObjectFieldAlignment.Right)]
-        // public GameObject hitParticle;
+        [Title("Tower Pricing", titleAlignment: TitleAlignments.Centered, bold: true)]
+        [VerticalGroup("Tower Pricing")]
+        [BoxGroup("Tower Pricing/Base Price")] public int towerPurchasePrice;
+        [BoxGroup("Tower Pricing/Damage")] public int baseDamagePrice;
+        [BoxGroup("Tower Pricing/Damage")] public float damageUpgradeMultiplier;
+        [BoxGroup("Tower Pricing/FireRate")] public int baseFireRatePrice;
+        [BoxGroup("Tower Pricing/FireRate")] public float fireRateUpgradeMultiplier;
+        [BoxGroup("Tower Pricing/Radius")] public int baseRadiusPrice;
+        [BoxGroup("Tower Pricing/Radius")] public float radiusUpgradeMultiplier;
 
         [TitleGroup("Projectile Properties", alignment: TitleAlignments.Centered)]
         [HorizontalGroup("Projectile Properties/Split")]
@@ -31,7 +32,8 @@ namespace _Game.Scripts.ScriptableProperties
         public BaseProjectile baseProjectile;
 
         [VerticalGroup("Projectile Properties/Split/Right")]
-        [BoxGroup("Projectile Properties/Split/Right/Hit Particle"), HideLabel, PreviewField(ObjectFieldAlignment.Center)]
+        [BoxGroup("Projectile Properties/Split/Right/Hit Particle"), HideLabel,
+         PreviewField(ObjectFieldAlignment.Center)]
         public GameObject hitParticle;
 
         [VerticalGroup("Settings")] [BoxGroup("Settings/ProjectileRadius")]

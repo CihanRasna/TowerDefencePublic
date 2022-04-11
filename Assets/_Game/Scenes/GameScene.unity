@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 179229311}
   - component: {fileID: 179229310}
   m_Layer: 5
-  m_Name: Price
+  m_Name: DamagePrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2608,7 +2608,7 @@ GameObject:
   - component: {fileID: 678060739}
   - component: {fileID: 678060738}
   m_Layer: 5
-  m_Name: FireRangeUp
+  m_Name: FireRadiusUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3467,7 +3467,7 @@ GameObject:
   - component: {fileID: 853446297}
   - component: {fileID: 853446296}
   m_Layer: 5
-  m_Name: Price
+  m_Name: RadiusPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3637,7 +3637,7 @@ GameObject:
   - component: {fileID: 875896820}
   - component: {fileID: 875896819}
   m_Layer: 5
-  m_Name: NextFireRange
+  m_Name: NextFireRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3716,7 +3716,7 @@ GameObject:
   - component: {fileID: 883174811}
   - component: {fileID: 883174810}
   m_Layer: 5
-  m_Name: Price
+  m_Name: FireRatePrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5216,12 +5216,15 @@ MonoBehaviour:
   selectedTower: {fileID: 0}
   _towerValues:
     towerName: {fileID: 1499294859}
-    damageLevelText: {fileID: 612995708}
-    nextDamageLevelText: {fileID: 1362344434}
-    radiusLevelText: {fileID: 1768866594}
-    nextRadiusText: {fileID: 875896819}
-    fireRateLevelText: {fileID: 1289421022}
-    nextFireRateLevelText: {fileID: 2027113388}
+    damageText: {fileID: 612995708}
+    damageNextLevelText: {fileID: 1362344434}
+    damageUpgradePrice: {fileID: 179229310}
+    radiusText: {fileID: 1768866594}
+    radiusNextlevelText: {fileID: 875896819}
+    radiusUpgradePrice: {fileID: 853446296}
+    fireRateText: {fileID: 1289421022}
+    fireRateNextLevelText: {fileID: 2027113388}
+    fireRateUpgradePrice: {fileID: 883174810}
 --- !u!1 &1317907014
 GameObject:
   m_ObjectHideFlags: 0
@@ -6397,7 +6400,7 @@ GameObject:
   - component: {fileID: 1768866595}
   - component: {fileID: 1768866594}
   m_Layer: 5
-  m_Name: FireRange
+  m_Name: FireRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
