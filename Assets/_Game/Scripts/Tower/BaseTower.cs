@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Game.Levels.Base;
@@ -143,6 +144,11 @@ namespace _Game.Scripts.Tower
             firePerSecond = towerProperties.fireRate;
             baseProjectile = towerProperties.baseProjectile;
             projectileEffectZone = towerProperties.projectileEffectZone;
+        }
+
+        public (float damage, float firePerSecond, float radius) RefValuesForUI()
+        {
+            return (damage, firePerSecond, collider.radius);
         }
 
         private void RepeatFire()

@@ -21,12 +21,12 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
     [SerializeField] internal UnityEvent<BuildingPoint> towerBuildingPanel = new UnityEvent<BuildingPoint>();
     [SerializeField] internal UnityEvent deleselectPanels = new UnityEvent();
 
-   private void Start()
+    private void Start()
     {
         _selectionLayer = 1 << LayerMask.NameToLayer("SelectionLayer");
         _camera = Camera.main;
-        upgradePanel.SetActive(false);
         purchasePanel.SetActive(false);
+        upgradePanel.SetActive(false);
     }
 
     private void HidePanel()
@@ -52,6 +52,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, 1000, _selectionLayer))
         {
+            HidePanel();
             if (hit.collider.TryGetComponent(out SelectionReturner returner))
             {
                 var (handledComponent, handledType) = returner.ReturnSelectedFields();
