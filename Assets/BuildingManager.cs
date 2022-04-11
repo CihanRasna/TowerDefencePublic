@@ -29,7 +29,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
         upgradePanel.SetActive(false);
     }
 
-    private void HidePanel()
+    public void HidePanel()
     {
         deleselectPanels.Invoke();
     }
