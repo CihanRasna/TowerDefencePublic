@@ -1,17 +1,148 @@
 fileFormatVersion: 2
 guid: 19b944890f99b674c89c5a40fc3e3b02
 ModelImporter:
-  serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: 1827226128182048838
-    second: GetHit
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Body
+    100002: BottomEye_L
+    100004: BottomEye_R
+    100006: BottomJaw
+    100008: Ear01_L
+    100010: Ear01_R
+    100012: Ear02_L
+    100014: Ear02_R
+    100016: Ear03_L
+    100018: Ear03_R
+    100020: Foot_L
+    100022: Foot_R
+    100024: //RootNode
+    100026: Hand_L
+    100028: Hand_R
+    100030: Head
+    100032: Index01_L
+    100034: Index01_R
+    100036: Index02_L
+    100038: Index02_R
+    100040: Index03_L
+    100042: Index03_R
+    100044: JawRoot
+    100046: LowerArm_L
+    100048: LowerArm_R
+    100050: LowerLeg_L
+    100052: LowerLeg_R
+    100054: Maul
+    100056: Mid01_L
+    100058: Mid01_R
+    100060: Mid02_L
+    100062: Mid02_R
+    100064: Mid03_L
+    100066: Mid03_R
+    100068: Neck
+    100070: Nose_L
+    100072: Nose_R
+    100074: Orc
+    100076: Pinky01_L
+    100078: Pinky01_R
+    100080: Pinky02_L
+    100082: Pinky02_R
+    100084: Pinky03_L
+    100086: Pinky03_R
+    100088: ShouderPad
+    100090: Spine01
+    100092: Spine02
+    100094: Spine03
+    100096: Thumb01_L
+    100098: Thumb01_R
+    100100: Thumb02_L
+    100102: Thumb02_R
+    100104: Thumb03_L
+    100106: Thumb03_R
+    100108: Toe_L
+    100110: Toe_R
+    100112: UpperArm_L
+    100114: UpperArm_R
+    100116: UpperEye_L
+    100118: UpperEye_R
+    100120: UpperJaw
+    100122: UpperLeg_L
+    100124: UpperLeg_R
+    100126: Weapon01
+    400000: Body
+    400002: BottomEye_L
+    400004: BottomEye_R
+    400006: BottomJaw
+    400008: Ear01_L
+    400010: Ear01_R
+    400012: Ear02_L
+    400014: Ear02_R
+    400016: Ear03_L
+    400018: Ear03_R
+    400020: Foot_L
+    400022: Foot_R
+    400024: //RootNode
+    400026: Hand_L
+    400028: Hand_R
+    400030: Head
+    400032: Index01_L
+    400034: Index01_R
+    400036: Index02_L
+    400038: Index02_R
+    400040: Index03_L
+    400042: Index03_R
+    400044: JawRoot
+    400046: LowerArm_L
+    400048: LowerArm_R
+    400050: LowerLeg_L
+    400052: LowerLeg_R
+    400054: Maul
+    400056: Mid01_L
+    400058: Mid01_R
+    400060: Mid02_L
+    400062: Mid02_R
+    400064: Mid03_L
+    400066: Mid03_R
+    400068: Neck
+    400070: Nose_L
+    400072: Nose_R
+    400074: Orc
+    400076: Pinky01_L
+    400078: Pinky01_R
+    400080: Pinky02_L
+    400082: Pinky02_R
+    400084: Pinky03_L
+    400086: Pinky03_R
+    400088: ShouderPad
+    400090: Spine01
+    400092: Spine02
+    400094: Spine03
+    400096: Thumb01_L
+    400098: Thumb01_R
+    400100: Thumb02_L
+    400102: Thumb02_R
+    400104: Thumb03_L
+    400106: Thumb03_R
+    400108: Toe_L
+    400110: Toe_R
+    400112: UpperArm_L
+    400114: UpperArm_R
+    400116: UpperEye_L
+    400118: UpperEye_R
+    400120: UpperJaw
+    400122: UpperLeg_L
+    400124: UpperLeg_R
+    400126: Weapon01
+    4300000: Orc
+    4300002: Maul
+    7400000: GetHit
+    9500000: //RootNode
+    13700000: Maul
+    13700002: Orc
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -37,7 +168,6 @@ ModelImporter:
     - serializedVersion: 16
       name: GetHit
       takeName: Take 001
-      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -46,56 +176,177 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/Spine01
+        weight: 1
+      - path: Body/Spine01/Spine02
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/BottomEye_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/BottomEye_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_L/Ear02_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_L/Ear02_L/Ear03_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_R/Ear02_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_R/Ear02_R/Ear03_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/JawRoot
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/JawRoot/BottomJaw
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/JawRoot/UpperJaw
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Nose_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/Nose_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/UpperEye_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/Neck/Head/UpperEye_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Index01_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Index01_L/Index02_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Index01_L/Index02_L/Index03_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Mid01_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Mid01_L/Mid02_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Mid01_L/Mid02_L/Mid03_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L/Pinky02_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L/Pinky02_L/Pinky03_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L/Thumb02_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L/Thumb02_L/Thumb03_L
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Index01_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Index01_R/Index02_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Index01_R/Index02_R/Index03_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Mid01_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Mid01_R/Mid02_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Mid01_R/Mid02_R/Mid03_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R/Pinky02_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R/Pinky02_R/Pinky03_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R/Thumb02_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R/Thumb02_R/Thumb03_R
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Weapon01
+        weight: 1
+      - path: Body/Spine01/Spine02/Spine03/UpperArm_R/ShouderPad
+        weight: 1
+      - path: Body/UpperLeg_L
+        weight: 1
+      - path: Body/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Body/UpperLeg_L/LowerLeg_L/Foot_L
+        weight: 1
+      - path: Body/UpperLeg_L/LowerLeg_L/Foot_L/Toe_L
+        weight: 1
+      - path: Body/UpperLeg_R
+        weight: 1
+      - path: Body/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Body/UpperLeg_R/LowerLeg_R/Foot_R
+        weight: 1
+      - path: Body/UpperLeg_R/LowerLeg_R/Foot_R/Toe_R
+        weight: 1
+      - path: Maul
+        weight: 0
+      - path: Orc
+        weight: 0
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
-    importVisibility: 1
+    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
-    fileIdsGeneration: 2
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    bakeAxisConversion: 0
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
-    indexFormat: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
-    secondaryUVMarginMethod: 1
-    secondaryUVMinLightmapResolution: 40
-    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -104,10 +355,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
+  copyAvatar: 1
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human:
     - boneName: Body
       humanName: Hips
@@ -755,7 +1006,8 @@ ModelImporter:
     - name: Foot_L
       parentName: LowerLeg_L
       position: {x: -0.2128555, y: 7.9936054e-17, z: -7.105427e-17}
-      rotation: {x: -0.000000014701268, y: 0.00000005850916, z: 0.000000029802319, w: 1}
+      rotation: {x: -0.000000014701268, y: 0.00000005850916, z: 0.000000029802319,
+        w: 1}
       scale: {x: 1.0000012, y: 1.000001, z: 1.0000013}
     - name: Toe_L
       parentName: Foot_L
@@ -789,17 +1041,14 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 73d2f4319473c3948940539f22e8ae4e, type: 3}
-  autoGenerateAvatarMappingIfUnspecified: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 73d2f4319473c3948940539f22e8ae4e,
+    type: 3}
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 2
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
