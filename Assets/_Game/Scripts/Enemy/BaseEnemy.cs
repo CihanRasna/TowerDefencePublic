@@ -5,6 +5,7 @@ using _Game.Scripts.ScriptableProperties;
 using _Game.Scripts.Tower;
 using Dreamteck.Splines;
 using EPOOutline;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Vanta.Levels;
 
@@ -30,8 +31,8 @@ namespace _Game.Scripts.Enemy
         [field: SerializeField] public SplineFollower splineFollower { private set; get; }
         [SerializeField] private Outlinable myOutline;
 
-        [SerializeField] protected float health;
-        protected int goldPrize;
+        [ShowInInspector] protected float health;
+        [ShowInInspector] protected int goldPrize;
         private IEnumerator _currentStatusEffect = null;
         private float _multiplier = 1f;
 
