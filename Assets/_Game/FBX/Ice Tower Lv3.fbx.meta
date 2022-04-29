@@ -1,68 +1,8 @@
 fileFormatVersion: 2
-guid: a24b56feeb306e84b8e85fa6b33c295f
+guid: 714edd6b3db109548a0b76030fb68d97
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: -7406618640027345437
-    second: Crystal Lv3 Main|Crystal Lv4 Main.001Action
-  - first:
-      74: -512435845623280844
-    second: Crystal Lv3 Main|Crystal Lv4 Side 1.001Action
-  - first:
-      74: -1563463997846052641
-    second: Crystal Lv3 Main|Crystal Lv4 Side 4.001Action
-  - first:
-      74: 4689293740436185509
-    second: Crystal Lv3 Main|Crystal Lv4 Side 6.001Action
-  - first:
-      74: -6127490250151793052
-    second: Crystal Lv3 Main|Fire Tower Lv4Action
-  - first:
-      74: -3610398470052172019
-    second: Crystal Lv3 Side 1|Crystal Lv4 Main.001Action
-  - first:
-      74: 6439272671354623220
-    second: Crystal Lv3 Side 1|Crystal Lv4 Side 1.001Action
-  - first:
-      74: 1576237334070963978
-    second: Crystal Lv3 Side 1|Crystal Lv4 Side 4.001Action
-  - first:
-      74: -4932140658741922880
-    second: Crystal Lv3 Side 1|Crystal Lv4 Side 6.001Action
-  - first:
-      74: 2801315569481243265
-    second: Crystal Lv3 Side 1|Fire Tower Lv4Action
-  - first:
-      74: 8774624447328386029
-    second: Crystal Lv3 Side 2|Crystal Lv4 Main.001Action
-  - first:
-      74: 1858935227140668219
-    second: Crystal Lv3 Side 2|Crystal Lv4 Side 1.001Action
-  - first:
-      74: -4089369954713716160
-    second: Crystal Lv3 Side 2|Crystal Lv4 Side 4.001Action
-  - first:
-      74: -7789352520257947874
-    second: Crystal Lv3 Side 2|Crystal Lv4 Side 6.001Action
-  - first:
-      74: 1881551235052490898
-    second: Crystal Lv3 Side 2|Fire Tower Lv4Action
-  - first:
-      74: 4779276468814918769
-    second: Crystal Lv3 Side 3|Crystal Lv4 Main.001Action
-  - first:
-      74: -4753737979005398001
-    second: Crystal Lv3 Side 3|Crystal Lv4 Side 1.001Action
-  - first:
-      74: 475282421820353752
-    second: Crystal Lv3 Side 3|Crystal Lv4 Side 4.001Action
-  - first:
-      74: -2319512312949684311
-    second: Crystal Lv3 Side 3|Crystal Lv4 Side 6.001Action
-  - first:
-      74: -5443799729977131329
-    second: Crystal Lv3 Side 3|Fire Tower Lv4Action
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
