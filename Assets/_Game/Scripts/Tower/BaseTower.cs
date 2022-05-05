@@ -41,7 +41,7 @@ namespace _Game.Scripts.Tower
         [SerializeField] protected BaseEnemy currentEnemy;
 
         [SerializeField] public TowerProperties towerProperties;
-        [SerializeField] protected Transform shootingPoint;
+        [SerializeField] public Transform shootingPoint;
         [SerializeField] protected new SphereCollider collider;
         [SerializeField] private Canvas myCanvas;
         [SerializeField] private Image radiusIndicatorImage;
