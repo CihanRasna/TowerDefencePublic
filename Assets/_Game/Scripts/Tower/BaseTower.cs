@@ -191,7 +191,7 @@ namespace _Game.Scripts.Tower
         protected virtual void TowerUpgraded()
         {
             var maxMeshCount = towerUpgradedMeshes.Count;
-            var totalUpgradeCount = (damageCurrentLevel + radiusCurrentLevel + fireRateCurrentLevel) - maxMeshCount;
+            var totalUpgradeCount = (damageCurrentLevel + radiusCurrentLevel + fireRateCurrentLevel) - 3;
             var lastMeshIndex = totalUpgradeCount / 2;
             var desiredMeshIndex = Mathf.Min(maxMeshCount - 1, Mathf.Max(0, (totalUpgradeCount / 2)));
 
@@ -212,12 +212,16 @@ namespace _Game.Scripts.Tower
         {
             TowerUpgraded();
             firePerSecond = towerProperties.fireRate += value;
+            var newPrice = towerProperties.baseFireRatePrice * towerProperties.fireRateUpgradeMultiplier * fireRateCurrentLevel;
+            fireRateUpgradePrice = (int)newPrice;
         }
 
         public void UpgradeRadius(float value)
         {
             TowerUpgraded();
             collider.radius = towerProperties.shootingRange += value;
+            var newPrice = towerProperties.baseRadiusPrice * towerProperties.radiusUpgradeMultiplier * radiusCurrentLevel;
+            radiusUpgradePrice = (int)newPrice;
         }
 
 

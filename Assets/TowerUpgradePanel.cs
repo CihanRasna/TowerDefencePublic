@@ -90,9 +90,29 @@ public class TowerUpgradePanel : MonoBehaviour
             _towerValues.damageNextLevelText.text = $"Next Damage : {dmg + damageMultiplier}";
             _towerValues.damageUpgradePrice.text = $"{selectedTower.damageUpgradePrice} $";
         }
-           
-        _towerValues.fireRateNextLevelText.text = _fireRateMaxUpgrade ? $"MAX FIRE RATE" : $"Next Fire Rate : {fireRate + fireRateMultiplier}";
-        _towerValues.radiusNextlevelText.text = _radiusMaxUpgrade ? $"MAX SPEED" : $"Next Radius : {radius + radiusMultiplier}";
+
+        if (_fireRateMaxUpgrade)
+        {
+            _towerValues.fireRateNextLevelText.text = $"MAX SPEED";
+            _towerValues.fireRateUpgradePrice.text = null;
+        }
+        else
+        {
+            _towerValues.fireRateNextLevelText.text = $"Next Fire Rate : {fireRate + fireRateMultiplier}";
+            _towerValues.fireRateUpgradePrice.text = $"{selectedTower.fireRateUpgradePrice} $";
+        }
+
+        if (_radiusMaxUpgrade)
+        {
+            _towerValues.radiusNextlevelText.text = $"MAX RADIUS";
+            _towerValues.radiusUpgradePrice.text = null;
+
+        }
+        else
+        {
+            _towerValues.radiusNextlevelText.text = $"Next Radius : {radius + radiusMultiplier}";
+            _towerValues.radiusUpgradePrice.text = $"{selectedTower.radiusUpgradePrice} $";
+        }
     }
 
     public void UpgradeSelectedTowerDamage()
