@@ -2437,7 +2437,7 @@ MonoBehaviour:
   _type: 0
   _player: {fileID: 5050694034611782313}
   spline: {fileID: 2907728567582904280}
-  enemy: {fileID: 5743426412842379449, guid: e221ff6b293e2194f93a9af4d6e6aacf, type: 3}
+  _currency: 10000
 --- !u!95 &2215103814044177270
 Animator:
   serializedVersion: 3
