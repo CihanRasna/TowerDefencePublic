@@ -14,11 +14,7 @@ namespace _Game.Scripts.Projectiles
         [SerializeField, HideInInspector] protected float effectZone;
 
         [HideInInspector] public BaseTower.Type bulletType;
-        private Tweener _tweener = null;
-
-        protected virtual void Start()
-        {
-        }
+        private Tweener _tweener;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -36,7 +32,8 @@ namespace _Game.Scripts.Projectiles
 
         private void EffectEnemiesInRadius()
         {
-            var colliders = Physics.OverlapSphere(transform.position, effectZone);
+            Collider[] colliders = {};
+            Physics.OverlapSphereNonAlloc(transform.position, effectZone, colliders);
             foreach (var col in colliders)
             {
                 col.TryGetComponent<BaseEnemy>(out var e);

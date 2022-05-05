@@ -43,7 +43,7 @@ namespace _Game.Scripts.ScriptableProperties
         [TitleGroup("Teleport Tower", alignment: TitleAlignments.Centered)]
         [HorizontalGroup("Teleport Tower/Split")]
         [VerticalGroup("Teleport Tower/Split/Left")]
-        [BoxGroup("Teleport Tower/Split/Left/Telepor Time"),HideLabel]
+        [BoxGroup("Teleport Tower/Split/Left/Teleport Time"),HideLabel]
         public float teleportTime;
     
         [VerticalGroup("Teleport Tower/Split/Right")] 

@@ -10,7 +10,7 @@ using Vanta.Levels;
 
 public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRecognizerDelegate
 {
-    public List<BaseTower> TowerPrefabs;
+    public List<BaseTower> towerPrefabs;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject purchasePanel;
 
@@ -38,7 +38,7 @@ public class BuildingManager : Singleton<BuildingManager>, PanRecognizer.IPanRec
 
     public bool PanRecognizerShouldStartListening(PanRecognizer recognizer)
     {
-        var level = LevelManager.Instance.currentLevel as Level;
+        var level = (Level)LevelManager.Instance.currentLevel;
         if (level.state == BaseLevel.State.Loaded)
         {
             level.StartLevel();

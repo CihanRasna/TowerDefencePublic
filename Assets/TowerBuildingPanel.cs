@@ -36,7 +36,7 @@ public class TowerBuildingPanel : MonoBehaviour
 
     public void BuildNewTower(int idx)
     {
-        var towerToBuild = _buildingManager.TowerPrefabs[idx];
+        var towerToBuild = _buildingManager.towerPrefabs[idx];
         selectedPoint.TowerBuildingSequence(towerToBuild);
         Deselect();
     }

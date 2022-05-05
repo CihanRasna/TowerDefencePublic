@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using _Game.Scripts.Tower;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,7 +16,7 @@ public class TowerMeshController : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponentInParent<BaseTower>().shootingPoint = this.shootingPoint;
+        //GetComponentInParent<BaseTower>().shootingPoint = this.shootingPoint;
         verticalMoverObjects?.ForEach(m =>
             m.DOLocalMoveY(m.transform.localPosition.y + Random.Range(verticalMoveDistance * 0.5f,verticalMoveDistance * 2f), verticalMoveTime)
                 .SetLoops(-1, LoopType.Yoyo));

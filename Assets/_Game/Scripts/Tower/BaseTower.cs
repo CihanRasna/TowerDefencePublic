@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Game.Levels.Base;
 using _Game.Scripts.Enemy;
 using _Game.Scripts.ScriptableProperties;
 using _Game.Scripts.Projectiles;
@@ -9,7 +8,6 @@ using EPOOutline;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
-using Vanta.Levels;
 using Random = UnityEngine.Random;
 
 namespace _Game.Scripts.Tower
@@ -35,7 +33,7 @@ namespace _Game.Scripts.Tower
 
         [SerializeField] protected List<GameObject> towerUpgradedMeshes;
 
-        [ShowInInspector] protected List<BaseEnemy> _potentialNextEnemies = new List<BaseEnemy>();
+        [ShowInInspector] protected List<BaseEnemy> potentialNextEnemies = new List<BaseEnemy>();
         [HideInInspector] public Type towerType;
         [HideInInspector] public ShootingType shootingType;
         [SerializeField] protected BaseEnemy currentEnemy;
@@ -45,7 +43,7 @@ namespace _Game.Scripts.Tower
         [SerializeField] protected new SphereCollider collider;
         [SerializeField] private Canvas myCanvas;
         [SerializeField] private Image radiusIndicatorImage;
-        private Tweener imageTweener;
+        private Tweener _imageTweener;
 
         protected float damage;
         protected float firePerSecond;
@@ -73,7 +71,7 @@ namespace _Game.Scripts.Tower
         protected virtual void Awake()
         {
             towerProperties = Instantiate(towerProperties);
-            transform.DOPunchScale(Vector3.up, 0.5f, 3, 1);
+            transform.DOPunchScale(Vector3.up, 0.5f, 3);
         }
 
         protected virtual void Start()
@@ -85,7 +83,7 @@ namespace _Game.Scripts.Tower
         {
             _lastFireTime += Time.deltaTime;
 
-            if (_lastFireTime > 1 / firePerSecond && _potentialNextEnemies.Count > 0)
+            if (_lastFireTime > 1 / firePerSecond && potentialNextEnemies.Count > 0)
             {
                 if (currentEnemy)
                 {
@@ -109,9 +107,9 @@ namespace _Game.Scripts.Tower
         {
             if (other.TryGetComponent<BaseEnemy>(out var enemy))
             {
-                if (!_potentialNextEnemies.Contains(enemy))
+                if (!potentialNextEnemies.Contains(enemy))
                 {
-                    _potentialNextEnemies.Add(enemy);
+                    potentialNextEnemies.Add(enemy);
                 }
                 // if (!currentEnemy)
                 // {
@@ -127,9 +125,9 @@ namespace _Game.Scripts.Tower
         {
             if (!other.TryGetComponent<BaseEnemy>(out var enemy)) return;
 
-            if (_potentialNextEnemies.Count > 0)
+            if (potentialNextEnemies.Count > 0)
             {
-                _potentialNextEnemies.Remove(enemy);
+                potentialNextEnemies.Remove(enemy);
             }
 
             currentEnemy = null;
@@ -159,9 +157,9 @@ namespace _Game.Scripts.Tower
 
         private void RepeatFire()
         {
-            var level = LevelManager.Instance.currentLevel as Level;
+            //var level = LevelManager.Instance.currentLevel as Level;
             var transform1 = shootingPoint.transform;
-            var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, level.transform);
+            var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, currentEnemy.transform); //TODO : PARENTING PROBLEM CHECK HERE
             go.InitializeBullet(this, damage, projectileEffectZone, currentEnemy, towerProperties.hitParticle);
         }
 
@@ -175,13 +173,13 @@ namespace _Game.Scripts.Tower
             {
                 myCanvas.gameObject.SetActive(true);
                 radiusIndicatorImage.fillAmount = 0f;
-                imageTweener = radiusIndicatorImage.DOFillAmount(1, .5f).SetEase(Ease.InOutCirc);
+                _imageTweener = radiusIndicatorImage.DOFillAmount(1, .5f).SetEase(Ease.InOutCirc);
             }
             else
             {
                 myCanvas.gameObject.SetActive(false);
-                imageTweener.Kill();
-                imageTweener = null;
+                _imageTweener.Kill();
+                _imageTweener = null;
             }
 
             var setNewScale = Vector3.one * collider.radius / 5f;
@@ -227,8 +225,8 @@ namespace _Game.Scripts.Tower
 
         private void ShootingBehaviour()
         {
-            _potentialNextEnemies.RemoveAll(e => e == null);
-            if (_potentialNextEnemies.Count > 0)
+            potentialNextEnemies.RemoveAll(e => e == null);
+            if (potentialNextEnemies.Count > 0)
             {
                 currentEnemy = shootingType switch
                 {
@@ -243,15 +241,15 @@ namespace _Game.Scripts.Tower
 
         private BaseEnemy ShootFirstOne()
         {
-            return _potentialNextEnemies[0];
+            return potentialNextEnemies[0];
         }
 
         private BaseEnemy ShootLastOne()
         {
-            var currentList = _potentialNextEnemies;
+            var currentList = potentialNextEnemies;
             if (currentList.Count > 0)
             {
-                return _potentialNextEnemies.ToList()[_potentialNextEnemies.Count - 1];
+                return potentialNextEnemies.ToList()[potentialNextEnemies.Count - 1];
             }
 
             return null;
@@ -259,7 +257,7 @@ namespace _Game.Scripts.Tower
 
         private BaseEnemy ShootRandom()
         {
-            return _potentialNextEnemies.ToList()[Random.Range(0, _potentialNextEnemies.Count - 1)];
+            return potentialNextEnemies.ToList()[Random.Range(0, potentialNextEnemies.Count - 1)];
         }
 
         private void OnDrawGizmos()

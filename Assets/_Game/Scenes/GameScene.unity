@@ -2957,6 +2957,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerPrefabs:
   - {fileID: 7318404980020950601, guid: ce5cbb0c296acb240a778f9b120c298d, type: 3}
+  - {fileID: 2833804083084341064, guid: 2b1f5b179323e9e4c85f9e78bae94f1e, type: 3}
+  - {fileID: 5539584991494280394, guid: 739b0b926e0353045bc36990453cccad, type: 3}
   upgradePanel: {fileID: 1296016043}
   purchasePanel: {fileID: 404867656}
   towerUpgradePanel:

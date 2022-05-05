@@ -13,7 +13,7 @@ public struct TowerValues
     public Text damageNextLevelText;
     public Text damageUpgradePrice;
     public Text radiusText;
-    public Text radiusNextlevelText;
+    public Text radiusNextLevelText;
     public Text radiusUpgradePrice;
     public Text fireRateText;
     public Text fireRateNextLevelText;
@@ -26,7 +26,7 @@ public class TowerUpgradePanel : MonoBehaviour
 
     [SerializeField] private BaseTower selectedTower;
 
-    public TowerValues _towerValues;
+    public TowerValues towerValues;
 
     private bool _damageMaxUpgrade;
     private bool _fireRateMaxUpgrade;
@@ -75,49 +75,49 @@ public class TowerUpgradePanel : MonoBehaviour
         var radiusMultiplier = selectedProperties.radiusPerUpgrade;
 
 
-        _towerValues.towerName.text = $"{tower.towerType} Tower";
-        _towerValues.damageText.text = $"Current Damage : {dmg}";
-        _towerValues.fireRateText.text = $"Current Fire Rate : {fireRate}";
-        _towerValues.radiusText.text = $"Current Radius : {radius}";
+        towerValues.towerName.text = $"{tower.towerType} Tower";
+        towerValues.damageText.text = $"Current Damage : {dmg}";
+        towerValues.fireRateText.text = $"Current Fire Rate : {fireRate}";
+        towerValues.radiusText.text = $"Current Radius : {radius}";
 
         if (_damageMaxUpgrade)
         {
-            _towerValues.damageNextLevelText.text = $"MAX DAMAGE";
-            _towerValues.damageUpgradePrice.text = null;
+            towerValues.damageNextLevelText.text = $"MAX DAMAGE";
+            towerValues.damageUpgradePrice.text = null;
         }
         else
         {
-            _towerValues.damageNextLevelText.text = $"Next Damage : {dmg + damageMultiplier}";
-            _towerValues.damageUpgradePrice.text = $"{selectedTower.damageUpgradePrice} $";
+            towerValues.damageNextLevelText.text = $"Next Damage : {dmg + damageMultiplier}";
+            towerValues.damageUpgradePrice.text = $"{selectedTower.damageUpgradePrice} $";
         }
 
         if (_fireRateMaxUpgrade)
         {
-            _towerValues.fireRateNextLevelText.text = $"MAX SPEED";
-            _towerValues.fireRateUpgradePrice.text = null;
+            towerValues.fireRateNextLevelText.text = $"MAX SPEED";
+            towerValues.fireRateUpgradePrice.text = null;
         }
         else
         {
-            _towerValues.fireRateNextLevelText.text = $"Next Fire Rate : {fireRate + fireRateMultiplier}";
-            _towerValues.fireRateUpgradePrice.text = $"{selectedTower.fireRateUpgradePrice} $";
+            towerValues.fireRateNextLevelText.text = $"Next Fire Rate : {fireRate + fireRateMultiplier}";
+            towerValues.fireRateUpgradePrice.text = $"{selectedTower.fireRateUpgradePrice} $";
         }
 
         if (_radiusMaxUpgrade)
         {
-            _towerValues.radiusNextlevelText.text = $"MAX RADIUS";
-            _towerValues.radiusUpgradePrice.text = null;
+            towerValues.radiusNextLevelText.text = $"MAX RADIUS";
+            towerValues.radiusUpgradePrice.text = null;
 
         }
         else
         {
-            _towerValues.radiusNextlevelText.text = $"Next Radius : {radius + radiusMultiplier}";
-            _towerValues.radiusUpgradePrice.text = $"{selectedTower.radiusUpgradePrice} $";
+            towerValues.radiusNextLevelText.text = $"Next Radius : {radius + radiusMultiplier}";
+            towerValues.radiusUpgradePrice.text = $"{selectedTower.radiusUpgradePrice} $";
         }
     }
 
     public void UpgradeSelectedTowerDamage()
     {
-        var level = LevelManager.Instance.currentLevel as Level;
+        var level = (Level)LevelManager.Instance.currentLevel;
         var selectedProperties = selectedTower.towerProperties;
         if (!_damageMaxUpgrade && level.SpendCurrency(selectedTower.damageUpgradePrice))
         {
@@ -131,7 +131,7 @@ public class TowerUpgradePanel : MonoBehaviour
 
     public void UpgradeSelectedTowerFireRate()
     {
-        var level = LevelManager.Instance.currentLevel as Level;
+        var level = (Level)LevelManager.Instance.currentLevel;
         var selectedProperties = selectedTower.towerProperties;
 
         if (!_fireRateMaxUpgrade && level.SpendCurrency(100))
@@ -146,7 +146,7 @@ public class TowerUpgradePanel : MonoBehaviour
 
     public void UpgradeSelectedTowerRadius()
     {
-        var level = LevelManager.Instance.currentLevel as Level;
+        var level = (Level)LevelManager.Instance.currentLevel;
         var selectedProperties = selectedTower.towerProperties;
 
         if (!_radiusMaxUpgrade && level.SpendCurrency(100))

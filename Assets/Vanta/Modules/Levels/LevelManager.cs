@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using _Game.Levels.Base;
 using UnityEngine;
 using Vanta.Core;
 using Vanta.Persist;
 using Random = UnityEngine.Random;
-
-
 
 namespace Vanta.Levels
 {

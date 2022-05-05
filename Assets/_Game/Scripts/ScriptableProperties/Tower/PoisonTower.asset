@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c71a3982fe3ac5541b2a99c4d87b59d4, type: 3}
-  m_Name: ArrowTower
+  m_Name: PoisonTower
   m_EditorClassIdentifier: 
-  towerType: 0
+  towerType: 3
   shootingType: 0
-  towerPurchasePrice: 1000
+  towerPurchasePrice: 1800
   baseDamagePrice: 200
-  damageUpgradeMultiplier: 2
+  damageUpgradeMultiplier: 2.5
   baseFireRatePrice: 250
-  fireRateUpgradeMultiplier: 2.25
-  baseRadiusPrice: 150
-  radiusUpgradeMultiplier: 1.75
-  baseProjectile: {fileID: 6591105759050601487, guid: c09da159d528b69499fe125ed9dff18b, type: 3}
+  fireRateUpgradeMultiplier: 2
+  baseRadiusPrice: 300
+  radiusUpgradeMultiplier: 2
+  baseProjectile: {fileID: 0}
   hitParticle: {fileID: 0}
-  projectileEffectZone: 1
-  damage: 10
-  damageForUpgrade: 5
+  projectileEffectZone: 5
+  damage: 15
+  damageForUpgrade: 10
   damageMaxUpgradeLevel: 3
-  fireRate: 1
-  fireRatePerUpgrade: 0.5
+  fireRate: 0.75
+  fireRatePerUpgrade: 0.375
   fireRateMaxUpgradeLevel: 3
-  shootingRange: 15
+  shootingRange: 12.5
   radiusPerUpgrade: 5
   radiusMaxUpgradeLevel: 3
