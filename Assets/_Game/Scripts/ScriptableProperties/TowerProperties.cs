@@ -45,7 +45,7 @@ namespace _Game.Scripts.ScriptableProperties
         [BoxGroup("Settings/FireRate")] public float fireRate;
         [BoxGroup("Settings/FireRate")] public float fireRatePerUpgrade;
         [BoxGroup("Settings/FireRate")] public int fireRateMaxUpgradeLevel;
-        [BoxGroup("Settings/Range")] public float shootingRange;
+        [BoxGroup("Settings/Range")] public float shootingRadius;
         [BoxGroup("Settings/Range")] public float radiusPerUpgrade;
         [BoxGroup("Settings/Range")] public int radiusMaxUpgradeLevel;
     }
