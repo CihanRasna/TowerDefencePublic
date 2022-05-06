@@ -2955,10 +2955,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edce80fb26cbd140ae6c1c3e42208d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TowerPrefabs:
+  towerPrefabs:
   - {fileID: 7318404980020950601, guid: ce5cbb0c296acb240a778f9b120c298d, type: 3}
   - {fileID: 2833804083084341064, guid: 2b1f5b179323e9e4c85f9e78bae94f1e, type: 3}
+  - {fileID: 8757357092985825928, guid: 6324055128cb2b14caa944061687850b, type: 3}
   - {fileID: 5539584991494280394, guid: 739b0b926e0353045bc36990453cccad, type: 3}
+  - {fileID: 3958558269518269184, guid: 3e7c72b0aa1d40e48af52ea511d6f5c5, type: 3}
   upgradePanel: {fileID: 1296016043}
   purchasePanel: {fileID: 404867656}
   towerUpgradePanel:
@@ -5344,7 +5346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.41960785}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5375,13 +5377,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTower: {fileID: 0}
-  _towerValues:
+  towerValues:
     towerName: {fileID: 1499294859}
     damageText: {fileID: 612995708}
     damageNextLevelText: {fileID: 1362344434}
     damageUpgradePrice: {fileID: 179229310}
     radiusText: {fileID: 1768866594}
-    radiusNextlevelText: {fileID: 875896819}
+    radiusNextLevelText: {fileID: 875896819}
     radiusUpgradePrice: {fileID: 853446296}
     fireRateText: {fileID: 1289421022}
     fireRateNextLevelText: {fileID: 2027113388}
@@ -6263,7 +6265,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -60}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 240, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499294859
 MonoBehaviour:

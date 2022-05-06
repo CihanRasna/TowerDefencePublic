@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -14,14 +15,28 @@ public class TowerMeshController : MonoBehaviour
     [SerializeField] private float selfRotateSpeed = 0.5f;
     [SerializeField] private List<Transform> selfRotatingObjects;
 
+    private Sequence rotateSequence;
+    private Sequence verticalSequence;
+
     private void OnEnable()
     {
+        rotateSequence = DOTween.Sequence();
+        verticalSequence = DOTween.Sequence();
         //GetComponentInParent<BaseTower>().shootingPoint = this.shootingPoint;
         verticalMoverObjects?.ForEach(m =>
-            m.DOLocalMoveY(m.transform.localPosition.y + Random.Range(verticalMoveDistance * 0.5f,verticalMoveDistance * 2f), verticalMoveTime)
-                .SetLoops(-1, LoopType.Yoyo));
+            verticalSequence.Append(m.DOLocalMoveY(
+                m.transform.localPosition.y + Random.Range(verticalMoveDistance * 0.5f, verticalMoveDistance * 2f),
+                verticalMoveTime)));
         selfRotatingObjects?.ForEach(r =>
-            r.DOLocalRotate(Vector3.up * 360f, selfRotateSpeed, RotateMode.FastBeyond360).SetEase(Ease.Linear)
-                .SetLoops(-1, LoopType.Incremental));
+            rotateSequence.Join(r.DOLocalRotate(Vector3.up * 360f, selfRotateSpeed, RotateMode.FastBeyond360)
+                .SetEase(Ease.Linear)));
+        verticalSequence.SetLoops(-1, LoopType.Yoyo);
+        rotateSequence.SetLoops(-1, LoopType.Incremental);
+    }
+
+    private void OnDisable()
+    {
+        rotateSequence.Kill();
+        verticalSequence.Kill();
     }
 }
