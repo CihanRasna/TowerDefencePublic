@@ -3,8 +3,6 @@ using Vanta.Core;
 using Vanta.Levels;
 using Vanta.Persist;
 
-
-
 namespace Vanta.UI
 {
     public class MenuManager : Singleton<MenuManager>, 

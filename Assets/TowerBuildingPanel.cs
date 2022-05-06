@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using _Game.Levels.Base;
 using UnityEngine;
+using Vanta.Levels;
 
 public class TowerBuildingPanel : MonoBehaviour
 {
@@ -36,7 +35,9 @@ public class TowerBuildingPanel : MonoBehaviour
 
     public void BuildNewTower(int idx)
     {
+        var level = LevelManager.Instance.currentLevel as Level;
         var towerToBuild = _buildingManager.towerPrefabs[idx];
+        level!.SpendCurrency(towerToBuild.towerProperties.towerPurchasePrice);
         selectedPoint.TowerBuildingSequence(towerToBuild);
         Deselect();
     }

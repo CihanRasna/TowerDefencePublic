@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
-using Vanta.Core;
 
-
-
-namespace Vanta
+namespace Vanta.Core
 {
 
     public class GameManager : Singleton<GameManager>
     {
 
-        private float defaultTimeScale;
+        private float _defaultTimeScale;
 
 
 
@@ -18,7 +15,7 @@ namespace Vanta
         private void Start()
         {
             Application.targetFrameRate = 60;
-            defaultTimeScale = Time.timeScale;
+            _defaultTimeScale = Time.timeScale;
         }
 
     #endregion
@@ -34,7 +31,7 @@ namespace Vanta
 
         public void ResumeGame()
         {
-            Time.timeScale = defaultTimeScale;
+            Time.timeScale = _defaultTimeScale;
         }
 
         public bool IsPaused() => Time.timeScale == 0;

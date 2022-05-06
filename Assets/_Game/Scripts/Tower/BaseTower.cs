@@ -65,7 +65,7 @@ namespace _Game.Scripts.Tower
 
         private void OnEnable()
         {
-            collider.radius = towerProperties.shootingRange;
+            collider.radius = towerProperties.shootingRadius;
         }
 
         protected virtual void Awake()
@@ -141,7 +141,7 @@ namespace _Game.Scripts.Tower
             towerType = towerProperties.towerType;
             shootingType = towerProperties.shootingType;
             damage = towerProperties.damage;
-            collider.radius = towerProperties.shootingRange;
+            collider.radius = towerProperties.shootingRadius;
             firePerSecond = towerProperties.fireRate;
             baseProjectile = towerProperties.baseProjectile;
             projectileEffectZone = towerProperties.projectileEffectZone;
@@ -217,7 +217,7 @@ namespace _Game.Scripts.Tower
         public void UpgradeRadius(float value)
         {
             TowerUpgraded();
-            collider.radius = towerProperties.shootingRange += value;
+            collider.radius = towerProperties.shootingRadius += value;
             var newPrice = towerProperties.baseRadiusPrice * towerProperties.radiusUpgradeMultiplier * radiusCurrentLevel;
             radiusUpgradePrice = (int)newPrice;
         }
@@ -263,7 +263,7 @@ namespace _Game.Scripts.Tower
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, towerProperties.shootingRange);
+            Gizmos.DrawWireSphere(transform.position, towerProperties.shootingRadius);
         }
     }
 }
