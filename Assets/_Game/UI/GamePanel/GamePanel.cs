@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using UnityEngine;
 using UnityEngine.UI;
 using Vanta.UI;
-
 
 
 public interface IGamePanelDelegate
@@ -12,18 +14,18 @@ public interface IGamePanelDelegate
 
 public class GamePanel : Panel
 {
-
     [SerializeField] private Button settingsButton;
     [SerializeField] private Text levelIndex;
     [SerializeField] private Image progressBar;
+    [SerializeField] private Text currencyUI;
+
 
     private int healthStatus = 0;
 
     [HideInInspector] public IGamePanelDelegate listener;
 
 
-
-#region Life Cycle
+    #region Life Cycle
 
     protected override void Start()
     {
@@ -31,22 +33,34 @@ public class GamePanel : Panel
         UpdateProgressBar(0, false);
     }
 
-#endregion
+    #endregion
 
 
-
-#region Level Index
+    #region Level Index
 
     public void UpdateLevelIndex(int index)
     {
         levelIndex.text = "LEVEL " + (index + 1).ToString();
     }
 
-#endregion
+    #endregion
+
+    #region Currency
+
+    public void UpdateCurrency(int currency)
+    {
+        var dummyText = currencyUI;
+        dummyText.DOText(currency.ToString(), 0.2f, true, ScrambleMode.Numerals).OnUpdate((() =>
+        {
+            currencyUI.text = dummyText.text + "$";
+        }));
+        
+    }
+
+    #endregion
 
 
-
-#region Progress Bar
+    #region Progress Bar
 
     public void UpdateProgressBar(float percent, bool animated)
     {
@@ -75,11 +89,10 @@ public class GamePanel : Panel
         progressBar.rectTransform.offsetMax = new Vector2(-width, progressBar.rectTransform.offsetMax.y);
     }
 
-#endregion
+    #endregion
 
 
-
-#region Settings
+    #region Settings
 
     public void DisplaySettingsButton(bool display)
     {
@@ -91,17 +104,15 @@ public class GamePanel : Panel
         listener.GamePanel_SettingsButtonTapped(this);
     }
 
-#endregion
+    #endregion
 
 
-
-#region User Interaction
+    #region User Interaction
 
     public void EditorButtonTapped()
     {
         listener.GamePanel_EditorButtonTapped(this);
     }
 
-#endregion
-
+    #endregion
 }

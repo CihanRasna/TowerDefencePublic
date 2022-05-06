@@ -134,7 +134,7 @@ public class TowerUpgradePanel : MonoBehaviour
         var level = (Level)LevelManager.Instance.currentLevel;
         var selectedProperties = selectedTower.towerProperties;
 
-        if (!_fireRateMaxUpgrade && level.SpendCurrency(100))
+        if (!_fireRateMaxUpgrade && level.SpendCurrency(selectedTower.fireRateUpgradePrice))
         {
             selectedTower.fireRateCurrentLevel += 1;
             selectedTower.UpgradeFireRate(selectedProperties.fireRatePerUpgrade);
@@ -149,7 +149,7 @@ public class TowerUpgradePanel : MonoBehaviour
         var level = (Level)LevelManager.Instance.currentLevel;
         var selectedProperties = selectedTower.towerProperties;
 
-        if (!_radiusMaxUpgrade && level.SpendCurrency(100))
+        if (!_radiusMaxUpgrade && level.SpendCurrency(selectedTower.radiusUpgradePrice))
         {
             selectedTower.radiusCurrentLevel += 1;
             selectedTower.UpgradeRadius(selectedProperties.radiusPerUpgrade);

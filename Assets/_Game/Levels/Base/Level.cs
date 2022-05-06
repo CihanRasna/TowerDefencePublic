@@ -3,6 +3,7 @@ using _Game.Characters;
 using _Game.Scripts.Enemy;
 using Dreamteck.Splines;
 using UnityEngine;
+using UnityEngine.Events;
 using Vanta.Levels;
 
 namespace _Game.Levels.Base
@@ -16,6 +17,8 @@ namespace _Game.Levels.Base
         [SerializeField] private int _currency = 100;
         public int currency => _currency;
 
+        public UnityAction<int> currencyChanged;
+
         #region Life Cycle
 
         protected override void Start()
@@ -25,7 +28,6 @@ namespace _Game.Levels.Base
             _state = State.Loaded;
             listener.Level_DidLoad(this);
             Debug.Log("Loaded");
-            //_currency = 100;
         }
 
         public void StartLevel()
@@ -37,12 +39,14 @@ namespace _Game.Levels.Base
         public void IncomeCurrency(int prize) //TODO: New Script
         {
             _currency += prize;
+            currencyChanged.Invoke(_currency);
         }
 
         public bool SpendCurrency(int price) // TODO: NEW SCRIPT
         {
             if (_currency < price) return false;
             _currency -= price;
+            currencyChanged.Invoke(_currency);
             return true;
         }
         

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Game.Levels.Base;
+using UnityEngine;
 using Vanta.Core;
 using Vanta.Levels;
 using Vanta.Persist;
@@ -58,12 +59,20 @@ namespace Vanta.UI
         private void LevelDidLoad(BaseLevel baseLevel)
         {
             HideAllPanels();
+            var level = baseLevel as Level;
+            level.currencyChanged += CurrencyChangedUI;
         
             _gamePanel.UpdateLevelIndex(PersistManager.Instance.displayingLevelIdx);
             _gamePanel.UpdateProgressBar(0, false);
             _gamePanel.Display();
+            _gamePanel.UpdateCurrency(level.currency);
         
             _tutorialPanel.Display();
+        }
+
+        private void CurrencyChangedUI(int currency)
+        {
+            _gamePanel.UpdateCurrency(currency);
         }
 
         private void LevelDidStart(BaseLevel baseLevel)
@@ -74,12 +83,16 @@ namespace Vanta.UI
         private void LevelDidSuccess(BaseLevel baseLevel)
         {
             HideAllPanels();
+            var level = baseLevel as Level;
+            level.currencyChanged -= CurrencyChangedUI;
             _levelSucceededPanel.Display();
         }
 
         private void LevelDidFail(BaseLevel baseLevel)
         {
             HideAllPanels();
+            var level = baseLevel as Level;
+            level.currencyChanged -= CurrencyChangedUI;
             _levelFailedPanel.Display();
         }
 
