@@ -8,7 +8,6 @@ using EPOOutline;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
-using Vanta.Levels;
 using Random = UnityEngine.Random;
 
 namespace _Game.Scripts.Tower
@@ -160,7 +159,7 @@ namespace _Game.Scripts.Tower
         {
             //var level = LevelManager.Instance.currentLevel as Level;
             var transform1 = shootingPoint.transform;
-            var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, LevelManager.Instance.currentLevel.transform); //TODO : PARENTING PROBLEM CHECK HERE
+            var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, currentEnemy.transform); //TODO : PARENTING PROBLEM CHECK HERE
             go.InitializeBullet(this, damage, projectileEffectZone, currentEnemy, towerProperties.hitParticle);
         }
 

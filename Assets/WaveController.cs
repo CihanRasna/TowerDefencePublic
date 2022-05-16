@@ -25,7 +25,7 @@ public class WaveController : MonoBehaviour
         {
             var enemy = Instantiate(allEnemies[0].enemies[0]);
             enemy.enemyWeightAction += CurrentWeightCalc;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(10f);
         }
         yield return null;
     }

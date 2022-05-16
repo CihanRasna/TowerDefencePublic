@@ -1,3 +1,4 @@
+using System;
 using _Game.Scripts.Enemy;
 using _Game.Scripts.Tower;
 using DG.Tweening;
@@ -20,14 +21,19 @@ namespace _Game.Scripts.Projectiles
         {
             if (other.TryGetComponent<BaseEnemy>(out var enemy))
             {
-                GetComponent<Collider>().enabled = false;
-                DoYourOwnShit(enemy);
-                _tweener.Kill();
-                enemy.TakeDamage(damage);
-                EffectEnemiesInRadius();
+                //OnHit(enemy);
                 // enemy.TakeDamage(damage);
                 // enemy.GetStatusEffect(bulletType);
             }
+        }
+
+        private void OnHit(BaseEnemy enemy)
+        {
+            GetComponent<Collider>().enabled = false;
+            DoYourOwnShit(enemy);
+            _tweener.Kill();
+            enemy.TakeDamage(damage);
+            EffectEnemiesInRadius();
         }
 
         private void EffectEnemiesInRadius()
@@ -61,15 +67,19 @@ namespace _Game.Scripts.Projectiles
 
         protected virtual void ProjectileMovementOverrider()
         {
-            _tweener = transform.DOMove(target.transform.position, .2f).OnUpdate(() =>
+            _tweener = transform.DOLocalMove(Vector3.zero + Vector3.up, .2f).OnUpdate(() =>
             {
-                if (target) _tweener.ChangeEndValue(target.transform.position + Vector3.up, true);
+                if (target)
+                {
+                    //_tweener.ChangeEndValue(target.transform.position + Vector3.up, true);
+                    transform.LookAt(target.transform);
+                }
                 else
                 {
                     _tweener.Kill();
                     DestroyImmediate(gameObject);
                 }
-            });
+            }).OnComplete(()=> OnHit(target));
         }
 
         private void OnDrawGizmos()
