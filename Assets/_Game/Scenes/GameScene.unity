@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 197924440}
   - component: {fileID: 197924439}
   m_Layer: 5
-  m_Name: ArcherTowerImage
+  m_Name: TeleportTowerImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bddfc164a0fa0dc419c8583cce28d9b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2648e41d1a07be04cbc3b9a9518bc915, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2570,7 +2570,7 @@ GameObject:
   - component: {fileID: 370847952}
   - component: {fileID: 370847951}
   m_Layer: 5
-  m_Name: ArcherTowerImage
+  m_Name: PoisonTowerImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2628,7 +2628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bddfc164a0fa0dc419c8583cce28d9b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6bc98445de344e42b84b6fd0a138f0a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4639,7 +4639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bddfc164a0fa0dc419c8583cce28d9b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efb5109ac7a606b4ebbf3bdf53388d41, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6962,7 +6962,7 @@ GameObject:
   - component: {fileID: 1188617471}
   - component: {fileID: 1188617470}
   m_Layer: 5
-  m_Name: ArcherTowerImage
+  m_Name: IceTowerImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7020,7 +7020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bddfc164a0fa0dc419c8583cce28d9b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83c88c52489c6234c81e5b2d15c5bf3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8599,7 +8599,7 @@ GameObject:
   - component: {fileID: 1587086055}
   - component: {fileID: 1587086054}
   m_Layer: 5
-  m_Name: ArcherTowerImage
+  m_Name: FireTowerImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8657,7 +8657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bddfc164a0fa0dc419c8583cce28d9b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2633fd428ae9c44fabbc3db305ab41b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
