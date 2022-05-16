@@ -6,43 +6,46 @@ using Vanta.Persist;
 
 namespace Vanta.UI
 {
-    public class MenuManager : Singleton<MenuManager>, 
-        IGamePanelDelegate, 
-        ISettingsPanelDelegate, 
-        ILevelFailedPanelDelegate, 
+    public class MenuManager : Singleton<MenuManager>,
+        IGamePanelDelegate,
+        ISettingsPanelDelegate,
+        ILevelFailedPanelDelegate,
         ILevelSucceededPanelDelegate,
-        IEditorPanelDelegate
+        IEditorPanelDelegate,
+        IPausePanelDelegate
     {
+        [SerializeField] private GamePanel gamePanel;
+        [SerializeField] private SettingsPanel settingsPanel;
+        [SerializeField] private LevelFailedPanel levelFailedPanel;
+        [SerializeField] private LevelSucceededPanel levelSucceededPanel;
+        [SerializeField] private TutorialPanel tutorialPanel;
+        [SerializeField] private EditorPanel editorPanel;
+        [SerializeField] private PausePanel pausePanel;
         
-        [SerializeField] private GamePanel _gamePanel;
-        [SerializeField] private SettingsPanel _settingsPanel;
-        [SerializeField] private LevelFailedPanel _levelFailedPanel;
-        [SerializeField] private LevelSucceededPanel _levelSucceededPanel;
-        [SerializeField] private TutorialPanel _tutorialPanel;
-        [SerializeField] private EditorPanel _editorPanel;
-        
-        [SerializeField] [HideInInspector] private SafeArea.SimulationDevice _simulatingDevice = SafeArea.SimulationDevice.None;
+
+        [SerializeField] [HideInInspector]
+        private SafeArea.SimulationDevice simulatingDevice = SafeArea.SimulationDevice.None;
 
 
-    
-    #region Life Cycle
-    
+        #region Life Cycle
+
         protected override void Awake()
         {
             base.Awake();
-            
+
 #if UNITY_EDITOR
-            SafeArea.simulationDevice = _simulatingDevice;
+            SafeArea.simulationDevice = simulatingDevice;
 #endif
         }
 
         private void Start()
         {
-            _gamePanel.listener = this;
-            _settingsPanel.listener = this;
-            _levelFailedPanel.listener = this;
-            _levelSucceededPanel.listener = this;
-            _editorPanel.listener = this;
+            gamePanel.listener = this;
+            settingsPanel.listener = this;
+            levelFailedPanel.listener = this;
+            levelSucceededPanel.listener = this;
+            editorPanel.listener = this;
+            pausePanel.listener = this;
 
             LevelManager.Instance.levelDidLoad += LevelDidLoad;
             LevelManager.Instance.levelDidStart += LevelDidStart;
@@ -50,34 +53,33 @@ namespace Vanta.UI
             LevelManager.Instance.levelDidFail += LevelDidFail;
         }
 
-    #endregion
+        #endregion
 
 
-
-    #region Level Events
+        #region Level Events
 
         private void LevelDidLoad(BaseLevel baseLevel)
         {
             HideAllPanels();
             var level = baseLevel as Level;
             level.currencyChanged += CurrencyChangedUI;
-        
-            _gamePanel.UpdateLevelIndex(PersistManager.Instance.displayingLevelIdx);
-            _gamePanel.UpdateProgressBar(0, false);
-            _gamePanel.Display();
-            _gamePanel.UpdateCurrency(level.currency);
-        
-            _tutorialPanel.Display();
+
+            gamePanel.UpdateLevelIndex(PersistManager.Instance.displayingLevelIdx);
+            gamePanel.UpdateProgressBar(0, false);
+            gamePanel.Display();
+            gamePanel.UpdateCurrency(level.currency);
+
+            //tutorialPanel.Display();
         }
 
         private void CurrencyChangedUI(int currency)
         {
-            _gamePanel.UpdateCurrency(currency);
+            gamePanel.UpdateCurrency(currency);
         }
 
         private void LevelDidStart(BaseLevel baseLevel)
         {
-            _tutorialPanel.Hide();
+            tutorialPanel.Hide();
         }
 
         private void LevelDidSuccess(BaseLevel baseLevel)
@@ -85,7 +87,7 @@ namespace Vanta.UI
             HideAllPanels();
             var level = baseLevel as Level;
             level.currencyChanged -= CurrencyChangedUI;
-            _levelSucceededPanel.Display();
+            levelSucceededPanel.Display();
         }
 
         private void LevelDidFail(BaseLevel baseLevel)
@@ -93,38 +95,37 @@ namespace Vanta.UI
             HideAllPanels();
             var level = baseLevel as Level;
             level.currencyChanged -= CurrencyChangedUI;
-            _levelFailedPanel.Display();
+            levelFailedPanel.Display();
         }
 
-    #endregion
-    
-    
-    
-    #region User Interaction Logic
+        #endregion
+
+
+        #region User Interaction Logic
 
         public void GamePanel_PauseButtonTapped(GamePanel gamePanel)
         {
             GameManager.Instance.PauseGame();
-            _gamePanel.DisplaySettingsButton(false);
-            _tutorialPanel.Hide();
-            _settingsPanel.Display();
+            this.gamePanel.DisplaySettingsButton(false);
+            tutorialPanel.Hide();
+            pausePanel.Display();
         }
 
         public void GamePanel_EditorButtonTapped(GamePanel gamePanel)
         {
-            _editorPanel.Display();
+            editorPanel.Display();
         }
 
         public void SettingsPanel_CloseButtonTapped(SettingsPanel settingsPanel)
         {
             GameManager.Instance.ResumeGame();
-            _settingsPanel.Hide();
-            _gamePanel.DisplaySettingsButton(true);
+            this.settingsPanel.Hide();
+            //gamePanel.DisplaySettingsButton(true);
             if (LevelManager.Instance.currentLevel.state == BaseLevel.State.Unknown ||
                 LevelManager.Instance.currentLevel.state == BaseLevel.State.Loading ||
                 LevelManager.Instance.currentLevel.state == BaseLevel.State.Loaded)
             {
-                _tutorialPanel.Display();
+                //tutorialPanel.Display();
             }
         }
 
@@ -145,27 +146,52 @@ namespace Vanta.UI
 
         public void EditorPanel_CloseButtonTapped(EditorPanel panel)
         {
-            _editorPanel.Hide();
+            editorPanel.Hide();
+        }
+        
+        public void PausePanel_ContinueButtonTapped(PausePanel pausePanel)
+        {
+            GameManager.Instance.ResumeGame();
+            pausePanel.Hide();
+            gamePanel.DisplaySettingsButton(true);
+            if (LevelManager.Instance.currentLevel.state == BaseLevel.State.Unknown ||
+                LevelManager.Instance.currentLevel.state == BaseLevel.State.Loading ||
+                LevelManager.Instance.currentLevel.state == BaseLevel.State.Loaded)
+            {
+                //tutorialPanel.Display();
+            }
         }
 
-    #endregion
-    
-    
-    
-    #region Private Methods
+        public void PausePanel_SettingsButtonTapped(PausePanel pausePanel)
+        {
+            settingsPanel.Display();
+        }
+
+        public void PausePanel_RestartButtonTapped(PausePanel pausePanel)
+        {
+        }
+
+        public void PausePanel_GiveUpButtonTapped(PausePanel pausePanel)
+        {
+        }
+
+        #endregion
+
+
+        #region Private Methods
 
         private void HideAllPanels()
         {
-            _gamePanel.Hide();
-            _settingsPanel.Hide();
-            _levelSucceededPanel.Hide();
-            _levelFailedPanel.Hide();
-            _tutorialPanel.Hide();
-            _editorPanel.Hide();
+            gamePanel.Hide();
+            settingsPanel.Hide();
+            levelSucceededPanel.Hide();
+            levelFailedPanel.Hide();
+            tutorialPanel.Hide();
+            editorPanel.Hide();
         }
-    
-    #endregion
 
+        #endregion
+
+        
     }
-
 }

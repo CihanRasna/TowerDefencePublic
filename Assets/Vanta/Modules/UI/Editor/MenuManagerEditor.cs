@@ -23,11 +23,11 @@ namespace Vanta.UI
             GUILayout.BeginHorizontal();
 
             var manager = MenuManager.Instance;
-            var currentDevice = EditorUtilities.GetPrivateField<SafeArea.SimulationDevice>(manager, "_simulatingDevice");
+            var currentDevice = EditorUtilities.GetPrivateField<SafeArea.SimulationDevice>(manager, "simulatingDevice");
             var newDevice = (SafeArea.SimulationDevice) EditorGUILayout.EnumPopup("Simulating Device:", currentDevice);
             if (newDevice != currentDevice)
             {
-                EditorUtilities.SetPrivateField(manager, "_simulatingDevice", newDevice);
+                EditorUtilities.SetPrivateField(manager, "simulatingDevice", newDevice);
                 EditorUtility.SetDirty(manager);
                 EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }

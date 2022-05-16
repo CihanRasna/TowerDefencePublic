@@ -12531,7 +12531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4297967749576005742}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4297967751370467898}
+        m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
+        m_MethodName: SettingsButtonTapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4297967749576005741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12927,7 +12939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -76.69922, y: -69.30078}
+  m_AnchoredPosition: {x: -77, y: -69}
   m_SizeDelta: {x: 72, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4297967750360344636
@@ -13720,7 +13732,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4297967751191834759}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4297967751370467898}
+        m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
+        m_MethodName: ContinueButtonTapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4297967751191834758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18194,7 +18218,7 @@ GameObject:
   - component: {fileID: 7504212093054831394}
   - component: {fileID: 7504212093054831395}
   m_Layer: 0
-  m_Name: Btn_IconButton_Circle_121_Common
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18295,13 +18319,33 @@ PrefabInstance:
       value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
+      propertyPath: gamePanel
+      value: 
+      objectReference: {fileID: 6844802337885455847}
+    - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: _gamePanel
       value: 
       objectReference: {fileID: 6844802337885455847}
     - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
+      propertyPath: pausePanel
+      value: 
+      objectReference: {fileID: 4297967751370467898}
+    - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
+      propertyPath: editorPanel
+      value: 
+      objectReference: {fileID: 6844802338491845127}
+    - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: _editorPanel
       value: 
       objectReference: {fileID: 6844802338491845127}
+    - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
+      propertyPath: settingsPanel
+      value: 
+      objectReference: {fileID: 6844802339218314822}
+    - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
+      propertyPath: tutorialPanel
+      value: 
+      objectReference: {fileID: 5559254603513614476}
     - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: _settingsPanel
       value: 
@@ -18311,9 +18355,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5559254603513614476}
     - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
+      propertyPath: levelFailedPanel
+      value: 
+      objectReference: {fileID: 76682397926687010}
+    - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: _levelFailedPanel
       value: 
       objectReference: {fileID: 76682397926687010}
+    - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
+      propertyPath: levelSucceededPanel
+      value: 
+      objectReference: {fileID: 76682399205188871}
     - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: _levelSucceededPanel
       value: 
