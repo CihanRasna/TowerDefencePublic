@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc962e9b8163d44d9c8959de43b7c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyWeight: 1
   enemyProperties: {fileID: 11400000, guid: 663a44d00b8847242b19611259335273, type: 2}
   currentStatus: 0
   <splineFollower>k__BackingField: {fileID: 3444980067430462641}

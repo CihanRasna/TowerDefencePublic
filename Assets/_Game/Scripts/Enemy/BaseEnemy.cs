@@ -7,6 +7,7 @@ using Dreamteck.Splines;
 using EPOOutline;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using Vanta.Levels;
 
 namespace _Game.Scripts.Enemy
@@ -14,6 +15,8 @@ namespace _Game.Scripts.Enemy
     [SelectionBase]
     public abstract class BaseEnemy : MonoBehaviour
     {
+        public int enemyWeight;
+        public UnityAction<int> enemyWeightAction;
         [SerializeField] private EnemyProperties enemyProperties;
         private StatusEffects statusEffects;
 
@@ -41,6 +44,7 @@ namespace _Game.Scripts.Enemy
         protected virtual void Start()
         {
             InitializeEnemyLogic();
+            enemyWeightAction.Invoke(enemyWeight);
         }
 
         private void Update()
@@ -74,6 +78,7 @@ namespace _Game.Scripts.Enemy
             health -= dmg;
             health = Mathf.Clamp(health, 0, enemyProperties.health);
             if (health == 0) Destroy(gameObject);
+            enemyWeightAction.Invoke(-enemyWeight);
         }
 
         #region GetStatusEffects
