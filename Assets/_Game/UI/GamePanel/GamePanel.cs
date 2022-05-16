@@ -8,13 +8,13 @@ using Vanta.UI;
 
 public interface IGamePanelDelegate
 {
-    void GamePanel_SettingsButtonTapped(GamePanel gamePanel);
+    void GamePanel_PauseButtonTapped(GamePanel gamePanel);
     void GamePanel_EditorButtonTapped(GamePanel gamePanel);
 }
 
 public class GamePanel : Panel
 {
-    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button pauseButton;
     [SerializeField] private Text levelIndex;
     [SerializeField] private Image progressBar;
     [SerializeField] private Text currencyUI;
@@ -96,12 +96,12 @@ public class GamePanel : Panel
 
     public void DisplaySettingsButton(bool display)
     {
-        settingsButton.gameObject.SetActive(display);
+        pauseButton.gameObject.SetActive(display);
     }
 
-    public void SettingsButtonTapped()
+    public void PauseButtonTapped()
     {
-        listener.GamePanel_SettingsButtonTapped(this);
+        listener.GamePanel_PauseButtonTapped(this);
     }
 
     #endregion

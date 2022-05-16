@@ -102,7 +102,7 @@ namespace Vanta.UI
     
     #region User Interaction Logic
 
-        public void GamePanel_SettingsButtonTapped(GamePanel gamePanel)
+        public void GamePanel_PauseButtonTapped(GamePanel gamePanel)
         {
             GameManager.Instance.PauseGame();
             _gamePanel.DisplaySettingsButton(false);
