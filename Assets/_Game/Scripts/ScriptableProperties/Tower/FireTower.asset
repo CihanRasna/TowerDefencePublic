@@ -30,6 +30,6 @@ MonoBehaviour:
   fireRate: 0.5
   fireRatePerUpgrade: 0.125
   fireRateMaxUpgradeLevel: 3
-  shootingRadius: 7.5
-  radiusPerUpgrade: 1.25
+  shootingRadius: 12
+  radiusPerUpgrade: 1.5
   radiusMaxUpgradeLevel: 3
