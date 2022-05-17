@@ -3,6 +3,7 @@ using System.Collections;
 using _Game.Levels.Base;
 using _Game.Scripts.ScriptableProperties;
 using _Game.Scripts.Tower;
+using DG.Tweening;
 using Dreamteck.Splines;
 using EPOOutline;
 using Sirenix.OdinInspector;
@@ -19,6 +20,9 @@ namespace _Game.Scripts.Enemy
         public UnityAction<int> enemyWeightAction;
         [SerializeField] private EnemyProperties enemyProperties;
         private StatusEffects statusEffects;
+        private BaseTower _tower;
+        [SerializeField] private Canvas canvas;
+        
 
         private enum CurrentStatus
         {
@@ -59,10 +63,29 @@ namespace _Game.Scripts.Enemy
             SplinePercentPosition = splineFollower.EvaluatePosition(percent);
         }
 
+        private void LateUpdate()
+        {
+            //canvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
+                //Camera.main.transform.rotation * Vector3.down);
+            
+            //var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+            //canvas.transform.localScale = Vector3.one * distance / 1200;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<BaseTower>(out var tower))
+            {
+                _tower = tower;
+                myOutline.enabled = true;
+            }
+        }
+
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<BaseTower>(out var tower))
             {
+                _tower = null;
                 myOutline.enabled = false;
             }
         }
@@ -85,6 +108,10 @@ namespace _Game.Scripts.Enemy
             health = Mathf.Clamp(health, 0, enemyProperties.health);
             if (health == 0) Destroy(gameObject);
             enemyWeightAction.Invoke(-enemyWeight);
+            if (!_tower)
+            {
+                myOutline.enabled = false;
+            }
         }
 
         #region GetStatusEffects
@@ -132,7 +159,23 @@ namespace _Game.Scripts.Enemy
             var newSpeed = normalSpeed * ratio;
             splineFollower.followSpeed = newSpeed;
             yield return new WaitForSeconds(statusEffects.freezeTime);
-            splineFollower.followSpeed = normalSpeed;
+            
+            var curSpeed = splineFollower.followSpeed;
+            var totalDelayTime = 1f;
+            var elapsedTime = 0f;
+            while (true)
+            {
+                elapsedTime += Time.deltaTime;
+                var progress = Mathf.Clamp01(elapsedTime / totalDelayTime);
+                splineFollower.followSpeed = Mathf.Lerp(curSpeed, normalSpeed, progress);
+                if (progress >= 1f)
+                {
+                    break;
+                }
+
+                yield return null;
+            }
+            
         }
 
         private IEnumerator GetFireEffect()
