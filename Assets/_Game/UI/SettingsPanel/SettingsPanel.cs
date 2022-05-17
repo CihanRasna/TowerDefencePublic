@@ -1,84 +1,59 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Vanta.Persist;
 using Vanta.UI;
-
 
 
 public interface ISettingsPanelDelegate
 {
+    void SettingsPanel_VolumeChanged(SettingsPanel settingsPanel, float value);
+    void SettingsPanel_EffectVolumeChanged(SettingsPanel settingsPanel, float value);
     void SettingsPanel_CloseButtonTapped(SettingsPanel settingsPanel);
 }
 
 public class SettingsPanel : Panel
 {
-
-    [SerializeField] private Image hapticButton;
-    [SerializeField] private Image soundButton;
-    [SerializeField] private Sprite onSprite;
-    [SerializeField] private Sprite offSprite;
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider soundEffectSlider;
 
     [HideInInspector] public ISettingsPanelDelegate listener;
 
+    #region Life Cycle
 
-
-#region Life Cycle
+    protected override void Start()
+    {
+        base.Start();
+        volumeSlider.onValueChanged.AddListener(UpdateAudioButtonValue);
+        soundEffectSlider.onValueChanged.AddListener(UpdateSoundEffectButtonValue);
+    }
 
     protected override void OnDisplay()
     {
         base.OnDisplay();
-        
-        UpdateHapticButtonState();
-        UpdateSoundButtonState();
     }
 
-#endregion
+    #endregion
 
 
-
-#region Navigation
+    #region Navigation
 
     public void CloseButtonTapped()
     {
         listener.SettingsPanel_CloseButtonTapped(this);
     }
 
-#endregion
+    #endregion
 
 
+    #region Sounds
 
-#region Haptic
-
-    private void UpdateHapticButtonState()
+    private void UpdateAudioButtonValue(float value)
     {
-        var sprite = PersistManager.Instance.hapticsEnabled ? onSprite : offSprite;
-        hapticButton.sprite = sprite;
+        listener.SettingsPanel_VolumeChanged(this,value);
+    }
+    private void UpdateSoundEffectButtonValue(float value)
+    {
+        listener.SettingsPanel_VolumeChanged(this,value);
     }
 
-    public void HapticButtonTapped()
-    {
-        PersistManager.Instance.hapticsEnabled = !PersistManager.Instance.hapticsEnabled;
-        UpdateHapticButtonState();
-    }
-
-#endregion
-
-
-
-#region Sounds
-
-    private void UpdateSoundButtonState()
-    {
-        var sprite = PersistManager.Instance.soundsEnabled ? onSprite : offSprite;
-        soundButton.sprite = sprite;
-    }
-
-    public void SoundButtonTapped()
-    {
-        PersistManager.Instance.soundsEnabled = !PersistManager.Instance.soundsEnabled;
-        UpdateSoundButtonState();
-    }
-
-#endregion
-
+    #endregion
 }

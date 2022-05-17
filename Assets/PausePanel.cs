@@ -1,4 +1,7 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using Vanta.Levels;
 using Vanta.UI;
 
 
@@ -7,10 +10,12 @@ public interface IPausePanelDelegate
     void PausePanel_ContinueButtonTapped(PausePanel pausePanel);
     void PausePanel_SettingsButtonTapped(PausePanel pausePanel);
     void PausePanel_RestartButtonTapped(PausePanel pausePanel);
-    void PausePanel_GiveUpButtonTapped(PausePanel pausePanel);
 }
 public class PausePanel : Panel
 {
+
+    [SerializeField] private TextMeshProUGUI pauseText;
+    
     public IPausePanelDelegate listener;
 
     public void ContinueButtonTapped()
@@ -21,5 +26,56 @@ public class PausePanel : Panel
     public void SettingsButtonTapped()
     {
         listener.PausePanel_SettingsButtonTapped(this);
+    }
+    
+    public void RestartButtonTapped()
+    {
+        StartCoroutine(RestartLevel());
+    }
+
+    public void GiveUpButtonTapped()
+    {
+        StartCoroutine(QuitApp());
+    }
+
+    private IEnumerator RestartLevel()
+    {
+        var remainingTime = 3.5f;
+        while (true)
+        {
+            remainingTime -= Time.unscaledDeltaTime;
+            if (remainingTime <= 0f)
+            {
+                break;
+            }
+            Debug.Log(remainingTime);
+
+            pauseText.text = $"Restart in {(int) (remainingTime)}";
+
+            yield return null;
+        }
+        yield return null;
+        listener.PausePanel_RestartButtonTapped(this);
+        Hide();
+    }
+
+    private IEnumerator QuitApp()
+    {
+        var remainingTime = 3.5f;
+        while (true)
+        {
+            remainingTime -= Time.unscaledDeltaTime;
+            if (remainingTime <= 0f)
+            {
+                break;
+            }
+            Debug.Log(remainingTime);
+
+            pauseText.text = $"Closing {(int) (remainingTime)}";
+
+            yield return null;
+        }
+        yield return null;
+        Application.Quit();
     }
 }

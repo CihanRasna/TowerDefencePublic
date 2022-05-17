@@ -20,10 +20,12 @@ public class WaveController : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitUntil(() => LevelManager.Instance.currentLevel.state == BaseLevel.State.Started);
+        var level = LevelManager.Instance.currentLevel;
+        yield return new WaitUntil(() =>level.state == BaseLevel.State.Started);
         for (var i = 0; i < 10; i++)
         {
             var enemy = Instantiate(allEnemies[0].enemies[0]);
+            enemy.transform.parent = level.transform;
             enemy.enemyWeightAction += CurrentWeightCalc;
             yield return new WaitForSeconds(10f);
         }

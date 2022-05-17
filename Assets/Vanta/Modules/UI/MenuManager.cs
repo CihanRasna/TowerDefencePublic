@@ -116,6 +116,16 @@ namespace Vanta.UI
             editorPanel.Display();
         }
 
+        public void SettingsPanel_VolumeChanged(SettingsPanel settingsPanel, float value)
+        {
+            AudioManager.Instance.ChangeVolume(value);
+        }
+        
+        public void SettingsPanel_EffectVolumeChanged(SettingsPanel settingsPanel, float value)
+        {
+            AudioManager.Instance.ChangeEffectVolume(value);
+        }
+
         public void SettingsPanel_CloseButtonTapped(SettingsPanel settingsPanel)
         {
             GameManager.Instance.ResumeGame();
@@ -169,10 +179,7 @@ namespace Vanta.UI
 
         public void PausePanel_RestartButtonTapped(PausePanel pausePanel)
         {
-        }
-
-        public void PausePanel_GiveUpButtonTapped(PausePanel pausePanel)
-        {
+            LevelManager.Instance.RestartCurrentLevel();
         }
 
         #endregion
