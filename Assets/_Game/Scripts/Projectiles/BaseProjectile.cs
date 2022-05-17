@@ -19,12 +19,12 @@ namespace _Game.Scripts.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<BaseEnemy>(out var enemy))
+            /*if (other.TryGetComponent<BaseEnemy>(out var enemy))
             {
-                //OnHit(enemy);
-                // enemy.TakeDamage(damage);
-                // enemy.GetStatusEffect(bulletType);
-            }
+                OnHit(enemy);
+                enemy.TakeDamage(damage);
+                enemy.GetStatusEffect(bulletType);
+            }*/
         }
 
         private void OnHit(BaseEnemy enemy)
@@ -38,8 +38,9 @@ namespace _Game.Scripts.Projectiles
 
         private void EffectEnemiesInRadius()
         {
-            Collider[] colliders = {};
+            Collider[] colliders = new Collider[15];
             Physics.OverlapSphereNonAlloc(transform.position, effectZone, colliders);
+            //colliders = Physics.OverlapSphere(transform.position, effectZone);
             foreach (var col in colliders)
             {
                 col.TryGetComponent<BaseEnemy>(out var e);
