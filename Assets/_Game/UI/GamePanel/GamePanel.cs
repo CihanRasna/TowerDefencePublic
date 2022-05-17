@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Vanta.UI;
@@ -17,20 +18,26 @@ public class GamePanel : Panel
     [SerializeField] private Button pauseButton;
     [SerializeField] private Text levelIndex;
     [SerializeField] private Image progressBar;
-    [SerializeField] private Text currencyUI;
+    [SerializeField] private TextMeshProUGUI currencyUI;
+    [SerializeField] private TextMeshProUGUI healthUI;
 
-
-    private int healthStatus = 0;
+    [HideInInspector] public int maxHealthStatus = 0;
 
     [HideInInspector] public IGamePanelDelegate listener;
 
 
     #region Life Cycle
 
+    protected override void OnDisplay()
+    {
+        base.OnDisplay();
+        DisplaySettingsButton(true);
+    }
+
     protected override void Start()
     {
         base.Start();
-        UpdateProgressBar(0, false);
+        //UpdateProgressBar(0, false);
     }
 
     #endregion
@@ -41,6 +48,15 @@ public class GamePanel : Panel
     public void UpdateLevelIndex(int index)
     {
         levelIndex.text = "LEVEL " + (index + 1).ToString();
+    }
+
+    #endregion
+
+    #region Health
+
+    public void UpdateHealth(int h)
+    {
+        healthUI.text = $"{h} / {maxHealthStatus}";
     }
 
     #endregion

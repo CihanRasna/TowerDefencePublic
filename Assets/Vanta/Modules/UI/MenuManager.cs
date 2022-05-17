@@ -63,10 +63,13 @@ namespace Vanta.UI
             HideAllPanels();
             var level = baseLevel as Level;
             level.currencyChanged += CurrencyChangedUI;
+            level.healthChanged += HealthChanged;
 
             gamePanel.UpdateLevelIndex(PersistManager.Instance.displayingLevelIdx);
             gamePanel.UpdateProgressBar(0, false);
             gamePanel.Display();
+            gamePanel.maxHealthStatus = level.health;
+            gamePanel.UpdateHealth(level.health);
             gamePanel.UpdateCurrency(level.currency);
 
             //tutorialPanel.Display();
@@ -75,6 +78,11 @@ namespace Vanta.UI
         private void CurrencyChangedUI(int currency)
         {
             gamePanel.UpdateCurrency(currency);
+        }
+
+        private void HealthChanged(int h)
+        {
+            gamePanel.UpdateHealth(h);
         }
 
         private void LevelDidStart(BaseLevel baseLevel)
@@ -87,6 +95,7 @@ namespace Vanta.UI
             HideAllPanels();
             var level = baseLevel as Level;
             level.currencyChanged -= CurrencyChangedUI;
+            level.healthChanged -= HealthChanged;
             levelSucceededPanel.Display();
         }
 
@@ -95,6 +104,7 @@ namespace Vanta.UI
             HideAllPanels();
             var level = baseLevel as Level;
             level.currencyChanged -= CurrencyChangedUI;
+            level.healthChanged -= HealthChanged;
             levelFailedPanel.Display();
         }
 
@@ -106,7 +116,7 @@ namespace Vanta.UI
         public void GamePanel_PauseButtonTapped(GamePanel gamePanel)
         {
             GameManager.Instance.PauseGame();
-            this.gamePanel.DisplaySettingsButton(false);
+            this.gamePanel.Hide();
             tutorialPanel.Hide();
             pausePanel.Display();
         }
@@ -162,13 +172,13 @@ namespace Vanta.UI
         public void PausePanel_ContinueButtonTapped(PausePanel pausePanel)
         {
             GameManager.Instance.ResumeGame();
-            pausePanel.Hide();
-            gamePanel.DisplaySettingsButton(true);
+            this.pausePanel.Hide();
+            gamePanel.Display();
             if (LevelManager.Instance.currentLevel.state == BaseLevel.State.Unknown ||
                 LevelManager.Instance.currentLevel.state == BaseLevel.State.Loading ||
                 LevelManager.Instance.currentLevel.state == BaseLevel.State.Loaded)
             {
-                //tutorialPanel.Display();
+                //gamePanel.Display();
             }
         }
 
@@ -180,6 +190,7 @@ namespace Vanta.UI
         public void PausePanel_RestartButtonTapped(PausePanel pausePanel)
         {
             LevelManager.Instance.RestartCurrentLevel();
+            GameManager.Instance.ResumeGame();
         }
 
         #endregion

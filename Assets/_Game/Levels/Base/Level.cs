@@ -15,9 +15,13 @@ namespace _Game.Levels.Base
         private float _nextSpawnTime = 0f;
 
         [SerializeField] private int _currency = 100;
+        [SerializeField] private int _health;
+        
         public int currency => _currency;
+        public int health => _health;
 
         public UnityAction<int> currencyChanged;
+        public UnityAction<int> healthChanged;
 
         #region Life Cycle
 
@@ -36,21 +40,25 @@ namespace _Game.Levels.Base
             listener.Level_DidStart(this);
         }
 
-        public void IncomeCurrency(int prize) //TODO: New Script
+        public void TakeHit(int dmg)
+        {
+            _health -= dmg;
+            healthChanged.Invoke(_health);
+        }
+
+        public void IncomeCurrency(int prize)
         {
             _currency += prize;
             currencyChanged.Invoke(_currency);
         }
 
-        public bool SpendCurrency(int price) // TODO: NEW SCRIPT
+        public bool SpendCurrency(int price)
         {
             if (_currency < price) return false;
             _currency -= price;
             currencyChanged.Invoke(_currency);
             return true;
         }
-        
-        //TODO: SPAWNING SYSTEM SEPERATED SCRIPT
 
         #endregion
     }

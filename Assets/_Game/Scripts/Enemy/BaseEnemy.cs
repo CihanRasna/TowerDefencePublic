@@ -47,6 +47,12 @@ namespace _Game.Scripts.Enemy
             enemyWeightAction.Invoke(enemyWeight);
         }
 
+        public void SplineEndReached()
+        {
+            var level = LevelManager.Instance.currentLevel as Level;
+            level.TakeHit(1);
+        }
+
         private void Update()
         {
             var percent = splineFollower.GetPercent();

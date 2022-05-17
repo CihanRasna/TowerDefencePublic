@@ -12107,6 +12107,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1315129960002464608, guid: 51a55064589f4214599ba95346d1ff29, type: 3}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
+      propertyPath: _health
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: _currency
       value: 1000000
       objectReference: {fileID: 0}
