@@ -12358,7 +12358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 173.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1832232279937732724
@@ -13475,7 +13475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 594.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1832232280857356415
@@ -22118,6 +22118,8 @@ MonoBehaviour:
   levelIndex: {fileID: 6844802337873288972}
   progressBar: {fileID: 6844802339684669042}
   currencyUI: {fileID: 1832232281092118945}
+  healthUI: {fileID: 1832232280848795600}
+  maxHealthStatus: 0
 --- !u!222 &6844802337898337560
 CanvasRenderer:
   m_ObjectHideFlags: 0
