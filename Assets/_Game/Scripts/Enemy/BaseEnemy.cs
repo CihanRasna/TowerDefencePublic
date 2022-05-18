@@ -60,7 +60,10 @@ namespace _Game.Scripts.Enemy
         public void SplineEndReached()
         {
             var level = LevelManager.Instance.currentLevel as Level;
-            level.TakeHit(1);
+            if (level.state == BaseLevel.State.Started)
+            {
+                level.TakeHit(1);
+            }
         }
 
         private void Update()

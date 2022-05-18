@@ -44,6 +44,11 @@ namespace _Game.Levels.Base
         {
             _health -= dmg;
             healthChanged.Invoke(_health);
+            if (health <= 0 && _state != State.Failed)
+            {
+                _state = State.Failed;
+                listener.Level_DidFail(this);
+            }
         }
 
         public void IncomeCurrency(int prize)
