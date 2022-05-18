@@ -39,7 +39,8 @@ namespace _Game.Scripts.Enemy
         [field: SerializeField] public SplineFollower splineFollower { private set; get; }
         [SerializeField] private Outlinable myOutline;
 
-        [ShowInInspector] protected float health;
+        private float health;
+        [ShowInInspector] private float currentHealth => health;
         [ShowInInspector] protected int goldPrize;
         private IEnumerator _currentStatusEffect = null;
         private float _multiplier = 1f;

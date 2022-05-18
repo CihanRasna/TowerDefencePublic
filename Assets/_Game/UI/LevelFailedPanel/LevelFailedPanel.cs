@@ -29,7 +29,7 @@ public class LevelFailedPanel : Panel
         popUpPanel.transform.localScale = Vector3.one * 0.1f;
         sequence.Join(backgroundImage.DOColor(color, 0.5f));
         sequence.Join(popUpPanel.DOScale(Vector3.one, 0.5f));
-        sequence.Join(defeatText.DOText("DEFEAT", 0.5f,scrambleMode: ScrambleMode.Uppercase));
+        sequence.Join(defeatText.DOText("DEFEAT", 1f,scrambleMode: ScrambleMode.Uppercase));
         sequence.Play();
     }
 
