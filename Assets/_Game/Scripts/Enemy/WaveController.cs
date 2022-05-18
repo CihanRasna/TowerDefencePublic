@@ -22,12 +22,13 @@ public class WaveController : MonoBehaviour
     {
         var level = LevelManager.Instance.currentLevel;
         yield return new WaitUntil(() =>level.state == BaseLevel.State.Started);
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 50; i++)
         {
             var enemy = Instantiate(allEnemies[0].enemies[0]);
+            enemy.transform.localPosition = enemy.SplinePercentPosition;
             enemy.transform.parent = level.transform;
             enemy.enemyWeightAction += CurrentWeightCalc;
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(1f);
         }
         yield return null;
     }
