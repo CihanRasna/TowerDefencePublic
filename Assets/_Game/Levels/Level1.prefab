@@ -12112,7 +12112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: _currency
-      value: 1000000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: spawnCount

@@ -9,6 +9,7 @@ using EPOOutline;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Vanta.Levels;
 
 namespace _Game.Scripts.Enemy
@@ -21,7 +22,7 @@ namespace _Game.Scripts.Enemy
         [SerializeField] private EnemyProperties enemyProperties;
         private StatusEffects statusEffects;
         private BaseTower _tower;
-        [SerializeField] private Canvas canvas;
+        [SerializeField] private Slider slider;
         
 
         private enum CurrentStatus
@@ -42,6 +43,7 @@ namespace _Game.Scripts.Enemy
         [ShowInInspector] protected int goldPrize;
         private IEnumerator _currentStatusEffect = null;
         private float _multiplier = 1f;
+        private float _maxHealth;
 
         public Vector3 SplinePercentPosition { get; private set; }
 
@@ -49,6 +51,10 @@ namespace _Game.Scripts.Enemy
         {
             InitializeEnemyLogic();
             enemyWeightAction.Invoke(enemyWeight);
+            _maxHealth = health;
+            slider.value = 1f;
+            //canvas.worldCamera = Camera.main;
+            //canvas.transform.DOLookAt(Camera.main.transform.position, Vector3.up);
         }
 
         public void SplineEndReached()
@@ -65,11 +71,12 @@ namespace _Game.Scripts.Enemy
 
         private void LateUpdate()
         {
+            slider.transform.parent.rotation = Quaternion.identity;
             //canvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
-                //Camera.main.transform.rotation * Vector3.down);
-            
-            //var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-            //canvas.transform.localScale = Vector3.one * distance / 1200;
+            //Camera.main.transform.rotation * Vector3.down);
+
+            var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+            slider.transform.localScale = Vector3.one * distance / 4750f;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -106,6 +113,7 @@ namespace _Game.Scripts.Enemy
             myOutline.enabled = true;
             health -= dmg;
             health = Mathf.Clamp(health, 0, enemyProperties.health);
+            slider.value = Mathf.Clamp01(health / _maxHealth);
             if (health == 0) Destroy(gameObject);
             enemyWeightAction.Invoke(-enemyWeight);
             if (!_tower)
