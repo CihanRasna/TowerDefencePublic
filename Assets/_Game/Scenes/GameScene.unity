@@ -7830,7 +7830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc3b8c41858b774dbd7f846947a284b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedTower: {fileID: 0}
+  buildingPoint: {fileID: 4048795785345668731, guid: 46acf0f9bc30bc346a21dcced156ee4b, type: 3}
   towerValues:
     towerName: {fileID: 1499294859}
     damageText: {fileID: 612995708}
@@ -7842,6 +7842,7 @@ MonoBehaviour:
     fireRateText: {fileID: 1289421022}
     fireRateNextLevelText: {fileID: 2027113388}
     fireRateUpgradePrice: {fileID: 883174810}
+    towerSellPrice: {fileID: 1321289032}
 --- !u!1 &1317907014
 GameObject:
   m_ObjectHideFlags: 0
@@ -7990,7 +7991,7 @@ GameObject:
   - component: {fileID: 1321289032}
   - component: {fileID: 1321289034}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SellText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

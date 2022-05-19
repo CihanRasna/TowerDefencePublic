@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: HeavyProperties
   m_EditorClassIdentifier: 
   statusEffects: {fileID: 11400000, guid: 087f5e6b6d7d12c42ac9d3ca6bf8c574, type: 2}
-  health: 0
-  speed: 0
+  health: 200
+  speed: 2
+  goldPrize: 0
