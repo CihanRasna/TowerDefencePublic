@@ -1,6 +1,7 @@
 using System;
 using _Game.Levels.Base;
 using _Game.Scripts.Tower;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 using Vanta.Levels;
@@ -18,13 +19,18 @@ public struct TowerValues
     public Text fireRateText;
     public Text fireRateNextLevelText;
     public Text fireRateUpgradePrice;
+    public Text towerSellPrice;
 }
 
 public class TowerUpgradePanel : MonoBehaviour
 {
     private BuildingManager _buildingManager;
 
-    [SerializeField] private BaseTower selectedTower;
+    private BaseTower selectedTower;
+    [ShowInInspector] private BaseTower SelectedTower => selectedTower;
+    
+    [SerializeField] private BuildingPoint buildingPoint;
+    
 
     public TowerValues towerValues;
 
@@ -64,7 +70,7 @@ public class TowerUpgradePanel : MonoBehaviour
     {
         var tower = selectedTower;
         var selectedProperties = tower.towerProperties;
-        var (dmg, fireRate, radius) = selectedTower.RefValuesForUI();
+        var (dmg, fireRate, radius,sellPrice) = selectedTower.RefValuesForUI();
 
         _damageMaxUpgrade = selectedTower.damageCurrentLevel == selectedProperties.damageMaxUpgradeLevel;
         _radiusMaxUpgrade = selectedTower.radiusCurrentLevel == selectedProperties.radiusMaxUpgradeLevel;
@@ -74,11 +80,16 @@ public class TowerUpgradePanel : MonoBehaviour
         var fireRateMultiplier = selectedProperties.fireRatePerUpgrade;
         var radiusMultiplier = selectedProperties.radiusPerUpgrade;
 
+        var halfPrice = (int)(sellPrice * 0.5f);
+        var c1 = halfPrice - (halfPrice % 50);
+        var c2 = c1 + 50;
+        var c = halfPrice - c1 < c2 - halfPrice ? c1 : c2;
 
         towerValues.towerName.text = $"{tower.towerType} Tower";
         towerValues.damageText.text = $"Current Damage : {dmg}";
         towerValues.fireRateText.text = $"Current Fire Rate : {fireRate}";
         towerValues.radiusText.text = $"Current Radius : {radius}";
+        towerValues.towerSellPrice.text = $"Sell For : {(int)(c)} $";
 
         if (_damageMaxUpgrade)
         {
@@ -161,5 +172,12 @@ public class TowerUpgradePanel : MonoBehaviour
 
     public void SellSelectedTower()
     {
+        var level = (Level)LevelManager.Instance.currentLevel;
+        var spentMoney = selectedTower.TotalSpentMoney;
+        level.IncomeCurrency(spentMoney);
+        selectedTower.SellTower();
+        Instantiate(buildingPoint, selectedTower.transform.position, Quaternion.identity,level.transform);
+        _buildingManager.HidePanel();
+        selectedTower = null;
     }
 }

@@ -62,6 +62,8 @@ namespace _Game.Scripts.Tower
 
 
         private float _lastFireTime = 99999f;
+        private int totalSpentMoney;
+        public int TotalSpentMoney => totalSpentMoney;
 
         private void OnEnable()
         {
@@ -138,6 +140,7 @@ namespace _Game.Scripts.Tower
             damageCurrentLevel = 1;
             fireRateCurrentLevel = 1;
             radiusCurrentLevel = 1;
+            totalSpentMoney = towerProperties.towerPurchasePrice;
             towerType = towerProperties.towerType;
             shootingType = towerProperties.shootingType;
             damage = towerProperties.damage;
@@ -150,9 +153,9 @@ namespace _Game.Scripts.Tower
             radiusUpgradePrice = towerProperties.baseRadiusPrice;
         }
 
-        public (float damage, float firePerSecond, float radius) RefValuesForUI()
+        public (float damage, float firePerSecond, float radius, int sellPrice) RefValuesForUI()
         {
-            return (damage, firePerSecond, collider.radius);
+            return (damage, firePerSecond, collider.radius, totalSpentMoney);
         }
 
         private void RepeatFire()
@@ -203,6 +206,7 @@ namespace _Game.Scripts.Tower
             TowerUpgraded();
             damage = towerProperties.damage += value;
             var newPrice = towerProperties.baseDamagePrice * towerProperties.damageUpgradeMultiplier * damageCurrentLevel;
+            totalSpentMoney += damageUpgradePrice;
             damageUpgradePrice = (int)newPrice;
         }
 
@@ -211,6 +215,7 @@ namespace _Game.Scripts.Tower
             TowerUpgraded();
             firePerSecond = towerProperties.fireRate += value;
             var newPrice = towerProperties.baseFireRatePrice * towerProperties.fireRateUpgradeMultiplier * fireRateCurrentLevel;
+            totalSpentMoney += fireRateUpgradePrice;
             fireRateUpgradePrice = (int)newPrice;
         }
 
@@ -219,7 +224,13 @@ namespace _Game.Scripts.Tower
             TowerUpgraded();
             collider.radius = towerProperties.shootingRadius += value;
             var newPrice = towerProperties.baseRadiusPrice * towerProperties.radiusUpgradeMultiplier * radiusCurrentLevel;
+            totalSpentMoney += radiusUpgradePrice;
             radiusUpgradePrice = (int)newPrice;
+        }
+
+        public void SellTower()
+        {
+            Destroy(gameObject);
         }
 
 

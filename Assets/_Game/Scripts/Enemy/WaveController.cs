@@ -24,9 +24,7 @@ public class WaveController : MonoBehaviour
         yield return new WaitUntil(() =>level.state == BaseLevel.State.Started);
         for (var i = 0; i < 50; i++)
         {
-            var enemy = Instantiate(allEnemies[0].enemies[0]);
-            enemy.transform.localPosition = enemy.SplinePercentPosition;
-            enemy.transform.parent = level.transform;
+            var enemy = Instantiate(allEnemies[0].enemies[0],level.transform);
             enemy.enemyWeightAction += CurrentWeightCalc;
             yield return new WaitForSeconds(1f);
         }
