@@ -25431,7 +25431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838692268739331221, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: m_Volume
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6666658301132027312, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: gamePanel

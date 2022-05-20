@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7decf71d60cb2fe438b4d9a0a160a517, type: 3}
+  m_Name: SceneLoaderManager
+  m_EditorClassIdentifier: 
+  loadingScreenMode: 0
+  sceneList:
+  - SceneName: GameScene
+    SceneAsset: {fileID: 102900000, guid: 281efe7493d250b4484304833666dbb8, type: 3}
+    DisplayName: Castle Siege TD
+    Description: Kill all the monsters that come to your village like a good commander
+      to protect the villagers from them
+    SkipType: 4
+    LoadingType: 1
+    FakeLoadingTime: 5
+    Backgrounds:
+    - {fileID: 21300000, guid: f54d46fcc6c44e24c8a7ae2314d5b1fa, type: 3}
+    - {fileID: 21300000, guid: ee559ea98a7ac6240a7277f0d75b327b, type: 3}
+    - {fileID: 21300000, guid: faccd9981b263d042832fbb0e3bfb8ce, type: 3}
+  - SceneName: MainMenu
+    SceneAsset: {fileID: 102900000, guid: b2a17b9987b335f4aaa75a4240492553, type: 3}
+    DisplayName: Castle Siege TD
+    Description: 
+    SkipType: 4
+    LoadingType: 1
+    FakeLoadingTime: 2
+    Backgrounds: []
+  tipsList:
+  - Teleport Tower is the best strategy to last exit before the bridge
+  - Archer Tower has an archer. Yeah simple it's that.
+  - To fast? Use Ice Tower to slow enemies.
+  - 'Fire & Ice Tower can neutralize each other''s effects. '
+  buildSettingsAsFallback: 1
+  useSynchronousAsFallback: 1
