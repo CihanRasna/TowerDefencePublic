@@ -23,15 +23,23 @@ MonoBehaviour:
     LoadingType: 1
     FakeLoadingTime: 5
     Backgrounds:
-    - {fileID: 21300000, guid: f54d46fcc6c44e24c8a7ae2314d5b1fa, type: 3}
-    - {fileID: 21300000, guid: ee559ea98a7ac6240a7277f0d75b327b, type: 3}
-    - {fileID: 21300000, guid: faccd9981b263d042832fbb0e3bfb8ce, type: 3}
+    - {fileID: 21300000, guid: 2d7fb82e94d7e714984e3b3db570421f, type: 3}
+    - {fileID: 21300000, guid: 551352541dda4a34a8dc91bc31cde5cd, type: 3}
+    - {fileID: 21300000, guid: d6ba66cb3ebc4aa41bd208531a77d745, type: 3}
   - SceneName: MainMenu
     SceneAsset: {fileID: 102900000, guid: b2a17b9987b335f4aaa75a4240492553, type: 3}
     DisplayName: Castle Siege TD
     Description: 
     SkipType: 4
     LoadingType: 1
+    FakeLoadingTime: 2
+    Backgrounds: []
+  - SceneName: Map
+    SceneAsset: {fileID: 102900000, guid: 8af7fdb3245f0464686017d157bca8e3, type: 3}
+    DisplayName: Map
+    Description: 
+    SkipType: 3
+    LoadingType: 0
     FakeLoadingTime: 2
     Backgrounds: []
   tipsList:
