@@ -45,6 +45,7 @@ namespace _Game.Scripts.Tower
         [SerializeField] private Image radiusIndicatorImage;
         private Tweener _imageTweener;
 
+        protected float projectileArriveTime;
         protected float damage;
         protected float firePerSecond;
         protected BaseProjectile baseProjectile;
@@ -53,7 +54,7 @@ namespace _Game.Scripts.Tower
         [HideInInspector] public int damageCurrentLevel = 1;
         [HideInInspector] public int fireRateCurrentLevel = 1;
         [HideInInspector] public int radiusCurrentLevel = 1;
-        
+
         [HideInInspector] public int damageUpgradePrice;
         [HideInInspector] public int fireRateUpgradePrice;
         [HideInInspector] public int radiusUpgradePrice;
@@ -146,6 +147,7 @@ namespace _Game.Scripts.Tower
             damage = towerProperties.damage;
             collider.radius = towerProperties.shootingRadius;
             firePerSecond = towerProperties.fireRate;
+            projectileArriveTime = towerProperties.projectileArriveTime;
             baseProjectile = towerProperties.baseProjectile;
             projectileEffectZone = towerProperties.projectileEffectZone;
             damageUpgradePrice = towerProperties.baseDamagePrice;
@@ -162,8 +164,9 @@ namespace _Game.Scripts.Tower
         {
             //var level = LevelManager.Instance.currentLevel as Level;
             var transform1 = shootingPoint.transform;
-            var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, currentEnemy.transform); //TODO : PARENTING PROBLEM CHECK HERE
-            go.InitializeBullet(this, damage, projectileEffectZone, currentEnemy, towerProperties.hitParticle);
+            var go = Instantiate(baseProjectile, transform1.position, transform1.rotation, currentEnemy.transform);
+            go.InitializeBullet(this, damage, projectileEffectZone, projectileArriveTime, currentEnemy,
+                towerProperties.hitParticle);
         }
 
         protected virtual void TowerHasTarget()
@@ -205,27 +208,30 @@ namespace _Game.Scripts.Tower
         {
             TowerUpgraded();
             damage = towerProperties.damage += value;
-            var newPrice = towerProperties.baseDamagePrice * towerProperties.damageUpgradeMultiplier * damageCurrentLevel;
+            var newPrice = towerProperties.baseDamagePrice * towerProperties.damageUpgradeMultiplier *
+                           damageCurrentLevel;
             totalSpentMoney += damageUpgradePrice;
-            damageUpgradePrice = (int)newPrice;
+            damageUpgradePrice = (int) newPrice;
         }
 
         public void UpgradeFireRate(float value)
         {
             TowerUpgraded();
             firePerSecond = towerProperties.fireRate += value;
-            var newPrice = towerProperties.baseFireRatePrice * towerProperties.fireRateUpgradeMultiplier * fireRateCurrentLevel;
+            var newPrice = towerProperties.baseFireRatePrice * towerProperties.fireRateUpgradeMultiplier *
+                           fireRateCurrentLevel;
             totalSpentMoney += fireRateUpgradePrice;
-            fireRateUpgradePrice = (int)newPrice;
+            fireRateUpgradePrice = (int) newPrice;
         }
 
         public void UpgradeRadius(float value)
         {
             TowerUpgraded();
             collider.radius = towerProperties.shootingRadius += value;
-            var newPrice = towerProperties.baseRadiusPrice * towerProperties.radiusUpgradeMultiplier * radiusCurrentLevel;
+            var newPrice = towerProperties.baseRadiusPrice * towerProperties.radiusUpgradeMultiplier *
+                           radiusCurrentLevel;
             totalSpentMoney += radiusUpgradePrice;
-            radiusUpgradePrice = (int)newPrice;
+            radiusUpgradePrice = (int) newPrice;
         }
 
         public void SellTower()

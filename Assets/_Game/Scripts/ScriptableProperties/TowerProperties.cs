@@ -38,6 +38,7 @@ namespace _Game.Scripts.ScriptableProperties
 
         [VerticalGroup("Settings")] [BoxGroup("Settings/ProjectileRadius")]
         public float projectileEffectZone = 1f;
+        public float projectileArriveTime = 0.5f;
 
         [BoxGroup("Settings/Damage")] public float damage;
         [BoxGroup("Settings/Damage")] public float damageForUpgrade;
