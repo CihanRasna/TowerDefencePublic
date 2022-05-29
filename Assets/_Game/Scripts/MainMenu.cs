@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +11,11 @@ namespace _Game.Scripts
         public bool byName = true;
         public string sceneName;
         public int sceneID = 0;
+
+        private void Start()
+        {
+            GetComponent<AudioSource>().DOFade(1f, 10f);
+        }
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -43,7 +50,6 @@ namespace _Game.Scripts
     {
         public MainMenu script;
         string[] sceneNames;
-
         private void OnEnable()
         {
             script = (MainMenu)target;
@@ -58,6 +64,7 @@ namespace _Game.Scripts
             {
                 script.byName = EditorGUILayout.ToggleLeft("By Name", script.byName, EditorStyles.toolbarButton);
                 GUILayout.Space(2);
+                
                 if (script.byName)
                 {
                     script.sceneName = EditorGUILayout.TextField("Scene Name", script.sceneName);

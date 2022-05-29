@@ -7,8 +7,11 @@ using Random = UnityEngine.Random;
 public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] private AudioClip[] menuSounds;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSourceMusic;
     private bool _levelStarted;
+
+    private float _fXSound = 0;
+    public float FXSound => _fXSound;
 
     private void Start()
     {
@@ -20,15 +23,15 @@ public class AudioManager : Singleton<AudioManager>
 
     private void PlayNextSong(IReadOnlyCollection<AudioClip> clipList)
     {
-        if (Application.isPlaying) audioSource.Stop();
+        if (Application.isPlaying) audioSourceMusic.Stop();
         var rnd = Random.Range(0, clipList.Count);
-        audioSource.clip = menuSounds[rnd];
-        audioSource.Play();
+        audioSourceMusic.clip = menuSounds[rnd];
+        audioSourceMusic.Play();
     }
 
     private void Update()
     {
-        if (!audioSource.isPlaying && _levelStarted)
+        if (!audioSourceMusic.isPlaying && _levelStarted)
         {
             PlayNextSong(menuSounds);
         }
@@ -36,18 +39,18 @@ public class AudioManager : Singleton<AudioManager>
 
     public void ChangeVolume(float v)
     {
-        audioSource.volume = v;
+        audioSourceMusic.volume = v;
         MuteSound(v <= 0);
     }
 
     public void ChangeEffectVolume(float v)
     {
-        Debug.LogError("NO SOUND EFFECT YET");
+        _fXSound = v;
     }
 
     private void MuteSound(bool mute)
     {
-        audioSource.mute = mute;
+        audioSourceMusic.mute = mute;
     }
     
 

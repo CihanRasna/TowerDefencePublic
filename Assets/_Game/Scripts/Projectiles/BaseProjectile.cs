@@ -1,4 +1,3 @@
-using System;
 using _Game.Scripts.Enemy;
 using _Game.Scripts.Tower;
 using DG.Tweening;
@@ -13,6 +12,8 @@ namespace _Game.Scripts.Projectiles
         [SerializeField, HideInInspector] protected BaseEnemy target;
         [SerializeField, HideInInspector] protected GameObject hitParticle;
         [SerializeField, HideInInspector] protected float effectZone;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip soundFX;
 
         [HideInInspector] public BaseTower.Type bulletType;
         private Tweener _tweener;
@@ -55,20 +56,23 @@ namespace _Game.Scripts.Projectiles
 
         protected abstract void DoYourOwnShit(BaseEnemy baseEnemy);
 
-        public void InitializeBullet(BaseTower myTower, float myDamage, float myEffectZone, BaseEnemy myTarget,
+        public void InitializeBullet(BaseTower myTower, float myDamage, float myEffectZone,float arriveTime, BaseEnemy myTarget,
             GameObject myParticle)
         {
+            audioSource.clip = soundFX;
+            audioSource.volume = AudioManager.Instance.FXSound;
             bulletType = myTower.towerType;
             effectZone = myEffectZone;
             damage = myDamage;
             target = myTarget;
             hitParticle = myParticle;
-            ProjectileMovementOverrider();
+            audioSource.Play();
+            ProjectileMovementOverrider(arriveTime);
         }
 
-        protected virtual void ProjectileMovementOverrider()
+        protected virtual void ProjectileMovementOverrider(float arriveTime)
         {
-            _tweener = transform.DOLocalMove(Vector3.zero + Vector3.up, .2f).OnUpdate(() =>
+            _tweener = transform.DOLocalMove(Vector3.zero + Vector3.up, arriveTime).OnUpdate(() =>
             {
                 if (target)
                 {
