@@ -174,7 +174,11 @@ public class TowerUpgradePanel : MonoBehaviour
     {
         var level = (Level)LevelManager.Instance.currentLevel;
         var spentMoney = selectedTower.TotalSpentMoney;
-        level.IncomeCurrency(spentMoney);
+        var halfPrice = (int)(spentMoney * 0.5f);
+        var c1 = halfPrice - (halfPrice % 50);
+        var c2 = c1 + 50;
+        var c = halfPrice - c1 < c2 - halfPrice ? c1 : c2;
+        level.IncomeCurrency(c);
         selectedTower.SellTower();
         Instantiate(buildingPoint, selectedTower.transform.position, Quaternion.identity,level.transform);
         _buildingManager.HidePanel();
