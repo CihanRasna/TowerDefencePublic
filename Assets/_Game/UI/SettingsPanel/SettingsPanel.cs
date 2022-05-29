@@ -19,9 +19,9 @@ public class SettingsPanel : Panel
 
     #region Life Cycle
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         volumeSlider.onValueChanged.AddListener(UpdateAudioButtonValue);
         soundEffectSlider.onValueChanged.AddListener(UpdateSoundEffectButtonValue);
         UpdateAudioButtonValue(volumeSlider.value);
@@ -51,6 +51,7 @@ public class SettingsPanel : Panel
     private void UpdateAudioButtonValue(float value)
     {
         listener.SettingsPanel_VolumeChanged(this,value);
+        Debug.Log(value);
     }
     private void UpdateSoundEffectButtonValue(float value)
     {

@@ -15,6 +15,8 @@ public class BuildingPoint : MonoBehaviour
     [SerializeField] internal Outlinable myOutline;
     [SerializeField] private Image radiusIndicatorImage;
     [SerializeField] private SelectionReturner myReturner;
+    [SerializeField] private AudioSource audioSource;
+    
     
     private Tweener imageTweener;
     
@@ -45,6 +47,7 @@ public class BuildingPoint : MonoBehaviour
         Destroy(myReturner.gameObject);
         myRenderer.enabled = false;
         buildingVFX.SetActive(true);
+        audioSource.volume = AudioManager.Instance.FXSound;
         var elapsedTime = 0.0f;
         var duration = 2f;
         

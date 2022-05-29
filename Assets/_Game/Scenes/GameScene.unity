@@ -7978,11 +7978,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317907014}
   m_CullTransparentMesh: 1
---- !u!82 &1319499617 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3838692268739331221, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
-  m_PrefabInstance: {fileID: 8494600689976446671}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1321289030
 GameObject:
   m_ObjectHideFlags: 0
@@ -16874,7 +16869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5903757117282006568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17567,7 +17562,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17812,8 +17807,8 @@ RectTransform:
   m_Father: {fileID: 5903757117605865690}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.48953247, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19685,7 +19680,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.594
+  m_Value: 0.45
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -20008,7 +20003,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.594, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20342,8 +20337,8 @@ RectTransform:
   m_Father: {fileID: 5903757118368120781}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.594, y: 0}
-  m_AnchorMax: {x: 0.594, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.48953247, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21452,7 +21447,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -25490,10 +25485,6 @@ PrefabInstance:
       propertyPath: _levelSucceededPanel
       value: 
       objectReference: {fileID: 76682399205188871}
-    - target: {fileID: 6981362524235893281, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
-      propertyPath: audioSourceMusic
-      value: 
-      objectReference: {fileID: 1319499617}
     - target: {fileID: 8494600690265323661, guid: 0000b9e10b25b40959bb75c89febd4f2, type: 3}
       propertyPath: m_RootOrder
       value: 2
