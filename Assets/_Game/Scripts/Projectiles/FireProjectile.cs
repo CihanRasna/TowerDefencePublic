@@ -1,14 +1,16 @@
 using _Game.Levels.Base;
 using _Game.Scripts.Enemy;
-using _Game.Scripts.Projectiles;
 using Vanta.Levels;
 
-public class FireProjectile : BaseProjectile
+namespace _Game.Scripts.Projectiles
 {
-    protected override void DoYourOwnShit(BaseEnemy baseEnemy)
+    public class FireProjectile : BaseProjectile
     {
-        var level = LevelManager.Instance.currentLevel as Level;
-        Destroy(Instantiate(hitParticle, transform.position, transform.rotation, level.transform), 2f);
-        Destroy(gameObject);
+        protected override void DoYourOwnShit(BaseEnemy baseEnemy)
+        {
+            var level = LevelManager.Instance.currentLevel as Level;
+            Destroy(Instantiate(hitParticle, transform.position, transform.rotation, level.transform), 2f);
+            Destroy(gameObject);
+        }
     }
 }
