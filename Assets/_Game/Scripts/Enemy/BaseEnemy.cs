@@ -20,10 +20,9 @@ namespace _Game.Scripts.Enemy
         public int enemyWeight;
         public UnityAction<int> enemyWeightAction;
         [SerializeField] private EnemyProperties enemyProperties;
-        private StatusEffects statusEffects;
+        private StatusEffects _statusEffects;
         private BaseTower _tower;
         [SerializeField] private Slider slider;
-        
 
         private enum CurrentStatus
         {
@@ -109,7 +108,7 @@ namespace _Game.Scripts.Enemy
             splineFollower.followSpeed = enemyProperties.speed;
             health = enemyProperties.health;
             goldPrize = enemyProperties.goldPrize;
-            statusEffects = enemyProperties.statusEffects;
+            _statusEffects = enemyProperties.statusEffects;
         }
 
         public void TakeDamage(float dmg)
@@ -131,6 +130,7 @@ namespace _Game.Scripts.Enemy
         public void GetStatusEffect(BaseTower.Type towerType)
         {
             var lastEffect = _currentStatusEffect;
+            splineFollower.followSpeed = enemyProperties.speed;
             StopAllCoroutines();
             _currentStatusEffect = null;
 
@@ -167,10 +167,10 @@ namespace _Game.Scripts.Enemy
         {
             currentStatus = CurrentStatus.Freezing;
             var normalSpeed = enemyProperties.speed;
-            var ratio = (100 - statusEffects.freezeRatio) / 100f;
+            var ratio = (100 - _statusEffects.freezeRatio) / 100f;
             var newSpeed = normalSpeed * ratio;
             splineFollower.followSpeed = newSpeed;
-            yield return new WaitForSeconds(statusEffects.freezeTime);
+            yield return new WaitForSeconds(_statusEffects.freezeTime);
             
             var curSpeed = splineFollower.followSpeed;
             var totalDelayTime = 1f;
@@ -194,8 +194,8 @@ namespace _Game.Scripts.Enemy
         {
             currentStatus = CurrentStatus.OnFire;
             var elapsedTime = 0.0f;
-            var duration = statusEffects.burnTime;
-            var burnRatio = statusEffects.burnRatio;
+            var duration = _statusEffects.burnTime;
+            var burnRatio = _statusEffects.burnRatio;
             var initialHealth = health;
             var healthRatio = initialHealth * 0.01f;
 
@@ -218,16 +218,16 @@ namespace _Game.Scripts.Enemy
             currentStatus = CurrentStatus.Poisoning;
 
             var normalSpeed = enemyProperties.speed;
-            var poisonSlowRatio = (100 - statusEffects.poisonSlowRatio) / 100f;
+            var poisonSlowRatio = (100 - _statusEffects.poisonSlowRatio) / 100f;
             var newSpeed = normalSpeed * poisonSlowRatio;
             splineFollower.followSpeed = newSpeed;
 
-            var poisoningRatio = statusEffects.poisonRatio;
+            var poisoningRatio = _statusEffects.poisonRatio;
             var initialHealth = health;
             var healthRatio = initialHealth * 0.01f;
 
             var elapsedTime = 0.0f;
-            var duration = statusEffects.poisonTime;
+            var duration = _statusEffects.poisonTime;
 
             while (true)
             {
@@ -249,9 +249,9 @@ namespace _Game.Scripts.Enemy
             currentStatus = CurrentStatus.Teleported;
             var initialSpeed = splineFollower.followSpeed;
             var currentPercent = (float) splineFollower.GetPercent();
-            var targetPercent = currentPercent * (100 - statusEffects.teleportRatio) / 100f;
+            var targetPercent = currentPercent - _statusEffects.teleportRatio;
             var elapsedTime = 0.0f;
-            var duration = statusEffects.teleportTime;
+            var duration = _statusEffects.teleportTime;
             splineFollower.followSpeed = 0f;
 
             while (true)

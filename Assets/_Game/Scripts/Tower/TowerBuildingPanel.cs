@@ -37,8 +37,10 @@ public class TowerBuildingPanel : MonoBehaviour
     {
         var level = LevelManager.Instance.currentLevel as Level;
         var towerToBuild = _buildingManager.towerPrefabs[idx];
-        level!.SpendCurrency(towerToBuild.towerProperties.towerPurchasePrice);
-        selectedPoint.TowerBuildingSequence(towerToBuild);
-        Deselect();
+        if (level.SpendCurrency(towerToBuild.towerProperties.towerPurchasePrice))
+        {
+            selectedPoint.TowerBuildingSequence(towerToBuild);
+            Deselect();
+        }
     }
 }
