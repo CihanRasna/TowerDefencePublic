@@ -116,6 +116,7 @@ namespace Vanta.UI
         public void GamePanel_PauseButtonTapped(GamePanel gamePanel)
         {
             GameManager.Instance.PauseGame();
+            BuildingManager.Instance.HidePanel();
             this.gamePanel.Hide();
             tutorialPanel.Hide();
             pausePanel.Display();

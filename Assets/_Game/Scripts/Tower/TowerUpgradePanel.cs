@@ -31,6 +31,9 @@ public class TowerUpgradePanel : MonoBehaviour
     
     [SerializeField] private BuildingPoint buildingPoint;
     
+    public FillStarScript damageStars;
+    public FillStarScript radiusStars;
+    public FillStarScript fireRateStars;
 
     public TowerValues towerValues;
 
@@ -52,6 +55,9 @@ public class TowerUpgradePanel : MonoBehaviour
         selectedTower = currentTower;
         selectedTower.myOutline.OutlineParameters.Color = Color.green;
         SetSelectedTowerPropertiesToButtons();
+        damageStars.CheckIfIsActive(currentTower.damageCurrentLevel);
+        fireRateStars.CheckIfIsActive(currentTower.fireRateCurrentLevel);
+        radiusStars.CheckIfIsActive(currentTower.radiusCurrentLevel);
     }
 
     private void Deselect()
@@ -79,7 +85,7 @@ public class TowerUpgradePanel : MonoBehaviour
         var damageMultiplier = selectedProperties.damageForUpgrade;
         var fireRateMultiplier = selectedProperties.fireRatePerUpgrade;
         var radiusMultiplier = selectedProperties.radiusPerUpgrade;
-
+        
         var halfPrice = (int)(sellPrice * 0.5f);
         var c1 = halfPrice - (halfPrice % 50);
         var c2 = c1 + 50;
@@ -137,6 +143,7 @@ public class TowerUpgradePanel : MonoBehaviour
             selectedTower.TowerHasSelected(false);
             selectedTower.TowerHasSelected(true);
             SetSelectedTowerPropertiesToButtons();
+            damageStars.OpenNewStar(selectedTower.damageCurrentLevel);
         }
     }
 
@@ -152,6 +159,7 @@ public class TowerUpgradePanel : MonoBehaviour
             selectedTower.TowerHasSelected(false);
             selectedTower.TowerHasSelected(true);
             SetSelectedTowerPropertiesToButtons();
+            fireRateStars.OpenNewStar(selectedTower.fireRateCurrentLevel);
         }
     }
 
@@ -167,6 +175,7 @@ public class TowerUpgradePanel : MonoBehaviour
             selectedTower.TowerHasSelected(false);
             selectedTower.TowerHasSelected(true);
             SetSelectedTowerPropertiesToButtons();
+            radiusStars.OpenNewStar(selectedTower.radiusCurrentLevel);
         }
     }
 

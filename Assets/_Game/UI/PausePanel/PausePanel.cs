@@ -18,6 +18,12 @@ public class PausePanel : Panel
     
     public IPausePanelDelegate listener;
 
+    protected override void OnDisplay()
+    {
+        base.OnDisplay();
+        pauseText.text = "PAUSED";
+    }
+
     public void ContinueButtonTapped()
     {
         listener.PausePanel_ContinueButtonTapped(this);
