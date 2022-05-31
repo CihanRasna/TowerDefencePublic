@@ -4,6 +4,7 @@ using _Game.Levels.Base;
 using _Game.Scripts.ScriptableProperties;
 using _Game.Scripts.Tower;
 using DG.Tweening;
+using Dreamteck;
 using Dreamteck.Splines;
 using EPOOutline;
 using Sirenix.OdinInspector;
@@ -117,7 +118,12 @@ namespace _Game.Scripts.Enemy
             health -= dmg;
             health = Mathf.Clamp(health, 0, enemyProperties.health);
             slider.value = Mathf.Clamp01(health / _maxHealth);
-            if (health == 0) Destroy(gameObject);
+            if (health == 0)
+            {
+                var level = LevelManager.Instance.currentLevel as Level;
+                level.IncomeCurrency(goldPrize);
+                Destroy(gameObject);
+            }
             enemyWeightAction.Invoke(-enemyWeight);
             if (!_tower)
             {
@@ -248,8 +254,10 @@ namespace _Game.Scripts.Enemy
         {
             currentStatus = CurrentStatus.Teleported;
             var initialSpeed = splineFollower.followSpeed;
-            var currentPercent = (float) splineFollower.GetPercent();
-            var targetPercent = currentPercent - _statusEffects.teleportRatio;
+            var currentPercent = splineFollower.GetPercent();
+            var currentDistance = splineFollower.CalculateLength(0, currentPercent);
+            var targetDistance = currentDistance - _statusEffects.teleportRatio;
+            var targetPercent = splineFollower.Travel(0, targetDistance, Spline.Direction.Forward);
             var elapsedTime = 0.0f;
             var duration = _statusEffects.teleportTime;
             splineFollower.followSpeed = 0f;
@@ -257,7 +265,7 @@ namespace _Game.Scripts.Enemy
             while (true)
             {
                 var progress = Mathf.Clamp01(elapsedTime / duration);
-                var lerpAmount = Mathf.Lerp(currentPercent, targetPercent, progress);
+                var lerpAmount = DMath.Lerp(currentPercent, targetPercent, progress);
                 splineFollower.SetPercent(lerpAmount);
                 if (progress >= 1)
                 {
