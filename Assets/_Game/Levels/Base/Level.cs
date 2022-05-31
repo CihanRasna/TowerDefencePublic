@@ -31,7 +31,6 @@ namespace _Game.Levels.Base
 
             _state = State.Loaded;
             listener.Level_DidLoad(this);
-            Debug.Log("Loaded");
         }
 
         public void StartLevel()

@@ -12767,7 +12767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: _currency
-      value: 5000000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: spawnCount
@@ -12799,7 +12799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5598154855961992944, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5598154855961992944, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: m_ParentHash.Array.data[2].m_Hash
@@ -12915,10 +12915,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1852258d30446f94a884b9cff7096af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allEnemies:
-  - enemies:
-    - {fileID: 2085207401689959551, guid: fb5539b5605e7db429694f8114011d12, type: 3}
-  currentWeight: 0
+  waves:
+  - {fileID: 11400000, guid: 90a66980cec68114093d79a3f093cb00, type: 2}
+  - {fileID: 11400000, guid: aa292819d4f34cd4fa578e6b8df3d051, type: 2}
 --- !u!1001 &7772200715426454759
 PrefabInstance:
   m_ObjectHideFlags: 0

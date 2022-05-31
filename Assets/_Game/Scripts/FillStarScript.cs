@@ -9,7 +9,6 @@ public class FillStarScript : MonoBehaviour
 
     public void CheckIfIsActive(int idx)
     {
-        Debug.Log(idx);
         for (var i = 0; i < starImages.Count; i++)
         {
             if (i < idx)
