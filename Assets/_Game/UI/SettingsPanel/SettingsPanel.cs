@@ -51,7 +51,6 @@ public class SettingsPanel : Panel
     private void UpdateAudioButtonValue(float value)
     {
         listener.SettingsPanel_VolumeChanged(this,value);
-        Debug.Log(value);
     }
     private void UpdateSoundEffectButtonValue(float value)
     {

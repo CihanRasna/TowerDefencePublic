@@ -130,6 +130,9 @@ public class TowerUpgradePanel : MonoBehaviour
             towerValues.radiusNextLevelText.text = $"Next Radius : {radius + radiusMultiplier}";
             towerValues.radiusUpgradePrice.text = $"{selectedTower.radiusUpgradePrice} $";
         }
+
+        towerValues.damageUpgradePrice.transform.parent.gameObject.SetActive(selectedTower.towerType !=
+                                                                             BaseTower.Type.Teleport);
     }
 
     public void UpgradeSelectedTowerDamage()

@@ -54,7 +54,6 @@ public class PausePanel : Panel
             {
                 break;
             }
-            Debug.Log(remainingTime);
 
             pauseText.text = $"Restart in {(int) (remainingTime)}";
 
@@ -75,7 +74,6 @@ public class PausePanel : Panel
             {
                 break;
             }
-            Debug.Log(remainingTime);
 
             pauseText.text = $"Closing {(int) (remainingTime)}";
 
