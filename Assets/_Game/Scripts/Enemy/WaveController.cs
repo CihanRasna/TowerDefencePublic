@@ -1,38 +1,37 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using _Game.Scripts.Enemy;
-using Sirenix.OdinInspector;
+using _Game.Levels.Base;
+using _Game.Scripts;
 using UnityEngine;
 using Vanta.Levels;
 
 public class WaveController : MonoBehaviour
 {
-    [Serializable]
-    public class SerializableEnemyList
-    {
-        public List<BaseEnemy> enemies;
-    }
-    
-    public List<SerializableEnemyList> allEnemies = new List<SerializableEnemyList>();
-
-    [SerializeField] private int currentWeight;
+    public List<Wave> waves = new List<Wave>();
+    [SerializeField] private float waitBetweenDifferentWaves = 3f;
 
     private IEnumerator Start()
     {
-        var level = LevelManager.Instance.currentLevel;
-        yield return new WaitUntil(() =>level.state == BaseLevel.State.Started);
-        for (var i = 0; i < 50; i++)
+        var level = (LevelManager.Instance.currentLevel) as Level;
+        yield return new WaitUntil(() => level.state == BaseLevel.State.Started);
+        foreach (var w in waves)
         {
-            var enemy = Instantiate(allEnemies[0].enemies[0],level.transform);
-            enemy.enemyWeightAction += CurrentWeightCalc;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(waitBetweenDifferentWaves);
+            for (var j = 0; j < w.waves.Count; j++)
+            {
+                yield return new WaitForSeconds(w.waves[j].waitTimeAfterAllSpawned);
+                for (var k = 0; k < w.waves[j].count; k++)
+                {
+                    var enemy = Instantiate(w.waves[j].enemy,level.transform);
+                    enemy.enemyWeightAction += WeightAction;
+                    yield return new WaitForSeconds(w.waves[j].waitTimeBetweenSpawn);
+                }
+            }
         }
-        yield return null;
     }
 
-    private void CurrentWeightCalc(int a)
+    private void WeightAction(int w)
     {
-        currentWeight += a;
+        
     }
 }
