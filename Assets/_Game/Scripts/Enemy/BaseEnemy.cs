@@ -16,6 +16,7 @@ namespace _Game.Scripts.Enemy
     [SelectionBase]
     public abstract class BaseEnemy : MonoBehaviour
     {
+        [SerializeField] private GameObject particle;
         public int enemyWeight;
         public UnityAction<int> enemyWeightAction;
         [SerializeField] private EnemyProperties enemyProperties;
@@ -59,6 +60,8 @@ namespace _Game.Scripts.Enemy
             {
                 level.TakeHit(1);
             }
+
+            Destroy(Instantiate(particle, transform.position,Quaternion.identity, level.transform),2f);
         }
 
         private void Update()
