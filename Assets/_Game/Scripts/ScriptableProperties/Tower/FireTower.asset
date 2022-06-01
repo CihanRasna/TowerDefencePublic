@@ -15,17 +15,18 @@ MonoBehaviour:
   towerType: 2
   shootingType: 0
   towerPurchasePrice: 1500
-  baseDamagePrice: 250
-  damageUpgradeMultiplier: 2.25
-  baseFireRatePrice: 300
+  baseDamagePrice: 1500
+  damageUpgradeMultiplier: 3
+  baseFireRatePrice: 750
   fireRateUpgradeMultiplier: 2.5
-  baseRadiusPrice: 150
-  radiusUpgradeMultiplier: 2
+  baseRadiusPrice: 500
+  radiusUpgradeMultiplier: 4
   baseProjectile: {fileID: 1044716268183661491, guid: 1b3c977aa0054a84fa8beb88a2cee7d3, type: 3}
   hitParticle: {fileID: 2430420777528987695, guid: 03cf93d906331f941961d3dd4e6b7190, type: 3}
   projectileEffectZone: 15
-  damage: 20
-  damageForUpgrade: 5
+  projectileArriveTime: 0.5
+  damage: 50
+  damageForUpgrade: 25
   damageMaxUpgradeLevel: 3
   fireRate: 0.5
   fireRatePerUpgrade: 0.125

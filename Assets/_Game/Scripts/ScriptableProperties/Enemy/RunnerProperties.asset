@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RunnerProperties
   m_EditorClassIdentifier: 
   statusEffects: {fileID: 11400000, guid: 087f5e6b6d7d12c42ac9d3ca6bf8c574, type: 2}
-  health: 25
+  health: 35
   speed: 10
-  goldPrize: 0
+  goldPrize: 50

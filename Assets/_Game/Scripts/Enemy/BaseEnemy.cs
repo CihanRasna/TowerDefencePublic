@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using _Game.Levels.Base;
 using _Game.Scripts.ScriptableProperties;
 using _Game.Scripts.Tower;
-using DG.Tweening;
 using Dreamteck;
 using Dreamteck.Splines;
 using EPOOutline;
@@ -23,7 +21,7 @@ namespace _Game.Scripts.Enemy
         [SerializeField] private EnemyProperties enemyProperties;
         private StatusEffects _statusEffects;
         private BaseTower _tower;
-        [SerializeField] private Slider slider;
+        //[SerializeField] private Slider slider;
 
         private enum CurrentStatus
         {
@@ -53,7 +51,7 @@ namespace _Game.Scripts.Enemy
             InitializeEnemyLogic();
             enemyWeightAction.Invoke(enemyWeight);
             _maxHealth = health;
-            slider.value = 1f;
+            //slider.value = 1f;
             //canvas.worldCamera = Camera.main;
             //canvas.transform.DOLookAt(Camera.main.transform.position, Vector3.up);
         }
@@ -75,12 +73,12 @@ namespace _Game.Scripts.Enemy
 
         private void LateUpdate()
         {
-            slider.transform.parent.rotation = Quaternion.identity;
+            //slider.transform.parent.rotation = Quaternion.identity;
             //canvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
             //Camera.main.transform.rotation * Vector3.down);
 
-            var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-            slider.transform.localScale = Vector3.one * distance / 4750f;
+            //var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+            //slider.transform.localScale = Vector3.one * distance / 4750f;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -117,7 +115,7 @@ namespace _Game.Scripts.Enemy
             myOutline.enabled = true;
             health -= dmg;
             health = Mathf.Clamp(health, 0, enemyProperties.health);
-            slider.value = Mathf.Clamp01(health / _maxHealth);
+            //slider.value = Mathf.Clamp01(health / _maxHealth);
             if (health == 0)
             {
                 var level = LevelManager.Instance.currentLevel as Level;
@@ -252,6 +250,13 @@ namespace _Game.Scripts.Enemy
 
         private IEnumerator GetTeleportEffect()
         {
+            var isTeleportTower = _tower as TeleportTower;
+            if (isTeleportTower)
+            {
+                var value = isTeleportTower.towerProperties.damageForUpgrade;
+                var tpDistance = (isTeleportTower.teleportLevel * value) + _statusEffects.teleportRatio;
+            }
+            
             currentStatus = CurrentStatus.Teleported;
             var initialSpeed = splineFollower.followSpeed;
             var currentPercent = splineFollower.GetPercent();

@@ -19,5 +19,5 @@ MonoBehaviour:
   poisonTime: 3
   poisonSlowRatio: 15
   poisonRatio: 5
-  teleportTime: 2
-  teleportRatio: 30
+  teleportTime: 1
+  teleportRatio: 10
