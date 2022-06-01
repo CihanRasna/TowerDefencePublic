@@ -59,6 +59,11 @@ namespace _Game.Scripts.Projectiles
         public void InitializeBullet(BaseTower myTower, float myDamage, float myEffectZone,float arriveTime, BaseEnemy myTarget,
             GameObject myParticle)
         {
+            var worldScale = transform.lossyScale;
+            var localScale = transform.localScale;
+            var targetScale = new Vector3(localScale.x / worldScale.x , localScale.y / worldScale.y, localScale.z / worldScale.z);
+
+            transform.localScale = targetScale;
             audioSource.clip = soundFX;
             audioSource.volume = AudioManager.Instance.FXSound;
             bulletType = myTower.towerType;
