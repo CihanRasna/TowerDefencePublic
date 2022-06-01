@@ -23,7 +23,7 @@ MonoBehaviour:
   radiusUpgradeMultiplier: 4
   baseProjectile: {fileID: 2927295377988088409, guid: 5b0d1e6a94076ea4eb6ff86b762b7db6, type: 3}
   hitParticle: {fileID: 1723818010802918, guid: 6b0f4befa07ab874dbfdc6a7cb9358f3, type: 3}
-  projectileEffectZone: 5
+  projectileEffectZone: 10
   projectileArriveTime: 0.6
   damage: 45
   damageForUpgrade: 7.5

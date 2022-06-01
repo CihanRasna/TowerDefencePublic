@@ -1799,23 +1799,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 60
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.58964634
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.39027834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.58964634
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.39027834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 68.681
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 1167040582776683407, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1387068398190033277, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: <splineFollower>k__BackingField
@@ -12916,8 +12932,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
+  - {fileID: 11400000, guid: c5d0743d56b390b48b04b4c9b4587e22, type: 2}
   - {fileID: 11400000, guid: 90a66980cec68114093d79a3f093cb00, type: 2}
-  - {fileID: 11400000, guid: aa292819d4f34cd4fa578e6b8df3d051, type: 2}
+  waitBetweenDifferentWaves: 10
 --- !u!1001 &7772200715426454759
 PrefabInstance:
   m_ObjectHideFlags: 0
