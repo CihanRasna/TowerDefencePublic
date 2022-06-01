@@ -22,7 +22,7 @@ MonoBehaviour:
   baseRadiusPrice: 150
   radiusUpgradeMultiplier: 0.75
   baseProjectile: {fileID: 1044716268183661491, guid: 1b3c977aa0054a84fa8beb88a2cee7d3, type: 3}
-  hitParticle: {fileID: 2430420777528987695, guid: 03cf93d906331f941961d3dd4e6b7190, type: 3}
+  hitParticle: {fileID: 115286, guid: ec1c5863f61e8ff4a84dbdb8a282a7ac, type: 3}
   projectileEffectZone: 7.5
   projectileArriveTime: 0.5
   damage: 14

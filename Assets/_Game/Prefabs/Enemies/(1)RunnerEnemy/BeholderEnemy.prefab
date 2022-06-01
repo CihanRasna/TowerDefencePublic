@@ -192,6 +192,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc962e9b8163d44d9c8959de43b7c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 120778, guid: 632339e29e2ddd64aab6f9dd68facc82, type: 3}
+  deadParticles:
+  - {fileID: 169216, guid: 737959db973360b43bdeb1a4874f1af8, type: 3}
+  - {fileID: 163640, guid: be4058b04abc8fe4ca81c721c18ecb4f, type: 3}
+  - {fileID: 136094, guid: cbf6e26bfae3a4f48acb9bb79ce1e5da, type: 3}
+  - {fileID: 150606, guid: 625165fb93553b14f8ed057807ed752a, type: 3}
   enemyWeight: 1
   enemyProperties: {fileID: 11400000, guid: 663a44d00b8847242b19611259335273, type: 2}
   currentStatus: 0

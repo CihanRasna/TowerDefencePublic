@@ -1,9 +1,11 @@
-﻿using DG.Tweening;
+﻿using _Game.Levels.Base;
+using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Vanta.Levels;
 using Vanta.UI;
 
 
@@ -20,6 +22,8 @@ public class GamePanel : Panel
     [SerializeField] private Image progressBar;
     [SerializeField] private TextMeshProUGUI currencyUI;
     [SerializeField] private TextMeshProUGUI healthUI;
+    [SerializeField] private Image heartImage;
+    
 
     [HideInInspector] public int maxHealthStatus = 0;
 
@@ -57,6 +61,8 @@ public class GamePanel : Panel
     public void UpdateHealth(int h)
     {
         healthUI.text = $"{h} / {maxHealthStatus}";
+        var fillAmount = (float)h / (LevelManager.Instance.currentLevel as Level).InitialHealth;
+        heartImage.fillAmount = fillAmount;
     }
 
     #endregion

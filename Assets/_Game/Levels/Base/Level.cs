@@ -19,6 +19,7 @@ namespace _Game.Levels.Base
         
         public int currency => _currency;
         public int health => _health;
+        public int InitialHealth;
 
         public UnityAction<int> currencyChanged;
         public UnityAction<int> healthChanged;
@@ -31,6 +32,7 @@ namespace _Game.Levels.Base
 
             _state = State.Loaded;
             listener.Level_DidLoad(this);
+            InitialHealth = _health;
         }
 
         public void StartLevel()

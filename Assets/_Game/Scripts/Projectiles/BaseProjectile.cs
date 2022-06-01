@@ -2,6 +2,7 @@ using _Game.Scripts.Enemy;
 using _Game.Scripts.Tower;
 using DG.Tweening;
 using UnityEngine;
+using Vanta.Levels;
 
 namespace _Game.Scripts.Projectiles
 {
@@ -34,6 +35,10 @@ namespace _Game.Scripts.Projectiles
             DoYourOwnShit(enemy);
             _tweener.Kill();
             enemy.TakeDamage(damage);
+            if (hitParticle)
+            {
+                Destroy(Instantiate(hitParticle, transform.position, Quaternion.identity, LevelManager.Instance.currentLevel.transform),2f);
+            }
             EffectEnemiesInRadius();
         }
 
@@ -63,7 +68,7 @@ namespace _Game.Scripts.Projectiles
             var localScale = transform.localScale;
             var targetScale = new Vector3(localScale.x / worldScale.x , localScale.y / worldScale.y, localScale.z / worldScale.z);
 
-            transform.localScale = targetScale;
+            transform.localScale = targetScale * 2f;
             audioSource.clip = soundFX;
             audioSource.volume = AudioManager.Instance.FXSound;
             bulletType = myTower.towerType;

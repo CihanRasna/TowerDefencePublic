@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using _Game.Levels.Base;
 using _Game.Scripts.ScriptableProperties;
 using _Game.Scripts.Tower;
@@ -17,6 +18,8 @@ namespace _Game.Scripts.Enemy
     public abstract class BaseEnemy : MonoBehaviour
     {
         [SerializeField] private GameObject particle;
+        [SerializeField] private List<GameObject> deadParticles;
+        
         public int enemyWeight;
         public UnityAction<int> enemyWeightAction;
         [SerializeField] private EnemyProperties enemyProperties;
@@ -43,6 +46,7 @@ namespace _Game.Scripts.Enemy
         private IEnumerator _currentStatusEffect = null;
         private float _multiplier = 1f;
         private float _maxHealth;
+        private Animator _animator;
 
         public Vector3 SplinePercentPosition { get; private set; }
 
@@ -51,6 +55,7 @@ namespace _Game.Scripts.Enemy
             InitializeEnemyLogic();
             enemyWeightAction.Invoke(enemyWeight);
             _maxHealth = health;
+            _animator = GetComponent<Animator>();
         }
 
         public void SplineEndReached()
@@ -61,7 +66,12 @@ namespace _Game.Scripts.Enemy
                 level.TakeHit(1);
             }
 
-            Destroy(Instantiate(particle, transform.position,Quaternion.identity, level.transform),2f);
+            var go = Instantiate(particle, transform.position,Quaternion.identity, level.transform);
+            go.transform.localScale = Vector3.one * 2f;
+            var pos = go.transform.localPosition;
+            go.transform.localPosition = new Vector3(pos.x, pos.y + 1, pos.z);
+            Destroy(go,2f);
+            Destroy(gameObject);
         }
 
         private void Update()
@@ -101,14 +111,24 @@ namespace _Game.Scripts.Enemy
 
         public void TakeDamage(float dmg)
         {
+            _animator.SetTrigger("TakeHit");
             myOutline.enabled = true;
             health -= dmg;
             health = Mathf.Clamp(health, 0, enemyProperties.health);
             if (health == 0)
             {
+                GetComponent<Collider>().enabled = false;
+                splineFollower.follow = false;
                 var level = LevelManager.Instance.currentLevel as Level;
                 level.IncomeCurrency(goldPrize);
-                Destroy(gameObject);
+                var rnd = Random.Range(0, 4);
+                var selectedParticle = deadParticles[rnd];
+                var go = Instantiate(selectedParticle,transform.position,Quaternion.identity,level.transform);
+                go.transform.localScale = Vector3.one * 4f;
+                _animator.SetTrigger("Die");
+                Destroy(go, 2f);
+                Destroy(gameObject,2f);
+                Destroy(this);
             }
             enemyWeightAction.Invoke(-enemyWeight);
             if (!_tower)

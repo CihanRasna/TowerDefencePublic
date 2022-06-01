@@ -2134,7 +2134,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ea4ec1c65ffe7bd4e882d4318aeba8a5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2152,6 +2152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8742d4a05e062a42a2e7808335d6159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 120778, guid: 632339e29e2ddd64aab6f9dd68facc82, type: 3}
+  deadParticles:
+  - {fileID: 169216, guid: 737959db973360b43bdeb1a4874f1af8, type: 3}
+  - {fileID: 163640, guid: be4058b04abc8fe4ca81c721c18ecb4f, type: 3}
+  - {fileID: 136094, guid: cbf6e26bfae3a4f48acb9bb79ce1e5da, type: 3}
+  - {fileID: 150606, guid: 625165fb93553b14f8ed057807ed752a, type: 3}
   enemyWeight: 3
   enemyProperties: {fileID: 11400000, guid: dbf708ed58782b949b8a04e09b87a175, type: 2}
   currentStatus: 0
