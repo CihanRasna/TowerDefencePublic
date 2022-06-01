@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da35dbc35574d968a9f6143f4a74fd7, type: 3}
+  m_Name: Wave 8
+  m_EditorClassIdentifier: 
+  waves:
+  - enemy: {fileID: 1466807520069672108, guid: fe8fcdec0fb1f1242876e353fb88ac58, type: 3}
+    count: 7
+    waitTimeBetweenSpawn: 1
+    waitTimeAfterAllSpawned: 2
+  - enemy: {fileID: 165517181, guid: 0b9a1e738d72480488fd001d76225940, type: 3}
+    count: 5
+    waitTimeBetweenSpawn: 1
+    waitTimeAfterAllSpawned: 2
+  - enemy: {fileID: 2440252662506832399, guid: afe7897be49c46149b9032b8e4982e89, type: 3}
+    count: 6
+    waitTimeBetweenSpawn: 1
+    waitTimeAfterAllSpawned: 2
+  - enemy: {fileID: 5989170381346142489, guid: ecccf0f8ea93df64aadca31e9331e451, type: 3}
+    count: 4
+    waitTimeBetweenSpawn: 1
+    waitTimeAfterAllSpawned: 2
+  - enemy: {fileID: 39639790, guid: 8239878c9daf798438a976fe272cec5b, type: 3}
+    count: 3
+    waitTimeBetweenSpawn: 1.5
+    waitTimeAfterAllSpawned: 2
+  - enemy: {fileID: 382923173, guid: 7b3f0783d428a8d4481e0e0c83e07b47, type: 3}
+    count: 4
+    waitTimeBetweenSpawn: 1
+    waitTimeAfterAllSpawned: 2
+  - enemy: {fileID: 1502059690, guid: af199ae5475a47b488aab364819eba27, type: 3}
+    count: 5
+    waitTimeBetweenSpawn: 1.5
+    waitTimeAfterAllSpawned: 2

@@ -12779,11 +12779,11 @@ PrefabInstance:
       objectReference: {fileID: 1315129960002464608, guid: 51a55064589f4214599ba95346d1ff29, type: 3}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: _health
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: _currency
-      value: 100000
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 3061283627346413328, guid: 9a5149004e4cb44d7907fd9cfd18d348, type: 3}
       propertyPath: spawnCount
@@ -12932,9 +12932,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: c5d0743d56b390b48b04b4c9b4587e22, type: 2}
-  - {fileID: 11400000, guid: 90a66980cec68114093d79a3f093cb00, type: 2}
-  waitBetweenDifferentWaves: 10
+  - {fileID: 11400000, guid: 40a1e56327f5e554ab8faf4c6a9c9594, type: 2}
+  - {fileID: 11400000, guid: 73b30e48e81b9df41a902320fae13757, type: 2}
+  - {fileID: 11400000, guid: 81c1c231cd467344999410f3be8b9e90, type: 2}
+  - {fileID: 11400000, guid: 77597b5e9f172e94eae28702503649a9, type: 2}
+  - {fileID: 11400000, guid: 89d7da55cebff664ea08ce36e3ff3c27, type: 2}
+  - {fileID: 11400000, guid: dd5effe2877be60469aee2670b53a895, type: 2}
+  - {fileID: 11400000, guid: 7e97ea45368132d49a018f9eb5c9585e, type: 2}
+  - {fileID: 11400000, guid: 2f58e8a5858cb5846947699f1a3cab55, type: 2}
+  - {fileID: 11400000, guid: 344ffc5707c9eec43b6392f653632920, type: 2}
+  - {fileID: 11400000, guid: e10f1393b76954747973fbac71139439, type: 2}
+  waitBetweenDifferentWaves: 5
 --- !u!1001 &7772200715426454759
 PrefabInstance:
   m_ObjectHideFlags: 0

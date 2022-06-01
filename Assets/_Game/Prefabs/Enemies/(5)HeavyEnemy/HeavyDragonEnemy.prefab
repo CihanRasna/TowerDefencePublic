@@ -927,8 +927,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463305142128539533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: -100, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 461612078330202549}
   - {fileID: 461535623198088727}
@@ -1089,7 +1089,19 @@ MonoBehaviour:
     keys: []
   _unityOnEndReached:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2125684645}
+        m_TargetAssemblyTypeName: _Game.Scripts.Enemy.BaseEnemy, Assembly-CSharp
+        m_MethodName: SplineEndReached
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _unityOnBeginningReached:
     m_PersistentCalls:
       m_Calls: []

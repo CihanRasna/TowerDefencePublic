@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: StatusEffects
   m_EditorClassIdentifier: 
   freezeTime: 1.5
-  freezeRatio: 50
+  freezeRatio: 40
   burnTime: 3
   burnRatio: 25
-  poisonTime: 3
-  poisonSlowRatio: 15
-  poisonRatio: 5
-  teleportTime: 1
-  teleportRatio: 10
+  poisonTime: 2
+  poisonSlowRatio: 10
+  poisonRatio: 7.5
+  teleportTime: 0.5
+  teleportRatio: 25

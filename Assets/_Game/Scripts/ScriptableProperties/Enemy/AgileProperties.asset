@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AgileProperties
   m_EditorClassIdentifier: 
   statusEffects: {fileID: 11400000, guid: 087f5e6b6d7d12c42ac9d3ca6bf8c574, type: 2}
-  health: 55
-  speed: 15
-  goldPrize: 100
+  health: 30
+  speed: 12
+  goldPrize: 20

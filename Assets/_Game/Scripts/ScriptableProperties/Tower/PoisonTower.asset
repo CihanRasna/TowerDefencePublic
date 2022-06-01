@@ -14,23 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerType: 3
   shootingType: 0
-  towerPurchasePrice: 1800
-  baseDamagePrice: 1000
-  damageUpgradeMultiplier: 3
-  baseFireRatePrice: 1500
-  fireRateUpgradeMultiplier: 3
-  baseRadiusPrice: 1000
-  radiusUpgradeMultiplier: 4
+  towerPurchasePrice: 70
+  baseDamagePrice: 100
+  damageUpgradeMultiplier: 0.75
+  baseFireRatePrice: 100
+  fireRateUpgradeMultiplier: 0.75
+  baseRadiusPrice: 100
+  radiusUpgradeMultiplier: 0.75
   baseProjectile: {fileID: 2927295377988088409, guid: 5b0d1e6a94076ea4eb6ff86b762b7db6, type: 3}
   hitParticle: {fileID: 1723818010802918, guid: 6b0f4befa07ab874dbfdc6a7cb9358f3, type: 3}
   projectileEffectZone: 10
   projectileArriveTime: 0.6
-  damage: 45
-  damageForUpgrade: 7.5
+  damage: 5
+  damageForUpgrade: 5
   damageMaxUpgradeLevel: 3
-  fireRate: 0.75
+  fireRate: 1
   fireRatePerUpgrade: 0.375
   fireRateMaxUpgradeLevel: 3
-  shootingRadius: 12.5
-  radiusPerUpgrade: 1.25
+  shootingRadius: 15
+  radiusPerUpgrade: 5
   radiusMaxUpgradeLevel: 3
