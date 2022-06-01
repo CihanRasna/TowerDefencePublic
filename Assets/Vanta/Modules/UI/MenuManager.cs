@@ -157,7 +157,7 @@ namespace Vanta.UI
 
         public void LevelSucceededPanel_NextButtonTapped(LevelSucceededPanel levelSucceededPanel)
         {
-            LevelManager.Instance.LoadNextLevel();
+            LevelManager.Instance.RestartCurrentLevel();
         }
 
         public void EditorPanel_LoadLevelButtonTapped(EditorPanel panel, int levelIdx)

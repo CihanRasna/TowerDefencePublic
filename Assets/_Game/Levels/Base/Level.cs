@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _Game.Characters;
 using _Game.Scripts.Enemy;
 using Dreamteck.Splines;
@@ -41,11 +42,20 @@ namespace _Game.Levels.Base
             listener.Level_DidStart(this);
         }
 
+        public void Success()
+        {
+            if (_state != State.Succeed)
+            {
+                _state = State.Succeed;
+                listener.Level_DidSuccess(this,1);
+            }
+        }
+
         public void TakeHit(int dmg)
         {
             _health -= dmg;
             healthChanged.Invoke(_health);
-            if (health <= 0 && _state != State.Failed)
+            if (health <= 0 && _state != State.Failed && _state != State.Succeed)
             {
                 _state = State.Failed;
                 listener.Level_DidFail(this);

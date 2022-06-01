@@ -28,6 +28,7 @@ public class WaveController : MonoBehaviour
                 }
             }
         }
+        level.Success();
     }
 
     private void WeightAction(int w)
