@@ -24,4 +24,8 @@ MonoBehaviour:
   - enemy: {fileID: 708454935, guid: 49100136ede890745b825da99289efa8, type: 3}
     count: 1
     waitTimeBetweenSpawn: 0
-    waitTimeAfterAllSpawned: 7
+    waitTimeAfterAllSpawned: 20
+  - enemy: {fileID: 2085207401689959551, guid: fb5539b5605e7db429694f8114011d12, type: 3}
+    count: 0
+    waitTimeBetweenSpawn: 0
+    waitTimeAfterAllSpawned: 0
