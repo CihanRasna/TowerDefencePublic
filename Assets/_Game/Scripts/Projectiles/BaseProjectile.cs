@@ -76,6 +76,15 @@ namespace _Game.Scripts.Projectiles
             damage = myDamage;
             target = myTarget;
             hitParticle = myParticle;
+            if (hitParticle)
+            {
+                hitParticle.TryGetComponent<AudioSource>(out var source);
+                if (source)
+                {
+                    source.volume = AudioManager.Instance.FXSound;
+                }
+            }
+            
             audioSource.Play();
             ProjectileMovementOverrider(arriveTime);
         }

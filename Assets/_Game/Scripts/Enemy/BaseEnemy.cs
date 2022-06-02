@@ -67,6 +67,11 @@ namespace _Game.Scripts.Enemy
             }
 
             var go = Instantiate(particle, transform.position,Quaternion.identity, level.transform);
+            go.TryGetComponent(out AudioSource source);
+            if (source)
+            {
+                source.volume = AudioManager.Instance.FXSound;
+            }
             go.transform.localScale = Vector3.one * 2f;
             var pos = go.transform.localPosition;
             go.transform.localPosition = new Vector3(pos.x, pos.y + 1, pos.z);
@@ -124,6 +129,11 @@ namespace _Game.Scripts.Enemy
                 var rnd = Random.Range(0, 4);
                 var selectedParticle = deadParticles[rnd];
                 var go = Instantiate(selectedParticle,transform.position,Quaternion.identity,level.transform);
+                go.TryGetComponent(out AudioSource source);
+                if (source)
+                {
+                    source.volume = AudioManager.Instance.FXSound;
+                }
                 go.transform.localScale = Vector3.one * 4f;
                 _animator.SetTrigger("Die");
                 Destroy(go, 2f);
